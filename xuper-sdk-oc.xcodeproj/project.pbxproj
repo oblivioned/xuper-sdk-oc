@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc.framework */; };
+		1740FED3EBE7BDA330BFAE5B /* Pods_xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1A7866F84EBD3C56DB9FD7 /* Pods_xuper_sdk_oc_iOS.framework */; };
+		186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */; };
 		186FC2332390CDFF00DE6E2B /* xuper_sdk_ocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2322390CDFF00DE6E2B /* xuper_sdk_ocTests.m */; };
 		186FC2352390CDFF00DE6E2B /* xuper_sdk_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2272390CDFE00DE6E2B /* xuper_sdk_oc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		186FC2412390CE4500DE6E2B /* XCryptoFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC23F2390CE4500DE6E2B /* XCryptoFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,8 +57,7 @@
 		186FC2F823966C3E00DE6E2B /* HTTP.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2F423966C3E00DE6E2B /* HTTP.pbobjc.h */; };
 		186FC2F923966C3E00DE6E2B /* HTTP.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2F523966C3E00DE6E2B /* HTTP.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC2FA23966C3E00DE6E2B /* Annotations.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2F623966C3E00DE6E2B /* Annotations.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2AFFA9A7B980F2D4B88A13F4 /* Pods_xuper_sdk_oc_xuper_sdk_ocTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C108647C5690F96C1CEA0B /* Pods_xuper_sdk_oc_xuper_sdk_ocTests.framework */; };
-		FC7636020C1BA3078A37326F /* Pods_xuper_sdk_oc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16517C7AF42DEBE9C53E4C2 /* Pods_xuper_sdk_oc.framework */; };
+		C0312E874DDDCCCBDE9C2822 /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C06EF8CABDE05821204F9D /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,11 +72,11 @@
 
 /* Begin PBXFileReference section */
 		07B29224365641793F5DC025 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; sourceTree = "<group>"; };
-		14C108647C5690F96C1CEA0B /* Pods_xuper_sdk_oc_xuper_sdk_ocTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xuper_sdk_oc_xuper_sdk_ocTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		186FC2242390CDFE00DE6E2B /* xuper_sdk_oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xuper_sdk_oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F99EB3C6E244D51CAE8C983 /* Pods-xuper-sdk-oc-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS/Pods-xuper-sdk-oc-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xuper_sdk_oc_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FC2272390CDFE00DE6E2B /* xuper_sdk_oc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xuper_sdk_oc.h; sourceTree = "<group>"; };
 		186FC2282390CDFE00DE6E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		186FC22D2390CDFF00DE6E2B /* xuper-sdk-ocTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xuper-sdk-ocTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		186FC22D2390CDFF00DE6E2B /* xuper-sdk-oc-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xuper-sdk-oc-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FC2322390CDFF00DE6E2B /* xuper_sdk_ocTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xuper_sdk_ocTests.m; sourceTree = "<group>"; };
 		186FC2342390CDFF00DE6E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		186FC23F2390CE4500DE6E2B /* XCryptoFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCryptoFactory.h; sourceTree = "<group>"; };
@@ -126,9 +126,13 @@
 		186FC2F523966C3E00DE6E2B /* HTTP.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTP.pbobjc.m; sourceTree = "<group>"; };
 		186FC2F623966C3E00DE6E2B /* Annotations.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotations.pbobjc.m; sourceTree = "<group>"; };
 		5931A255B82F0C669A8C17D1 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig"; sourceTree = "<group>"; };
+		66C657CDD60F0F3A8A0F5FD5 /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		78069775272B8C7AFDF39E4D /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		807B325C4FA7602A8249B263 /* Pods-xuper-sdk-oc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc/Pods-xuper-sdk-oc.debug.xcconfig"; sourceTree = "<group>"; };
-		C16517C7AF42DEBE9C53E4C2 /* Pods_xuper_sdk_oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xuper_sdk_oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36067F0CAEE5EAFD5BE1FAD /* Pods-xuper-sdk-oc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc/Pods-xuper-sdk-oc.release.xcconfig"; sourceTree = "<group>"; };
+		E0F19B94DE3F37D5C2FF090D /* Pods-xuper-sdk-oc-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS/Pods-xuper-sdk-oc-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		F8C06EF8CABDE05821204F9D /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD1A7866F84EBD3C56DB9FD7 /* Pods_xuper_sdk_oc_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xuper_sdk_oc_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC7636020C1BA3078A37326F /* Pods_xuper_sdk_oc.framework in Frameworks */,
+				1740FED3EBE7BDA330BFAE5B /* Pods_xuper_sdk_oc_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,8 +148,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc.framework in Frameworks */,
-				2AFFA9A7B980F2D4B88A13F4 /* Pods_xuper_sdk_oc_xuper_sdk_ocTests.framework in Frameworks */,
+				186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */,
+				C0312E874DDDCCCBDE9C2822 /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +170,8 @@
 		186FC2252390CDFE00DE6E2B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				186FC2242390CDFE00DE6E2B /* xuper_sdk_oc.framework */,
-				186FC22D2390CDFF00DE6E2B /* xuper-sdk-ocTests.xctest */,
+				186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */,
+				186FC22D2390CDFF00DE6E2B /* xuper-sdk-oc-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -355,6 +359,10 @@
 				C36067F0CAEE5EAFD5BE1FAD /* Pods-xuper-sdk-oc.release.xcconfig */,
 				5931A255B82F0C669A8C17D1 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig */,
 				07B29224365641793F5DC025 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig */,
+				0F99EB3C6E244D51CAE8C983 /* Pods-xuper-sdk-oc-iOS.debug.xcconfig */,
+				E0F19B94DE3F37D5C2FF090D /* Pods-xuper-sdk-oc-iOS.release.xcconfig */,
+				66C657CDD60F0F3A8A0F5FD5 /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig */,
+				78069775272B8C7AFDF39E4D /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -362,8 +370,8 @@
 		F8567EA8976621B62FE53760 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C16517C7AF42DEBE9C53E4C2 /* Pods_xuper_sdk_oc.framework */,
-				14C108647C5690F96C1CEA0B /* Pods_xuper_sdk_oc_xuper_sdk_ocTests.framework */,
+				FD1A7866F84EBD3C56DB9FD7 /* Pods_xuper_sdk_oc_iOS.framework */,
+				F8C06EF8CABDE05821204F9D /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -408,9 +416,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		186FC2232390CDFE00DE6E2B /* xuper-sdk-oc */ = {
+		186FC2232390CDFE00DE6E2B /* xuper-sdk-oc-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 186FC2382390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-oc" */;
+			buildConfigurationList = 186FC2382390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-oc-iOS" */;
 			buildPhases = (
 				2E7E441E94E8783DBE12B203 /* [CP] Check Pods Manifest.lock */,
 				186FC21F2390CDFE00DE6E2B /* Headers */,
@@ -422,14 +430,14 @@
 			);
 			dependencies = (
 			);
-			name = "xuper-sdk-oc";
+			name = "xuper-sdk-oc-iOS";
 			productName = "xuper-sdk-oc";
-			productReference = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc.framework */;
+			productReference = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		186FC22C2390CDFF00DE6E2B /* xuper-sdk-ocTests */ = {
+		186FC22C2390CDFF00DE6E2B /* xuper-sdk-oc-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 186FC23B2390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-ocTests" */;
+			buildConfigurationList = 186FC23B2390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-oc-iOSTests" */;
 			buildPhases = (
 				37F0366A4DB4AB4EAB75AA32 /* [CP] Check Pods Manifest.lock */,
 				186FC2292390CDFF00DE6E2B /* Sources */,
@@ -442,9 +450,9 @@
 			dependencies = (
 				186FC2302390CDFF00DE6E2B /* PBXTargetDependency */,
 			);
-			name = "xuper-sdk-ocTests";
+			name = "xuper-sdk-oc-iOSTests";
 			productName = "xuper-sdk-ocTests";
-			productReference = 186FC22D2390CDFF00DE6E2B /* xuper-sdk-ocTests.xctest */;
+			productReference = 186FC22D2390CDFF00DE6E2B /* xuper-sdk-oc-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -477,8 +485,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				186FC2232390CDFE00DE6E2B /* xuper-sdk-oc */,
-				186FC22C2390CDFF00DE6E2B /* xuper-sdk-ocTests */,
+				186FC2232390CDFE00DE6E2B /* xuper-sdk-oc-iOS */,
+				186FC22C2390CDFF00DE6E2B /* xuper-sdk-oc-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -516,7 +524,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-xuper-sdk-oc-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-xuper-sdk-oc-iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -538,7 +546,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-xuper-sdk-oc-xuper-sdk-ocTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -551,15 +559,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -605,7 +613,7 @@
 /* Begin PBXTargetDependency section */
 		186FC2302390CDFF00DE6E2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 186FC2232390CDFE00DE6E2B /* xuper-sdk-oc */;
+			target = 186FC2232390CDFE00DE6E2B /* xuper-sdk-oc-iOS */;
 			targetProxy = 186FC22F2390CDFF00DE6E2B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -729,7 +737,7 @@
 		};
 		186FC2392390CDFF00DE6E2B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 807B325C4FA7602A8249B263 /* Pods-xuper-sdk-oc.debug.xcconfig */;
+			baseConfigurationReference = 0F99EB3C6E244D51CAE8C983 /* Pods-xuper-sdk-oc-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -765,7 +773,7 @@
 		};
 		186FC23A2390CDFF00DE6E2B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C36067F0CAEE5EAFD5BE1FAD /* Pods-xuper-sdk-oc.release.xcconfig */;
+			baseConfigurationReference = E0F19B94DE3F37D5C2FF090D /* Pods-xuper-sdk-oc-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -801,9 +809,11 @@
 		};
 		186FC23C2390CDFF00DE6E2B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5931A255B82F0C669A8C17D1 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig */;
+			baseConfigurationReference = 66C657CDD60F0F3A8A0F5FD5 /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UAL79ZV3ZL;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/include";
@@ -816,15 +826,19 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.martin.xuper-sdk-ocTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		186FC23D2390CDFF00DE6E2B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07B29224365641793F5DC025 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig */;
+			baseConfigurationReference = 78069775272B8C7AFDF39E4D /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UAL79ZV3ZL;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/include";
@@ -837,6 +851,8 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.martin.xuper-sdk-ocTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -853,7 +869,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		186FC2382390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-oc" */ = {
+		186FC2382390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-oc-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				186FC2392390CDFF00DE6E2B /* Debug */,
@@ -862,7 +878,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		186FC23B2390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-ocTests" */ = {
+		186FC23B2390CDFF00DE6E2B /* Build configuration list for PBXNativeTarget "xuper-sdk-oc-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				186FC23C2390CDFF00DE6E2B /* Debug */,

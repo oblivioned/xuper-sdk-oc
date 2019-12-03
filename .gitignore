@@ -1,6 +1,6 @@
 .DS_Store
-xuper-sdk-oc/XProvider/Protoc/*
-/Pods
-
 Podfile.lock
-xuper-sdk-oc.xcworkspace/contents.xcworkspacedata
+Pods
+xuper-sdk-oc/XProvider/Protoc/*
+xuper-sdk-oc.xcworkspace
+xuper-sdk-oc.xcodeproj/xcuserdat
