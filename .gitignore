@@ -2,3 +2,5 @@
 xuper-sdk-oc/XProvider/Protoc/*
 /Pods
 
+Podfile.lock
+xuper-sdk-oc.xcworkspace/contents.xcworkspacedata
