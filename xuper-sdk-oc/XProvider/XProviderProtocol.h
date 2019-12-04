@@ -8,13 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^XProviderSuccessBlock)(NSData * _Nonnull resposne);
-typedef void(^XProviderFailedBlock)(NSError * _Nonnull error);
+/// account
+@protocol XProviderProvider_Account <NSObject>
 
-@protocol XProviderProtocol <NSObject>
 
-- (NSData * _Nullable) syncSendRequest:(NSDate * _Nonnull)request onError:( NSError* _Nullable )error;
-
-- (void) asyncSendRequest:(NSDate * _Nonnull)request onSuccess:(XProviderSuccessBlock _Nullable)success onFailed:(XProviderFailedBlock _Nullable)failed;
 
 @end
