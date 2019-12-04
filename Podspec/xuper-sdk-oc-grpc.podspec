@@ -40,7 +40,6 @@ Pod::Spec.new do |s|
         --objc_out=#{obj_output_dir} \
         --grpc_out=#{services_output_dir} \
         -I #{src} \
-        -I #{protoc_dir} \
         #{src}/*.proto
   CMD
 
