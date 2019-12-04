@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "XProviderProtocol.h"
 
-@interface XClient : NSObject
+@protocol XClient <XProviderProtocol, Xchain, Xchain2> @end
 
-+ (instancetype _Nonnull) createClientWithProvider:(id<XProviderProtocol> _Nonnull)provider;
+@interface XClient : NSObject <XClient>
+
++ (id<XClient> _Nonnull) clientWithGRPCHost:(NSString * _Nonnull)host;
 
 @end
-

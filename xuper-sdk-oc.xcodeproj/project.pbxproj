@@ -32,35 +32,31 @@
 		186FC2932394E70C00DE6E2B /* XECDSAPubKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2912394E70C00DE6E2B /* XECDSAPubKey.m */; };
 		186FC2962394E7EA00DE6E2B /* XECDSAPrivKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2942394E7EA00DE6E2B /* XECDSAPrivKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		186FC2972394E7EA00DE6E2B /* XECDSAPrivKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2952394E7EA00DE6E2B /* XECDSAPrivKey.m */; };
-		186FC29C2395FEAE00DE6E2B /* XProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC29A2395FEAE00DE6E2B /* XProviderProtocol.h */; };
-		186FC2A12396004700DE6E2B /* XRPCProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC29F2396004700DE6E2B /* XRPCProvider.h */; };
-		186FC2A22396004700DE6E2B /* XRPCProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2A02396004700DE6E2B /* XRPCProvider.m */; };
-		186FC2CA239648E400DE6E2B /* rmd160.c in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2C8239648E400DE6E2B /* rmd160.c */; };
-		186FC2CB239648E400DE6E2B /* rmd160.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2C9239648E400DE6E2B /* rmd160.h */; };
-		186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2CD23965DA800DE6E2B /* Xcheck.pbobjc.h */; };
-		186FC2DF23965DA900DE6E2B /* Chainedbft.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2CF23965DA800DE6E2B /* Chainedbft.pbobjc.h */; };
-		186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2D023965DA800DE6E2B /* XchainSpv.pbobjc.h */; };
-		186FC2E223965DA900DE6E2B /* Xendorser.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2D223965DA800DE6E2B /* Xendorser.pbobjc.h */; };
+		186FC29C2395FEAE00DE6E2B /* XProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC29A2395FEAE00DE6E2B /* XProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2CD23965DA800DE6E2B /* Xcheck.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		186FC2DF23965DA900DE6E2B /* Chainedbft.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2CF23965DA800DE6E2B /* Chainedbft.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2D023965DA800DE6E2B /* XchainSpv.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		186FC2E223965DA900DE6E2B /* Xendorser.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2D223965DA800DE6E2B /* Xendorser.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		186FC2E523965DA900DE6E2B /* Xchain.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2D523965DA800DE6E2B /* Xchain.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		186FC2E723965DA900DE6E2B /* Xchain.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2D723965DA900DE6E2B /* Xchain.pbobjc.h */; };
+		186FC2E723965DA900DE6E2B /* Xchain.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2D723965DA900DE6E2B /* Xchain.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		186FC2E823965DA900DE6E2B /* Chainedbft.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2D823965DA900DE6E2B /* Chainedbft.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC2EC239662EF00DE6E2B /* XchainSpv.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2D423965DA800DE6E2B /* XchainSpv.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2D923965DA900DE6E2B /* Xcheck.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC2EE239662EF00DE6E2B /* Xendorser.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2CC23965DA800DE6E2B /* Xendorser.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		186FC2F723966C3E00DE6E2B /* Annotations.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2F323966C3E00DE6E2B /* Annotations.pbobjc.h */; };
-		186FC2F823966C3E00DE6E2B /* HTTP.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2F423966C3E00DE6E2B /* HTTP.pbobjc.h */; };
-		186FC2F923966C3E00DE6E2B /* HTTP.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2F523966C3E00DE6E2B /* HTTP.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		186FC2FA23966C3E00DE6E2B /* Annotations.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2F623966C3E00DE6E2B /* Annotations.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC32023974D7C00DE6E2B /* XProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC31F23974D7C00DE6E2B /* XProviderTest.m */; };
-		186FC32323974E6A00DE6E2B /* XClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC32123974E6A00DE6E2B /* XClient.h */; };
-		186FC32423974E6A00DE6E2B /* XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC32223974E6A00DE6E2B /* XClient.m */; };
-		186FC32D2397584600DE6E2B /* Xendorser.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */; };
+		186FC32D2397584600DE6E2B /* Xendorser.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		186FC32E2397584600DE6E2B /* Xchain.pbrpc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC3282397584600DE6E2B /* Xchain.pbrpc.m */; };
-		186FC32F2397584600DE6E2B /* Xcheck.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */; };
-		186FC3302397584600DE6E2B /* Xchain.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC32A2397584600DE6E2B /* Xchain.pbrpc.h */; };
+		186FC32F2397584600DE6E2B /* Xcheck.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		186FC3302397584600DE6E2B /* Xchain.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC32A2397584600DE6E2B /* Xchain.pbrpc.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		186FC3312397584600DE6E2B /* Xendorser.pbrpc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC32B2397584600DE6E2B /* Xendorser.pbrpc.m */; };
 		186FC3322397584600DE6E2B /* Xcheck.pbrpc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC32C2397584600DE6E2B /* Xcheck.pbrpc.m */; };
-		C0312E874DDDCCCBDE9C2822 /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C06EF8CABDE05821204F9D /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework */; };
+		186FC33623975A7D00DE6E2B /* XClientGRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC33423975A7D00DE6E2B /* XClientGRPC.h */; };
+		186FC33723975A7D00DE6E2B /* XClientGRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC33523975A7D00DE6E2B /* XClientGRPC.m */; };
+		186FC3452397A10900DE6E2B /* XProviderConfigure.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3432397A10900DE6E2B /* XProviderConfigure.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		186FC3462397A10900DE6E2B /* XProviderConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC3442397A10900DE6E2B /* XProviderConfigure.m */; };
+		186FC3492397A44C00DE6E2B /* XClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3472397A44C00DE6E2B /* XClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		186FC34A2397A44C00DE6E2B /* XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC3482397A44C00DE6E2B /* XClient.m */; };
+		5467184F5928C2C79EF72637 /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C06EF8CABDE05821204F9D /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +100,6 @@
 		186FC2942394E7EA00DE6E2B /* XECDSAPrivKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XECDSAPrivKey.h; sourceTree = "<group>"; };
 		186FC2952394E7EA00DE6E2B /* XECDSAPrivKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XECDSAPrivKey.m; sourceTree = "<group>"; };
 		186FC29A2395FEAE00DE6E2B /* XProviderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XProviderProtocol.h; sourceTree = "<group>"; };
-		186FC29F2396004700DE6E2B /* XRPCProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XRPCProvider.h; sourceTree = "<group>"; };
-		186FC2A02396004700DE6E2B /* XRPCProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XRPCProvider.m; sourceTree = "<group>"; };
-		186FC2C8239648E400DE6E2B /* rmd160.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rmd160.c; sourceTree = "<group>"; };
-		186FC2C9239648E400DE6E2B /* rmd160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rmd160.h; sourceTree = "<group>"; };
 		186FC2CC23965DA800DE6E2B /* Xendorser.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xendorser.pbobjc.m; sourceTree = "<group>"; };
 		186FC2CD23965DA800DE6E2B /* Xcheck.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcheck.pbobjc.h; sourceTree = "<group>"; };
 		186FC2CF23965DA800DE6E2B /* Chainedbft.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chainedbft.pbobjc.h; sourceTree = "<group>"; };
@@ -118,19 +110,20 @@
 		186FC2D723965DA900DE6E2B /* Xchain.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xchain.pbobjc.h; sourceTree = "<group>"; };
 		186FC2D823965DA900DE6E2B /* Chainedbft.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chainedbft.pbobjc.m; sourceTree = "<group>"; };
 		186FC2D923965DA900DE6E2B /* Xcheck.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xcheck.pbobjc.m; sourceTree = "<group>"; };
-		186FC2F323966C3E00DE6E2B /* Annotations.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotations.pbobjc.h; sourceTree = "<group>"; };
-		186FC2F423966C3E00DE6E2B /* HTTP.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.pbobjc.h; sourceTree = "<group>"; };
-		186FC2F523966C3E00DE6E2B /* HTTP.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTP.pbobjc.m; sourceTree = "<group>"; };
-		186FC2F623966C3E00DE6E2B /* Annotations.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotations.pbobjc.m; sourceTree = "<group>"; };
 		186FC31F23974D7C00DE6E2B /* XProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XProviderTest.m; sourceTree = "<group>"; };
-		186FC32123974E6A00DE6E2B /* XClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XClient.h; sourceTree = "<group>"; };
-		186FC32223974E6A00DE6E2B /* XClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XClient.m; sourceTree = "<group>"; };
 		186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xendorser.pbrpc.h; sourceTree = "<group>"; };
 		186FC3282397584600DE6E2B /* Xchain.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xchain.pbrpc.m; sourceTree = "<group>"; };
 		186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcheck.pbrpc.h; sourceTree = "<group>"; };
 		186FC32A2397584600DE6E2B /* Xchain.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xchain.pbrpc.h; sourceTree = "<group>"; };
 		186FC32B2397584600DE6E2B /* Xendorser.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xendorser.pbrpc.m; sourceTree = "<group>"; };
 		186FC32C2397584600DE6E2B /* Xcheck.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xcheck.pbrpc.m; sourceTree = "<group>"; };
+		186FC33423975A7D00DE6E2B /* XClientGRPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XClientGRPC.h; sourceTree = "<group>"; };
+		186FC33523975A7D00DE6E2B /* XClientGRPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XClientGRPC.m; sourceTree = "<group>"; };
+		186FC3432397A10900DE6E2B /* XProviderConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XProviderConfigure.h; sourceTree = "<group>"; };
+		186FC3442397A10900DE6E2B /* XProviderConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XProviderConfigure.m; sourceTree = "<group>"; };
+		186FC3472397A44C00DE6E2B /* XClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XClient.h; sourceTree = "<group>"; };
+		186FC3482397A44C00DE6E2B /* XClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XClient.m; sourceTree = "<group>"; };
+		186FC3502397A9FB00DE6E2B /* TestCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		5931A255B82F0C669A8C17D1 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests.debug.xcconfig"; sourceTree = "<group>"; };
 		66C657CDD60F0F3A8A0F5FD5 /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78069775272B8C7AFDF39E4D /* Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests/Pods-xuper-sdk-oc-iOS-xuper-sdk-oc-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */,
-				C0312E874DDDCCCBDE9C2822 /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework in Frameworks */,
+				5467184F5928C2C79EF72637 /* Pods_xuper_sdk_oc_iOS_xuper_sdk_oc_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +192,7 @@
 		186FC2312390CDFF00DE6E2B /* xuper-sdk-ocTests */ = {
 			isa = PBXGroup;
 			children = (
+				186FC34B2397A9CA00DE6E2B /* TestCommon */,
 				186FC31E23974D3400DE6E2B /* XProviderTest */,
 				186FC27C2392598B00DE6E2B /* XCryptoTest */,
 				186FC2322390CDFF00DE6E2B /* xuper_sdk_ocTests.m */,
@@ -254,7 +248,6 @@
 		186FC25D2391277900DE6E2B /* XCategory */ = {
 			isa = PBXGroup;
 			children = (
-				186FC2C7239648D300DE6E2B /* RIPEMD160 */,
 				186FC25E2391278B00DE6E2B /* NSData+xCodeable.h */,
 				186FC25F2391278B00DE6E2B /* NSData+xCodeable.m */,
 				186FC2622392124C00DE6E2B /* NSString+xCodeable.h */,
@@ -284,8 +277,9 @@
 		186FC2982395FE7A00DE6E2B /* XClient */ = {
 			isa = PBXGroup;
 			children = (
-				186FC32123974E6A00DE6E2B /* XClient.h */,
-				186FC32223974E6A00DE6E2B /* XClient.m */,
+				186FC3472397A44C00DE6E2B /* XClient.h */,
+				186FC3482397A44C00DE6E2B /* XClient.m */,
+				186FC33323975A5200DE6E2B /* XClientGRPC */,
 			);
 			path = XClient;
 			sourceTree = "<group>";
@@ -294,26 +288,30 @@
 			isa = PBXGroup;
 			children = (
 				186FC29A2395FEAE00DE6E2B /* XProviderProtocol.h */,
-				186FC2A3239613FE00DE6E2B /* Protoc */,
-				186FC29E2396003300DE6E2B /* gRPC */,
+				186FC3432397A10900DE6E2B /* XProviderConfigure.h */,
+				186FC3442397A10900DE6E2B /* XProviderConfigure.m */,
+				186FC2A3239613FE00DE6E2B /* Message */,
+				186FC29E2396003300DE6E2B /* Services */,
 			);
 			path = XProvider;
 			sourceTree = "<group>";
 		};
-		186FC29E2396003300DE6E2B /* gRPC */ = {
+		186FC29E2396003300DE6E2B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				186FC326239755DE00DE6E2B /* Services */,
-				186FC29F2396004700DE6E2B /* XRPCProvider.h */,
-				186FC2A02396004700DE6E2B /* XRPCProvider.m */,
+				186FC32A2397584600DE6E2B /* Xchain.pbrpc.h */,
+				186FC3282397584600DE6E2B /* Xchain.pbrpc.m */,
+				186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */,
+				186FC32C2397584600DE6E2B /* Xcheck.pbrpc.m */,
+				186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */,
+				186FC32B2397584600DE6E2B /* Xendorser.pbrpc.m */,
 			);
-			path = gRPC;
+			path = Services;
 			sourceTree = "<group>";
 		};
-		186FC2A3239613FE00DE6E2B /* Protoc */ = {
+		186FC2A3239613FE00DE6E2B /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				186FC2F123966C3E00DE6E2B /* google */,
 				186FC2CF23965DA800DE6E2B /* Chainedbft.pbobjc.h */,
 				186FC2D823965DA900DE6E2B /* Chainedbft.pbobjc.m */,
 				186FC2D723965DA900DE6E2B /* Xchain.pbobjc.h */,
@@ -325,35 +323,7 @@
 				186FC2D223965DA800DE6E2B /* Xendorser.pbobjc.h */,
 				186FC2CC23965DA800DE6E2B /* Xendorser.pbobjc.m */,
 			);
-			path = Protoc;
-			sourceTree = "<group>";
-		};
-		186FC2C7239648D300DE6E2B /* RIPEMD160 */ = {
-			isa = PBXGroup;
-			children = (
-				186FC2C9239648E400DE6E2B /* rmd160.h */,
-				186FC2C8239648E400DE6E2B /* rmd160.c */,
-			);
-			path = RIPEMD160;
-			sourceTree = "<group>";
-		};
-		186FC2F123966C3E00DE6E2B /* google */ = {
-			isa = PBXGroup;
-			children = (
-				186FC2F223966C3E00DE6E2B /* api */,
-			);
-			path = google;
-			sourceTree = "<group>";
-		};
-		186FC2F223966C3E00DE6E2B /* api */ = {
-			isa = PBXGroup;
-			children = (
-				186FC2F423966C3E00DE6E2B /* HTTP.pbobjc.h */,
-				186FC2F523966C3E00DE6E2B /* HTTP.pbobjc.m */,
-				186FC2F323966C3E00DE6E2B /* Annotations.pbobjc.h */,
-				186FC2F623966C3E00DE6E2B /* Annotations.pbobjc.m */,
-			);
-			path = api;
+			path = Message;
 			sourceTree = "<group>";
 		};
 		186FC31E23974D3400DE6E2B /* XProviderTest */ = {
@@ -364,17 +334,21 @@
 			path = XProviderTest;
 			sourceTree = "<group>";
 		};
-		186FC326239755DE00DE6E2B /* Services */ = {
+		186FC33323975A5200DE6E2B /* XClientGRPC */ = {
 			isa = PBXGroup;
 			children = (
-				186FC32A2397584600DE6E2B /* Xchain.pbrpc.h */,
-				186FC3282397584600DE6E2B /* Xchain.pbrpc.m */,
-				186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */,
-				186FC32C2397584600DE6E2B /* Xcheck.pbrpc.m */,
-				186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */,
-				186FC32B2397584600DE6E2B /* Xendorser.pbrpc.m */,
+				186FC33423975A7D00DE6E2B /* XClientGRPC.h */,
+				186FC33523975A7D00DE6E2B /* XClientGRPC.m */,
 			);
-			path = Services;
+			path = XClientGRPC;
+			sourceTree = "<group>";
+		};
+		186FC34B2397A9CA00DE6E2B /* TestCommon */ = {
+			isa = PBXGroup;
+			children = (
+				186FC3502397A9FB00DE6E2B /* TestCommon.h */,
+			);
+			path = TestCommon;
 			sourceTree = "<group>";
 		};
 		72D97C0C46017315FBD7B735 /* Pods */ = {
@@ -408,34 +382,32 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186FC29C2395FEAE00DE6E2B /* XProviderProtocol.h in Headers */,
 				186FC2412390CE4500DE6E2B /* XCryptoFactory.h in Headers */,
 				186FC2352390CDFF00DE6E2B /* xuper_sdk_oc_iOS.h in Headers */,
 				186FC24D2390CFEA00DE6E2B /* XCryptoClientProtocol.h in Headers */,
-				186FC3302397584600DE6E2B /* Xchain.pbrpc.h in Headers */,
 				186FC2642392124C00DE6E2B /* NSString+xCodeable.h in Headers */,
 				186FC2762392376400DE6E2B /* XECDSAAccount.h in Headers */,
-				186FC32D2397584600DE6E2B /* Xendorser.pbrpc.h in Headers */,
-				186FC2CB239648E400DE6E2B /* rmd160.h in Headers */,
 				186FC2922394E70C00DE6E2B /* XECDSAPubKey.h in Headers */,
-				186FC2DF23965DA900DE6E2B /* Chainedbft.pbobjc.h in Headers */,
 				186FC28A2394DE1500DE6E2B /* XCryptoPubKeyProtocol.h in Headers */,
-				186FC2F823966C3E00DE6E2B /* HTTP.pbobjc.h in Headers */,
+				186FC29C2395FEAE00DE6E2B /* XProviderProtocol.h in Headers */,
 				186FC28E2394DE2600DE6E2B /* XCryptoPrivKeyProtocol.h in Headers */,
+				186FC3492397A44C00DE6E2B /* XClient.h in Headers */,
+				186FC3452397A10900DE6E2B /* XProviderConfigure.h in Headers */,
 				186FC2962394E7EA00DE6E2B /* XECDSAPrivKey.h in Headers */,
+				186FC3302397584600DE6E2B /* Xchain.pbrpc.h in Headers */,
+				186FC32D2397584600DE6E2B /* Xendorser.pbrpc.h in Headers */,
 				186FC32F2397584600DE6E2B /* Xcheck.pbrpc.h in Headers */,
+				186FC2DF23965DA900DE6E2B /* Chainedbft.pbobjc.h in Headers */,
 				186FC2E723965DA900DE6E2B /* Xchain.pbobjc.h in Headers */,
-				186FC2862394DE0400DE6E2B /* XCryptoKeypairProtocol.h in Headers */,
-				186FC32323974E6A00DE6E2B /* XClient.h in Headers */,
-				186FC269239220E000DE6E2B /* XCryptoAccountProtocol.h in Headers */,
-				186FC2A12396004700DE6E2B /* XRPCProvider.h in Headers */,
-				186FC2602391278B00DE6E2B /* NSData+xCodeable.h in Headers */,
-				186FC2F723966C3E00DE6E2B /* Annotations.pbobjc.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
-				186FC25B239115B200DE6E2B /* XCommon.h in Headers */,
 				186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */,
 				186FC2E223965DA900DE6E2B /* Xendorser.pbobjc.h in Headers */,
+				186FC2862394DE0400DE6E2B /* XCryptoKeypairProtocol.h in Headers */,
+				186FC269239220E000DE6E2B /* XCryptoAccountProtocol.h in Headers */,
+				186FC2602391278B00DE6E2B /* NSData+xCodeable.h in Headers */,
+				186FC25B239115B200DE6E2B /* XCommon.h in Headers */,
 				186FC2532390D15E00DE6E2B /* XECDSAClient.h in Headers */,
+				186FC33623975A7D00DE6E2B /* XClientGRPC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,26 +575,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186FC2F923966C3E00DE6E2B /* HTTP.pbobjc.m in Sources */,
 				186FC3312397584600DE6E2B /* Xendorser.pbrpc.m in Sources */,
 				186FC2EC239662EF00DE6E2B /* XchainSpv.pbobjc.m in Sources */,
 				186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */,
 				186FC32E2397584600DE6E2B /* Xchain.pbrpc.m in Sources */,
-				186FC32423974E6A00DE6E2B /* XClient.m in Sources */,
+				186FC33723975A7D00DE6E2B /* XClientGRPC.m in Sources */,
+				186FC34A2397A44C00DE6E2B /* XClient.m in Sources */,
 				186FC2EE239662EF00DE6E2B /* Xendorser.pbobjc.m in Sources */,
+				186FC3462397A10900DE6E2B /* XProviderConfigure.m in Sources */,
 				186FC2542390D15E00DE6E2B /* XECDSAClient.m in Sources */,
 				186FC3322397584600DE6E2B /* Xcheck.pbrpc.m in Sources */,
-				186FC2A22396004700DE6E2B /* XRPCProvider.m in Sources */,
 				186FC2E823965DA900DE6E2B /* Chainedbft.pbobjc.m in Sources */,
 				186FC2932394E70C00DE6E2B /* XECDSAPubKey.m in Sources */,
 				186FC2E523965DA900DE6E2B /* Xchain.pbobjc.m in Sources */,
-				186FC2FA23966C3E00DE6E2B /* Annotations.pbobjc.m in Sources */,
 				186FC2422390CE4500DE6E2B /* XCryptoFactory.m in Sources */,
 				186FC2652392124C00DE6E2B /* NSString+xCodeable.m in Sources */,
 				186FC2612391278B00DE6E2B /* NSData+xCodeable.m in Sources */,
 				186FC2972394E7EA00DE6E2B /* XECDSAPrivKey.m in Sources */,
 				186FC2772392376400DE6E2B /* XECDSAAccount.m in Sources */,
-				186FC2CA239648E400DE6E2B /* rmd160.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,29 +7,15 @@
 //
 
 #import "XClient.h"
-
-@interface XClient()
-@property (nonatomic, strong) id<XProviderProtocol> currProvider;
-@end
+#import "XClientGRPC.h"
 
 @implementation XClient
 
-+ (instancetype _Nonnull) createClientWithProvider:(id<XProviderProtocol> _Nonnull)provider {
++ (id<XClient> _Nonnull) clientWithGRPCHost:(NSString * _Nonnull)host {
     
-    XClient *client = [[XClient alloc] init];
+    XProviderConfigure *clientConfigure = [XProviderConfigure configureWithHost:host];
     
-    client.currProvider = provider;
-    
-    return client;
-}
-
-- (instancetype _Nonnull) init {
-    
-    self = [super init];
-    
-    
-    
-    return self;
+    return [[XClientGRPC alloc] initWithConfigure:clientConfigure];
 }
 
 @end

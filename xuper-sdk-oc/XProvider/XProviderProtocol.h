@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-/// account
-@protocol XProviderProvider_Account <NSObject>
+#import "Xchain.pbrpc.h"
+#import "XProviderConfigure.h"
 
+@protocol XProviderProtocol
 
+- (XProviderConfigure * _Nonnull) providerConfigure;
+
+- (instancetype _Nonnull) initWithConfigure:(XProviderConfigure * _Nonnull)configure;
 
 @end
+

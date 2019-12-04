@@ -28,10 +28,29 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 #import <xuper_sdk_oc_iOS/XCryptoAccountProtocol.h>
 #import <xuper_sdk_oc_iOS/XCryptoClientProtocol.h>
 
-#import <xuper_sdk_oc_iOS/XCryptoFactory.h>
+//#import <xuper_sdk_oc_iOS/XCryptoFactory.h>
 
-// ECDSA implement
+/// ECDSA implement
 #import <xuper_sdk_oc_iOS/XECDSAPubKey.h>
 #import <xuper_sdk_oc_iOS/XECDSAPrivKey.h>
 #import <xuper_sdk_oc_iOS/XECDSAAccount.h>
 #import <xuper_sdk_oc_iOS/XECDSAClient.h>
+
+
+/// Protocbuff message obj
+#import <xuper_sdk_oc_iOS/Chainedbft.pbobjc.h>
+#import <xuper_sdk_oc_iOS/Xchain.pbobjc.h>
+#import <xuper_sdk_oc_iOS/XchainSpv.pbobjc.h>
+#import <xuper_sdk_oc_iOS/Xcheck.pbobjc.h>
+#import <xuper_sdk_oc_iOS/Xendorser.pbobjc.h>
+
+/// XProvider
+#import <xuper_sdk_oc_iOS/XProviderConfigure.h>
+#import <xuper_sdk_oc_iOS/XProviderProtocol.h>
+
+/// XClient
+#import <xuper_sdk_oc_iOS/XClient.h>
+
+///// XClient GRPC Impl
+//#import <xuper_sdk_oc_iOS/XClientGRPC.h>
+

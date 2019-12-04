@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package pb;
 
-import "google/api/annotations.proto";
 import "xchain.proto";
 
 service Xcheck {

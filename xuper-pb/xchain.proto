@@ -1,9 +1,8 @@
 syntax = "proto3";
 
-import "google/api/annotations.proto";
-import "chainedbft.proto";
 package pb;
 
+import "chainedbft.proto";
 
 enum XChainErrorEnum {
   SUCCESS = 0;
@@ -58,170 +57,89 @@ enum TransactionStatus {
 service Xchain {
 
   // PostTx post Transaction to a node
-  rpc PostTx(TxStatus) returns (CommonReply) {
-    option (google.api.http) = {
-      post : "/v1/post_tx"
-      body : "*"
-    };
-  }
+  rpc PostTx(TxStatus) returns (CommonReply);
 
-  rpc QueryACL(AclStatus) returns (AclStatus) {
-    option (google.api.http) = {
-      post : "/v1/query_acl"
-      body : "*"
-    };
-  }
+  rpc QueryACL(AclStatus) returns (AclStatus);
 
-  rpc GetAccountContracts(GetAccountContractsRequest)
-      returns (GetAccountContractsResponse) {
-    option (google.api.http) = {
-      post : "/v1/get_account_contracts"
-      body : "*"
-    };
-  }
+  rpc GetAccountContracts(GetAccountContractsRequest) returns (GetAccountContractsResponse);
 
   // QueryTx query Transaction by TxStatus,
   // Bcname and Txid are required for this
-  rpc QueryTx(TxStatus) returns (TxStatus) {
-    option (google.api.http) = {
-      post : "/v1/query_tx"
-      body : "*"
-    };
-  }
+  rpc QueryTx(TxStatus) returns (TxStatus);
 
   // GetBalance get balance of an address,
   // Address is required for this
-  rpc GetBalance(AddressStatus) returns (AddressStatus) {
-    option (google.api.http) = {
-      post : "/v1/get_balance"
-      body : "*"
-    };
-  }
+  rpc GetBalance(AddressStatus) returns (AddressStatus);
 
   // GetFrozenBalance get two kinds of balance
   // 1. Still be frozen of an address
   // 2. Available now of an address
   // Address is required for this
-  rpc GetBalanceDetail(AddressBalanceStatus) returns (AddressBalanceStatus) {
-  option (google.api.http) = {
-    post: "/v1/get_balance_detail"
-    body: "*"
-    };
-  }
+  rpc GetBalanceDetail(AddressBalanceStatus) returns (AddressBalanceStatus);
 
   // GetFrozenBalance get balance that still be frozen of an address,
   // Address is required for this
-  rpc GetFrozenBalance(AddressStatus) returns (AddressStatus) {
-    option (google.api.http) = {
-      post : "/v1/get_frozen_balance"
-      body : "*"
-    };
-  }
+  rpc GetFrozenBalance(AddressStatus) returns (AddressStatus);
 
   // GetBlock get block by blockid and return if the block in trunk or in branch
-  rpc GetBlock(BlockID) returns (Block) {
-    option (google.api.http) = {
-      post : "/v1/get_block"
-      body : "*"
-    };
-  }
+  rpc GetBlock(BlockID) returns (Block);
 
   // GetBlockByHeight get block by height and return if the block in trunk or in
   // branch
-  rpc GetBlockByHeight(BlockHeight) returns (Block) {
-    option (google.api.http) = {
-      post : "/v1/get_block_by_height"
-      body : "*"
-    };
-  }
+  rpc GetBlockByHeight(BlockHeight) returns (Block);
 
-  rpc GetBlockChainStatus(BCStatus) returns (BCStatus) {
-    option (google.api.http) = {
-      post : "/v1/get_bcstatus"
-      body : "*"
-    };
-  }
+  rpc GetBlockChainStatus(BCStatus) returns (BCStatus);
 
   // Get blockchains query blockchains
-  rpc GetBlockChains(CommonIn) returns (BlockChains) {
-    option (google.api.http) = {
-      get : "/v1/get_bcchains"
-      // body: "*"
-    };
-  }
+  rpc GetBlockChains(CommonIn) returns (BlockChains);
 
   // GetSystemStatus query system status
-  rpc GetSystemStatus(CommonIn) returns (SystemsStatusReply) {
-    option (google.api.http) = {
-      post : "/v1/get_sysstatus"
-      body : "*"
-    };
-  }
+  rpc GetSystemStatus(CommonIn) returns (SystemsStatusReply);
 
   // GetNetURL return net url
-  rpc GetNetURL(CommonIn) returns (RawUrl) {}
+  rpc GetNetURL(CommonIn) returns (RawUrl);
 
   // 新的Select utxos接口, 不需要签名，可以支持选择账户的utxo
-  rpc SelectUTXO(UtxoInput) returns (UtxoOutput) {
-    option (google.api.http) = {
-      post : "/v1/select_utxos_v2"
-      body : "*"
-    };
-  }
+  rpc SelectUTXO(UtxoInput) returns (UtxoOutput);
 
   // PreExecWithSelectUTXO preExec & selectUtxo
-  rpc PreExecWithSelectUTXO(PreExecWithSelectUTXORequest) returns (PreExecWithSelectUTXOResponse) {
-    option (google.api.http) = {
-      post : "/v1/preexec_select_utxo"
-      body : "*"
-    };
-  }
+  rpc PreExecWithSelectUTXO(PreExecWithSelectUTXORequest) returns (PreExecWithSelectUTXOResponse);
 
   // Native code deploy interface
-  rpc DeployNativeCode(DeployNativeCodeRequest)
-      returns (DeployNativeCodeResponse);
+  rpc DeployNativeCode(DeployNativeCodeRequest) returns (DeployNativeCodeResponse);
+
   // Native code status
-  rpc NativeCodeStatus(NativeCodeStatusRequest)
-      returns (NativeCodeStatusResponse);
+  rpc NativeCodeStatus(NativeCodeStatusRequest) returns (NativeCodeStatusResponse);
 
   /*
    * DPoS query interface
    */
   //  DposCandidates get all candidates of the tdpos consensus
   rpc DposCandidates(DposCandidatesRequest) returns (DposCandidatesResponse);
+
   //  DposNominateRecords get all records nominated by an user
-  rpc DposNominateRecords(DposNominateRecordsRequest)
-      returns (DposNominateRecordsResponse);
+  rpc DposNominateRecords(DposNominateRecordsRequest) returns (DposNominateRecordsResponse);
+
   //  DposNomineeRecords get nominated record of a candidate
-  rpc DposNomineeRecords(DposNomineeRecordsRequest)
-      returns (DposNomineeRecordsResponse);
+  rpc DposNomineeRecords(DposNomineeRecordsRequest) returns (DposNomineeRecordsResponse);
+
   //  DposVoteRecords get all vote records voted by an user
   rpc DposVoteRecords(DposVoteRecordsRequest) returns (DposVoteRecordsResponse);
+
   //  DposVotedRecords get all vote records of a candidate
-  rpc DposVotedRecords(DposVotedRecordsRequest)
-      returns (DposVotedRecordsResponse);
+  rpc DposVotedRecords(DposVotedRecordsRequest) returns (DposVotedRecordsResponse);
+
   //  DposCheckResults get check results of a specific term
-  rpc DposCheckResults(DposCheckResultsRequest)
-      returns (DposCheckResultsResponse);
+  rpc DposCheckResults(DposCheckResultsRequest) returns (DposCheckResultsResponse);
 
   // DposStatus get dpos status
   rpc DposStatus(DposStatusRequest) returns (DposStatusResponse);
 
   // GetAccountByAK get account sets contain a specific address
-  rpc GetAccountByAK(AK2AccountRequest) returns (AK2AccountResponse) {
-    option (google.api.http) = {
-      post : "/v1/get_account_by_ak"
-      body : "*"
-    };
-  }
+  rpc GetAccountByAK(AK2AccountRequest) returns (AK2AccountResponse);
 
   //预执行合约
-  rpc PreExec(InvokeRPCRequest) returns (InvokeRPCResponse) {
-    option (google.api.http) = {
-      post : "/v1/preexec"
-      body : "*"
-    };
-  }
+  rpc PreExec(InvokeRPCRequest) returns (InvokeRPCResponse);
 }
 
 message Header {

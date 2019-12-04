@@ -7,33 +7,41 @@
 //
 
 #import <XCTest/XCTest.h>
-
-@import xuper_sdk_oc_iOS;
+#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
+#import "TestCommon.h"
 
 @interface XProviderTest : XCTestCase
-
+@property (nonatomic, strong) XClient *client;
 @end
 
 @implementation XProviderTest
 
 - (void)setUp {
+    
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.client = [XClient clientWithGRPCHost:@"127.0.0.1:37101"];
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
+- (void)testConnection {
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+    AsyncTestBegin(@"GRPC Test");
+    
+    CommonIn *msg = [CommonIn message];
+    msg.header = self.client.providerConfigure.randomHeader;
+    
+    [self.client getSystemStatusWithRequest:msg handler:^(SystemsStatusReply * _Nullable response, NSError * _Nullable error) {
+    
+        XCTAssertNil(error);
+        XCTAssertNotNil(response);
+    
+        AsyncTestFulfill();
     }];
+    
+    AsyncTestWaiting5S();
 }
 
 @end

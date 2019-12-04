@@ -24,31 +24,24 @@ Pod::Spec.new do |s|
   plugin = "#{pods_root}/\!ProtoCompiler-gRPCPlugin/grpc_objective_c_plugin"
 
   # Directory where you want the generated files to be placed. This is an example.
-  obj_output_dir = "../xuper-sdk-oc/XProvider/Protoc"
-  services_output_dir = "../xuper-sdk-oc/XProvider/gRPC/Services"
+  obj_output_dir = "../xuper-sdk-oc/XProvider/Message"
+  services_output_dir = "../xuper-sdk-oc/XProvider/Services"
 
   # Run protoc with the Objective-C and gRPC plugins to generate protocol messages and gRPC clients.
   # You can run this command manually if you later change your protos and need to regenerate.
   # Alternatively, you can advance the version of this podspec and run `pod update`.
   s.prepare_command = <<-CMD
+
     mkdir -p #{obj_output_dir}
     mkdir -p #{services_output_dir}
-    #{protoc} \
-        --plugin=protoc-gen-grpc=#{plugin} \
-        --objc_out=#{obj_output_dir} \
-        --grpc_out=#{services_output_dir} \
-        -I #{protoc} \
-        -I #{src}/googleapis \
-        -I #{src} \
-        #{src}/*.proto
 
     #{protoc} \
         --plugin=protoc-gen-grpc=#{plugin} \
         --objc_out=#{obj_output_dir} \
         --grpc_out=#{services_output_dir} \
-        -I #{protoc} \
-        -I #{src}/googleapis \
-        #{src}/googleapis/google/api/*.proto
+        -I #{src} \
+        -I #{protoc_dir} \
+        #{src}/*.proto
   CMD
 
   # s.subspec 'Messages' do |ms|
