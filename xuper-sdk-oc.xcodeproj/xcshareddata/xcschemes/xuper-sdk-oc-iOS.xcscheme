@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "186FC22C2390CDFF00DE6E2B"
+               BuildableName = "xuper-sdk-oc-iOSTests.xctest"
+               BlueprintName = "xuper-sdk-oc-iOSTests"
+               ReferencedContainer = "container:xuper-sdk-oc.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

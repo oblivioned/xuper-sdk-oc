@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <xuper_sdk_oc/xuper_sdk_oc.h>
+#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
 
 @interface XECDSAAccount_ocTests : XCTestCase
 
