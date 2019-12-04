@@ -16,7 +16,4 @@ pos install
 
 3.打开pod生成的 xuper-sdk-oc.xcworkspace 工程
 
-4.注释代码 Annotations.pbobjc.m:18  //#import "google/protobuf/Descriptor.pbobjc.h"
-
-
 4.运行测试
