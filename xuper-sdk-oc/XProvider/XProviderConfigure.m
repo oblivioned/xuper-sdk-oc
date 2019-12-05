@@ -38,14 +38,16 @@
     
     NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
      
-    NSMutableString *randLogid = [[NSMutableString alloc] initWithFormat:@"logid_%lu", (unsigned long)(timeInterval * 1000)];
+    NSMutableString *randLogid = [[NSMutableString alloc] initWithFormat:@"xuper-sdk-oc-logid-%lu", (unsigned long)(timeInterval * 1000)];
     
-    [randLogid appendFormat:@"%06ld", random() % 1000000];
+    [randLogid appendFormat:@"-%05ld", random() % 1000000];
     
     randHead.logid = randLogid;
     
     /** call rpc client address，客户端可以为空，节点一定要写自己的address */
     randHead.fromNode = @"";
+    
+    randHead.error = XChainErrorEnum_Success;
     
     return randHead;
 }

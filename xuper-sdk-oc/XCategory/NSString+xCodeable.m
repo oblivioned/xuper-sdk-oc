@@ -7,7 +7,7 @@
 //
 
 #import "NSString+xCodeable.h"
-
+#import "NSData+xCodeable.h"
 #import <openssl/bn.h>
 
 @implementation NSString(xCodeable)
@@ -27,6 +27,12 @@
     BN_free(num);
     
     return ret;
+}
+
+- (NSString * _Nonnull ) xBase64String {
+    
+    return [self dataUsingEncoding:NSUTF8StringEncoding].xBase64String;
+    
 }
 
 @end

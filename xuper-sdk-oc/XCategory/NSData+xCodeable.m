@@ -59,7 +59,7 @@ const char ALPHABET_MAP[128] = {
     
     BN_bin2bn(self.bytes, (int)self.length, num);
     
-    char *hex = BN_bn2dec(num);
+    char *hex = BN_bn2hex(num);
     
     NSString *ret = [[NSString alloc] initWithUTF8String:hex];
 
@@ -67,7 +67,11 @@ const char ALPHABET_MAP[128] = {
     
     BN_free(num);
     
-    return ret;
+    return ret.lowercaseString;
+}
+
+- (NSData * _Nonnull ) xBase64Data {
+    return [self.xBase64String dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString * _Nonnull ) xBase64String {
@@ -255,6 +259,11 @@ ErrorReturn:
     free(bytes); bytes = NULL;
     
     return ret;
+}
+
+- (NSString * _Nonnull ) xString {
+    
+    return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
 
 @end

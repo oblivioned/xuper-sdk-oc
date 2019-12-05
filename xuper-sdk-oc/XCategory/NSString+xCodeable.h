@@ -11,5 +11,6 @@
 @interface NSString(xCodeable)
 
 - (NSString * _Nonnull ) xBigNumberString;
+- (NSString * _Nonnull ) xBase64String;
 
 @end

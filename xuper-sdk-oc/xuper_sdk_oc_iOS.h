@@ -19,6 +19,7 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 
 #import <xuper_sdk_oc_iOS/NSData+xCodeable.h>
 #import <xuper_sdk_oc_iOS/NSString+xCodeable.h>
+#import <xuper_sdk_oc_iOS/NSMutableData+xCodeable.h>
 
 /// Protocol
 #import <xuper_sdk_oc_iOS/XCryptoPubKeyProtocol.h>
@@ -27,6 +28,9 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 
 #import <xuper_sdk_oc_iOS/XCryptoAccountProtocol.h>
 #import <xuper_sdk_oc_iOS/XCryptoClientProtocol.h>
+
+/// message ext
+#import <xuper_sdk_oc_iOS/Transaction+SDKExtension.h>
 
 //#import <xuper_sdk_oc_iOS/XCryptoFactory.h>
 

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1740FED3EBE7BDA330BFAE5B /* Pods_xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1A7866F84EBD3C56DB9FD7 /* Pods_xuper_sdk_oc_iOS.framework */; };
+		1815C7102397F514000ADB6D /* Transaction+SDKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C70E2397F514000ADB6D /* Transaction+SDKExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */; };
+		1815C7142397FEC0000ADB6D /* NSMutableData+xCodeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C7152397FEC0000ADB6D /* NSMutableData+xCodeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C7132397FEC0000ADB6D /* NSMutableData+xCodeable.m */; };
 		186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */; };
 		186FC2332390CDFF00DE6E2B /* xuper_sdk_ocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2322390CDFF00DE6E2B /* xuper_sdk_ocTests.m */; };
 		186FC2352390CDFF00DE6E2B /* xuper_sdk_oc_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,6 +76,10 @@
 /* Begin PBXFileReference section */
 		07B29224365641793F5DC025 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; sourceTree = "<group>"; };
 		0F99EB3C6E244D51CAE8C983 /* Pods-xuper-sdk-oc-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS/Pods-xuper-sdk-oc-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		1815C70E2397F514000ADB6D /* Transaction+SDKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Transaction+SDKExtension.h"; sourceTree = "<group>"; };
+		1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Transaction+SDKExtension.m"; sourceTree = "<group>"; };
+		1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+xCodeable.h"; sourceTree = "<group>"; };
+		1815C7132397FEC0000ADB6D /* NSMutableData+xCodeable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+xCodeable.m"; sourceTree = "<group>"; };
 		186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xuper_sdk_oc_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xuper_sdk_oc_iOS.h; sourceTree = "<group>"; };
 		186FC2282390CDFE00DE6E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,6 +163,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1815C70D2397F4AB000ADB6D /* MessageCategory */ = {
+			isa = PBXGroup;
+			children = (
+				1815C70E2397F514000ADB6D /* Transaction+SDKExtension.h */,
+				1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */,
+			);
+			path = MessageCategory;
+			sourceTree = "<group>";
+		};
 		186FC21A2390CDFE00DE6E2B = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +267,8 @@
 			children = (
 				186FC25E2391278B00DE6E2B /* NSData+xCodeable.h */,
 				186FC25F2391278B00DE6E2B /* NSData+xCodeable.m */,
+				1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */,
+				1815C7132397FEC0000ADB6D /* NSMutableData+xCodeable.m */,
 				186FC2622392124C00DE6E2B /* NSString+xCodeable.h */,
 				186FC2632392124C00DE6E2B /* NSString+xCodeable.m */,
 			);
@@ -312,6 +331,7 @@
 		186FC2A3239613FE00DE6E2B /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				1815C70D2397F4AB000ADB6D /* MessageCategory */,
 				186FC2CF23965DA800DE6E2B /* Chainedbft.pbobjc.h */,
 				186FC2D823965DA900DE6E2B /* Chainedbft.pbobjc.m */,
 				186FC2D723965DA900DE6E2B /* Xchain.pbobjc.h */,
@@ -398,6 +418,8 @@
 				186FC32D2397584600DE6E2B /* Xendorser.pbrpc.h in Headers */,
 				186FC32F2397584600DE6E2B /* Xcheck.pbrpc.h in Headers */,
 				186FC2DF23965DA900DE6E2B /* Chainedbft.pbobjc.h in Headers */,
+				1815C7102397F514000ADB6D /* Transaction+SDKExtension.h in Headers */,
+				1815C7142397FEC0000ADB6D /* NSMutableData+xCodeable.h in Headers */,
 				186FC2E723965DA900DE6E2B /* Xchain.pbobjc.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
 				186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */,
@@ -577,6 +599,7 @@
 			files = (
 				186FC3312397584600DE6E2B /* Xendorser.pbrpc.m in Sources */,
 				186FC2EC239662EF00DE6E2B /* XchainSpv.pbobjc.m in Sources */,
+				1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */,
 				186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */,
 				186FC32E2397584600DE6E2B /* Xchain.pbrpc.m in Sources */,
 				186FC33723975A7D00DE6E2B /* XClientGRPC.m in Sources */,
@@ -589,6 +612,7 @@
 				186FC2932394E70C00DE6E2B /* XECDSAPubKey.m in Sources */,
 				186FC2E523965DA900DE6E2B /* Xchain.pbobjc.m in Sources */,
 				186FC2422390CE4500DE6E2B /* XCryptoFactory.m in Sources */,
+				1815C7152397FEC0000ADB6D /* NSMutableData+xCodeable.m in Sources */,
 				186FC2652392124C00DE6E2B /* NSString+xCodeable.m in Sources */,
 				186FC2612391278B00DE6E2B /* NSData+xCodeable.m in Sources */,
 				186FC2972394E7EA00DE6E2B /* XECDSAPrivKey.m in Sources */,
