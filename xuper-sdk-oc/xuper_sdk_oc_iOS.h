@@ -19,6 +19,8 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 
 #import <xuper_sdk_oc_iOS/NSData+xCodeable.h>
 #import <xuper_sdk_oc_iOS/NSString+xCodeable.h>
+#import <xuper_sdk_oc_iOS/NSMutableData+xCodeable.h>
+#import <xuper_sdk_oc_iOS/XBigInt.h>
 
 /// Protocol
 #import <xuper_sdk_oc_iOS/XCryptoPubKeyProtocol.h>
@@ -28,14 +30,18 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 #import <xuper_sdk_oc_iOS/XCryptoAccountProtocol.h>
 #import <xuper_sdk_oc_iOS/XCryptoClientProtocol.h>
 
-//#import <xuper_sdk_oc_iOS/XCryptoFactory.h>
+/// Message ext
+#import <xuper_sdk_oc_iOS/Transaction+SDKExtension.h>
+#import <xuper_sdk_oc_iOS/GPBMessage+RandomHeader.h>
+
+/// Crypto client Factory
+#import <xuper_sdk_oc_iOS/XCryptoFactory.h>
 
 /// ECDSA implement
 #import <xuper_sdk_oc_iOS/XECDSAPubKey.h>
 #import <xuper_sdk_oc_iOS/XECDSAPrivKey.h>
 #import <xuper_sdk_oc_iOS/XECDSAAccount.h>
 #import <xuper_sdk_oc_iOS/XECDSAClient.h>
-
 
 /// Protocbuff message obj
 #import <xuper_sdk_oc_iOS/Chainedbft.pbobjc.h>
@@ -50,6 +56,15 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 
 /// XClient
 #import <xuper_sdk_oc_iOS/XClient.h>
+
+/// XTransaction
+#import <xuper_sdk_oc_iOS/XTransactionBuilder.h>
+#import <xuper_sdk_oc_iOS/XGlobalFlags.h>
+#import <xuper_sdk_oc_iOS/XTransactionOpt.h>
+#import <xuper_sdk_oc_iOS/XTransactionDesc.h>
+
+/// Opts category
+#import <xuper_sdk_oc_iOS/XTransactionOpt+Transfer.h>
 
 ///// XClient GRPC Impl
 //#import <xuper_sdk_oc_iOS/XClientGRPC.h>

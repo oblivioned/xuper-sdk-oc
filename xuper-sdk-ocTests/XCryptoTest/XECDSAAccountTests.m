@@ -149,6 +149,7 @@
     XCTAssertTrue([self.client verifyWithPublicKey:demoAcc0.publicKey signature:rightSig2 rawMessage:self.testRawMessage error:&error]);
     
     
+    
     /// test case 4,
     /// sin 使用的是2号地址(即 WNWk3ekXeM5M2232dY2uCJmEqWhfQiDYT) 签名
     XSignature otherSig = [NSData xFromBase64String:@"MEQCIBto6u3Tq107H7RQ8V3Qu5O/d39cUOj1KpLYXj2h+N1zAiAyAHdqkvWnfOYLoC5eri96jhaDUdP0CtdL/4Zh6ZFyKA=="];
@@ -178,5 +179,22 @@
     
     XCTAssertTrue([self.client checkFormatWithAddress:self.account.address version:&version error:&error]);
     XCTAssertNil(error);
+}
+
+/// 输出一个签名的实例，到golang的源码中验证签名
+- (void)testPriteSignToGolangTest {
+    
+    XECDSAPrivKey *pk = [XECDSAPrivKey fromExportedDictionary:self.xuperKeys[0]];
+    XECDSAAccount *account = [XECDSAAccount fromPrivateKey:pk];
+    
+    NSLog(@"json:%@", account.publicKey.jsonFormatString);
+    
+    NSError *error;
+    XSignature sig = [self.client signRawMessage:self.testRawMessage keypair:self.account error:&error];
+    XCTAssertNil(error);
+    
+    NSLog(@"Address:%@", self.account.address);
+    NSLog(@"PublicKeyJson:%@", self.account.publicKey.jsonFormatString);
+    NSLog(@"SignatureBase64:%@", sig.xBase64String);
 }
 @end

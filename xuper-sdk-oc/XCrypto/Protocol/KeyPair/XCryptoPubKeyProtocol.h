@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import <openssl/bn.h>
 #import <openssl/ec.h>
+
+#import "XCommon.h"
 
 @protocol UNSAFE_XCryptoPubKeyProtocol <NSObject>
 

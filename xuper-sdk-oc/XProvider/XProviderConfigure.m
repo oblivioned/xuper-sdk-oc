@@ -29,25 +29,4 @@
     return self;
 }
 
-- (Header * _Nonnull) randomHeader {
-    
-    Header *randHead = [[Header alloc] init];
-    
-    ///1.获取当前时间戳
-    NSDate *nowDate = [NSDate now];
-    
-    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
-     
-    NSMutableString *randLogid = [[NSMutableString alloc] initWithFormat:@"logid_%lu", (unsigned long)(timeInterval * 1000)];
-    
-    [randLogid appendFormat:@"%06ld", random() % 1000000];
-    
-    randHead.logid = randLogid;
-    
-    /** call rpc client address，客户端可以为空，节点一定要写自己的address */
-    randHead.fromNode = @"";
-    
-    return randHead;
-}
-
 @end

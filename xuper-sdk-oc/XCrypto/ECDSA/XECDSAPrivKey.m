@@ -13,6 +13,9 @@
 #import "XECDSAPrivKey.h"
 #import "XECDSAPubKey.h"
 
+#define XJsonPrivateKeyFormat (@"{\"Curvname\":\"%@\",\"X\":%@,\"Y\":%@,\"D\":%@}")
+#define XJsonPrivateSerialize(C, X, Y, D) ([NSString stringWithFormat:XJsonPrivateKeyFormat, (C), (X), (Y), (D)])
+
 @interface XECDSAPrivKey() <UNSAFE_XCryptoPrivKeyProtocol> {
     
     /// c
@@ -153,7 +156,7 @@
     self->_d = EC_KEY_get0_private_key(self->_ec_key);
     self->_ec_pub_key = EC_KEY_get0_public_key(self->_ec_key);
     
-    if ( !EC_POINT_get_affine_coordinates_GFp(self->_ec_group, self->_ec_pub_key, self->_x, self->_y, self->_bn_ctx) ) {
+    if ( !EC_POINT_get_affine_coordinates(self->_ec_group, self->_ec_pub_key, self->_x, self->_y, self->_bn_ctx) ) {
         return nil;
     }
     
@@ -176,28 +179,10 @@
 }
 
 - (XJsonString) jsonFormatString {
- 
-    NSDictionary *keydict = NULL;
-    NSData *jdata = NULL;
-        
-    keydict = @{
-        @"Curvname":@"P-256",
-        @"X": [NSString stringWithUTF8String:BN_bn2dec(self->_x)],
-        @"Y": [NSString stringWithUTF8String:BN_bn2dec(self->_y)],
-        @"D": [NSString stringWithUTF8String:BN_bn2dec(self->_d)],
-    };
-        
-    jdata = [NSJSONSerialization dataWithJSONObject:keydict
-                                            options:NSJSONWritingPrettyPrinted | NSJSONWritingSortedKeys
-                                              error:nil];
-        
-ErrorReturn:
-        
-    if (jdata) {
-        return [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
-    }
-        
-    return nil;
+    return XJsonPrivateSerialize(@"P-256",
+                                 [NSString stringWithUTF8String:BN_bn2dec(self->_x)],
+                                 [NSString stringWithUTF8String:BN_bn2dec(self->_y)],
+                                 [NSString stringWithUTF8String:BN_bn2dec(self->_d)]);
 }
 
 #pragma mark -- UNSAFE_XCryptoPrivKeyProtocol

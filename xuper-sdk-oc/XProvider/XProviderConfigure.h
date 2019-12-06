@@ -20,6 +20,4 @@
 
 + (instancetype _Nonnull) configureWithHost:(NSString * _Nonnull)host;
 
-- (Header * _Nonnull) randomHeader;
-
 @end
