@@ -11,6 +11,7 @@
 #import "XCommon.h"
 #import "XCryptoClientProtocol.h"
 
+XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKeyDefault;
 XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKeyECC;
 
 @interface XCryptoFactory : NSObject

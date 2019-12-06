@@ -61,7 +61,7 @@ AsyncTestWaiting5S(); }
 - (void)testConnection { AsyncTestBegin(@"GRPC Test");
 
     CommonIn *msg = [CommonIn message];
-    msg.header = self.client.providerConfigure.randomHeader;
+    msg.header = CommonIn.getRandomHeader;
     
     [self.client getSystemStatusWithRequest:msg handler:^(SystemsStatusReply * _Nullable response, NSError * _Nullable error) {
     
@@ -72,6 +72,43 @@ AsyncTestWaiting5S(); }
     }];
     
 AsyncTestWaiting5S(); }
+
+- (void) testTransactionSDKAPI { AsyncTestBegin(@"GRPC Test - Trnasfer SDKAPI");
+    
+    XTransactionOpt *opt = [XTransactionOpt transferOptWithFrom:self.initorAccount.publicKey.address
+                                                             to:@"WNWk3ekXeM5M2232dY2uCJmEqWhfQiDYT"
+                                                         amount:[[XBigInt alloc] initWithDecString:@"100"]
+                                                        remarks:@"这是一个转账备注"
+                                                   forzenHeight:0];
+    
+    [XTransactionBuilder buildTrsanctionWithClient:self.client
+                                            option:opt
+                                     initorKeypair:self.initorAccount
+                               authRequireKeypairs:@[self.initorAccount]
+                                            handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
+        XCTAssertNil(error);
+        
+        
+        ///发送测试
+        TxStatus *tx_status = [TxStatus message];
+        tx_status.header = TxStatus.getRandomHeader;
+        tx_status.bcname = @"xuper";
+        tx_status.status = TransactionStatus_Unconfirm;
+        tx_status.tx = tx;
+        tx_status.txid = tx.txid;
+        
+        [self.client postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
+            
+            XCTAssertNil(error);
+            XCTAssertNotNil(response);
+            XCTAssert(response.header.error != XChainErrorEnum_TxVerificationError);
+            NSLog(@"TXID:%@", tx_status.txid.xHexString);
+            AsyncTestFulfill();
+        }];
+        
+    }];
+    
+AsyncTestWaiting5S();}
 
 - (void) testTrnasfer { AsyncTestBegin(@"GRPC Test - Trnasfer");
     
@@ -184,7 +221,7 @@ AsyncTestWaiting5S(); }
     InvokeRPCRequest *preExeRPCReq = [InvokeRPCRequest message];
     preExeRPCReq.bcname = @"xuper";
 //    preExeRPCReq.requestsArray = [[NSMutableArray alloc] init];
-    preExeRPCReq.header = self.client.providerConfigure.randomHeader;
+    preExeRPCReq.header = InvokeRPCRequest.getRandomHeader;
     preExeRPCReq.initiator = @"dpzuVdosQrF2kmzumhVeFQZa1aYcdgFpN";
     preExeRPCReq.authRequireArray = tx.authRequireArray;
 
@@ -204,7 +241,7 @@ AsyncTestWaiting5S(); }
     tx.txOutputsExtArray = preExeRes.response.outputsArray;
     
     TxStatus *tx_status = [TxStatus message];
-    tx_status.header = self.client.providerConfigure.randomHeader;
+    tx_status.header = TxStatus.getRandomHeader;
     tx_status.bcname = @"xuper";
     tx_status.status = TransactionStatus_Unconfirm;
     tx_status.tx = tx;
@@ -236,7 +273,7 @@ AsyncTestWaiting5S(); }
     
     
     TxStatus *txQueryMessage = [TxStatus message];
-    txQueryMessage.header = self.client.providerConfigure.randomHeader;
+    txQueryMessage.header = TxStatus.getRandomHeader;
     txQueryMessage.txid = tx_status.txid;
     txQueryMessage.bcname = @"xuper";
     [self.client queryTxWithRequest:txQueryMessage handler:^(TxStatus * _Nullable response, NSError * _Nullable error) {
@@ -246,7 +283,6 @@ AsyncTestWaiting5S(); }
     }];
     
 AsyncTestWaiting5S(); }
-
 
 - (void)testTxHash {
     

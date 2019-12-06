@@ -12,6 +12,20 @@
 		1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */; };
 		1815C7142397FEC0000ADB6D /* NSMutableData+xCodeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815C7152397FEC0000ADB6D /* NSMutableData+xCodeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C7132397FEC0000ADB6D /* NSMutableData+xCodeable.m */; };
+		1815C7182399F30E000ADB6D /* GPBMessage+RandomHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C7162399F30E000ADB6D /* GPBMessage+RandomHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C7192399F30E000ADB6D /* GPBMessage+RandomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C7172399F30E000ADB6D /* GPBMessage+RandomHeader.m */; };
+		1815C7232399F6D1000ADB6D /* XBigInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C7212399F6D1000ADB6D /* XBigInt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C7242399F6D1000ADB6D /* XBigInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C7222399F6D1000ADB6D /* XBigInt.m */; };
+		1815C728239A014E000ADB6D /* XTransactionOpt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C726239A014E000ADB6D /* XTransactionOpt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C729239A014E000ADB6D /* XTransactionOpt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C727239A014E000ADB6D /* XTransactionOpt.m */; };
+		1815C732239A030E000ADB6D /* XTransactionDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C730239A030E000ADB6D /* XTransactionDesc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C733239A030E000ADB6D /* XTransactionDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C731239A030E000ADB6D /* XTransactionDesc.m */; };
+		1815C737239A03EC000ADB6D /* XTransactionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C735239A03EC000ADB6D /* XTransactionBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C738239A03EC000ADB6D /* XTransactionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C736239A03EC000ADB6D /* XTransactionBuilder.m */; };
+		1815C73B239A09AD000ADB6D /* XGlobalFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C739239A09AD000ADB6D /* XGlobalFlags.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C73C239A09AD000ADB6D /* XGlobalFlags.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C73A239A09AD000ADB6D /* XGlobalFlags.m */; };
+		1815C73F239A2553000ADB6D /* XTransactionOpt+Transfer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C73D239A2553000ADB6D /* XTransactionOpt+Transfer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1815C740239A2553000ADB6D /* XTransactionOpt+Transfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C73E239A2553000ADB6D /* XTransactionOpt+Transfer.m */; };
 		186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */; };
 		186FC2332390CDFF00DE6E2B /* xuper_sdk_ocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2322390CDFF00DE6E2B /* xuper_sdk_ocTests.m */; };
 		186FC2352390CDFF00DE6E2B /* xuper_sdk_oc_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,6 +94,20 @@
 		1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Transaction+SDKExtension.m"; sourceTree = "<group>"; };
 		1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+xCodeable.h"; sourceTree = "<group>"; };
 		1815C7132397FEC0000ADB6D /* NSMutableData+xCodeable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+xCodeable.m"; sourceTree = "<group>"; };
+		1815C7162399F30E000ADB6D /* GPBMessage+RandomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GPBMessage+RandomHeader.h"; sourceTree = "<group>"; };
+		1815C7172399F30E000ADB6D /* GPBMessage+RandomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GPBMessage+RandomHeader.m"; sourceTree = "<group>"; };
+		1815C7212399F6D1000ADB6D /* XBigInt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBigInt.h; sourceTree = "<group>"; };
+		1815C7222399F6D1000ADB6D /* XBigInt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBigInt.m; sourceTree = "<group>"; };
+		1815C726239A014E000ADB6D /* XTransactionOpt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionOpt.h; sourceTree = "<group>"; };
+		1815C727239A014E000ADB6D /* XTransactionOpt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionOpt.m; sourceTree = "<group>"; };
+		1815C730239A030E000ADB6D /* XTransactionDesc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionDesc.h; sourceTree = "<group>"; };
+		1815C731239A030E000ADB6D /* XTransactionDesc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionDesc.m; sourceTree = "<group>"; };
+		1815C735239A03EC000ADB6D /* XTransactionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionBuilder.h; sourceTree = "<group>"; };
+		1815C736239A03EC000ADB6D /* XTransactionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionBuilder.m; sourceTree = "<group>"; };
+		1815C739239A09AD000ADB6D /* XGlobalFlags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGlobalFlags.h; sourceTree = "<group>"; };
+		1815C73A239A09AD000ADB6D /* XGlobalFlags.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGlobalFlags.m; sourceTree = "<group>"; };
+		1815C73D239A2553000ADB6D /* XTransactionOpt+Transfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTransactionOpt+Transfer.h"; sourceTree = "<group>"; };
+		1815C73E239A2553000ADB6D /* XTransactionOpt+Transfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XTransactionOpt+Transfer.m"; sourceTree = "<group>"; };
 		186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xuper_sdk_oc_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xuper_sdk_oc_iOS.h; sourceTree = "<group>"; };
 		186FC2282390CDFE00DE6E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -168,8 +196,68 @@
 			children = (
 				1815C70E2397F514000ADB6D /* Transaction+SDKExtension.h */,
 				1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */,
+				1815C7162399F30E000ADB6D /* GPBMessage+RandomHeader.h */,
+				1815C7172399F30E000ADB6D /* GPBMessage+RandomHeader.m */,
 			);
 			path = MessageCategory;
+			sourceTree = "<group>";
+		};
+		1815C71A2399F65E000ADB6D /* XTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				1815C734239A03D0000ADB6D /* XTransactionBuilder */,
+				1815C72F239A02FC000ADB6D /* XTransactionDesc */,
+				1815C725239A0142000ADB6D /* XTransactionOpt */,
+			);
+			path = XTransaction;
+			sourceTree = "<group>";
+		};
+		1815C7202399F6C4000ADB6D /* XBigInt */ = {
+			isa = PBXGroup;
+			children = (
+				1815C7212399F6D1000ADB6D /* XBigInt.h */,
+				1815C7222399F6D1000ADB6D /* XBigInt.m */,
+			);
+			path = XBigInt;
+			sourceTree = "<group>";
+		};
+		1815C725239A0142000ADB6D /* XTransactionOpt */ = {
+			isa = PBXGroup;
+			children = (
+				1815C739239A09AD000ADB6D /* XGlobalFlags.h */,
+				1815C73A239A09AD000ADB6D /* XGlobalFlags.m */,
+				1815C726239A014E000ADB6D /* XTransactionOpt.h */,
+				1815C727239A014E000ADB6D /* XTransactionOpt.m */,
+				1815C72A239A0153000ADB6D /* Category */,
+			);
+			path = XTransactionOpt;
+			sourceTree = "<group>";
+		};
+		1815C72A239A0153000ADB6D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1815C73D239A2553000ADB6D /* XTransactionOpt+Transfer.h */,
+				1815C73E239A2553000ADB6D /* XTransactionOpt+Transfer.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		1815C72F239A02FC000ADB6D /* XTransactionDesc */ = {
+			isa = PBXGroup;
+			children = (
+				1815C730239A030E000ADB6D /* XTransactionDesc.h */,
+				1815C731239A030E000ADB6D /* XTransactionDesc.m */,
+			);
+			path = XTransactionDesc;
+			sourceTree = "<group>";
+		};
+		1815C734239A03D0000ADB6D /* XTransactionBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				1815C735239A03EC000ADB6D /* XTransactionBuilder.h */,
+				1815C736239A03EC000ADB6D /* XTransactionBuilder.m */,
+			);
+			path = XTransactionBuilder;
 			sourceTree = "<group>";
 		};
 		186FC21A2390CDFE00DE6E2B = {
@@ -200,6 +288,8 @@
 				186FC25D2391277900DE6E2B /* XCategory */,
 				186FC23E2390CE0900DE6E2B /* XCrypto */,
 				186FC2982395FE7A00DE6E2B /* XClient */,
+				1815C7202399F6C4000ADB6D /* XBigInt */,
+				1815C71A2399F65E000ADB6D /* XTransaction */,
 				186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */,
 				186FC2282390CDFE00DE6E2B /* Info.plist */,
 			);
@@ -420,7 +510,14 @@
 				186FC2DF23965DA900DE6E2B /* Chainedbft.pbobjc.h in Headers */,
 				1815C7102397F514000ADB6D /* Transaction+SDKExtension.h in Headers */,
 				1815C7142397FEC0000ADB6D /* NSMutableData+xCodeable.h in Headers */,
+				1815C73F239A2553000ADB6D /* XTransactionOpt+Transfer.h in Headers */,
+				1815C737239A03EC000ADB6D /* XTransactionBuilder.h in Headers */,
+				1815C7232399F6D1000ADB6D /* XBigInt.h in Headers */,
+				1815C728239A014E000ADB6D /* XTransactionOpt.h in Headers */,
+				1815C73B239A09AD000ADB6D /* XGlobalFlags.h in Headers */,
+				1815C732239A030E000ADB6D /* XTransactionDesc.h in Headers */,
 				186FC2E723965DA900DE6E2B /* Xchain.pbobjc.h in Headers */,
+				1815C7182399F30E000ADB6D /* GPBMessage+RandomHeader.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
 				186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */,
 				186FC2E223965DA900DE6E2B /* Xendorser.pbobjc.h in Headers */,
@@ -597,10 +694,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1815C729239A014E000ADB6D /* XTransactionOpt.m in Sources */,
+				1815C73C239A09AD000ADB6D /* XGlobalFlags.m in Sources */,
 				186FC3312397584600DE6E2B /* Xendorser.pbrpc.m in Sources */,
+				1815C740239A2553000ADB6D /* XTransactionOpt+Transfer.m in Sources */,
 				186FC2EC239662EF00DE6E2B /* XchainSpv.pbobjc.m in Sources */,
 				1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */,
 				186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */,
+				1815C7192399F30E000ADB6D /* GPBMessage+RandomHeader.m in Sources */,
 				186FC32E2397584600DE6E2B /* Xchain.pbrpc.m in Sources */,
 				186FC33723975A7D00DE6E2B /* XClientGRPC.m in Sources */,
 				186FC34A2397A44C00DE6E2B /* XClient.m in Sources */,
@@ -608,11 +709,14 @@
 				186FC3462397A10900DE6E2B /* XProviderConfigure.m in Sources */,
 				186FC2542390D15E00DE6E2B /* XECDSAClient.m in Sources */,
 				186FC3322397584600DE6E2B /* Xcheck.pbrpc.m in Sources */,
+				1815C7242399F6D1000ADB6D /* XBigInt.m in Sources */,
 				186FC2E823965DA900DE6E2B /* Chainedbft.pbobjc.m in Sources */,
 				186FC2932394E70C00DE6E2B /* XECDSAPubKey.m in Sources */,
+				1815C733239A030E000ADB6D /* XTransactionDesc.m in Sources */,
 				186FC2E523965DA900DE6E2B /* Xchain.pbobjc.m in Sources */,
 				186FC2422390CE4500DE6E2B /* XCryptoFactory.m in Sources */,
 				1815C7152397FEC0000ADB6D /* NSMutableData+xCodeable.m in Sources */,
+				1815C738239A03EC000ADB6D /* XTransactionBuilder.m in Sources */,
 				186FC2652392124C00DE6E2B /* NSString+xCodeable.m in Sources */,
 				186FC2612391278B00DE6E2B /* NSData+xCodeable.m in Sources */,
 				186FC2972394E7EA00DE6E2B /* XECDSAPrivKey.m in Sources */,
