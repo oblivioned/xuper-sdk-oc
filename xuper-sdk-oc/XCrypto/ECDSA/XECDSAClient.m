@@ -22,7 +22,7 @@
 @implementation XECDSAClient
 
 /// 创建一个新的密钥
-- (id<XCryptoAccountProtocol> _Nullable) generateKeyWithError:(NSError * _Nullable * _Nonnull)err {
+- (id<XCryptoAccountProtocol> _Nullable) generateKey {
     return [XECDSAAccount generatECDSAKey];
 }
 

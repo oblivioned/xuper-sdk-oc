@@ -15,7 +15,7 @@
 
 @protocol XCryptoClientCore <NSObject>
 
-- (id<XCryptoAccountProtocol> _Nullable) generateKeyWithError:(NSError * _Nullable * _Nonnull)err;
+- (id<XCryptoAccountProtocol> _Nullable) generateKey;
 
 /// 使用ECC私钥来签名
 - (NSData * _Nullable) signRawMessage:(NSData * _Nonnull)rawmessage keypair:(id<XCryptoKeypairProtocol> _Nonnull)keypair error:(NSError * _Nullable * _Nonnull)err;

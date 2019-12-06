@@ -19,6 +19,8 @@ typedef NSString* XJsonString;
 
 typedef NSString* XAddress;
 
+typedef NSString* XAccount;
+
 typedef NSString* XHexString;
 
 typedef NSData* XSignature;

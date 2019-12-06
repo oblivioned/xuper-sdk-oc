@@ -55,13 +55,10 @@
         },
     ];
     
-    NSError *error;
-    
     self.client = [[XECDSAClient alloc] init];
     
-    self.account = [self.client generateKeyWithError:&error];
+    self.account = [self.client generateKey];
     
-    XCTAssertNil(error, @"generateKeyWithError has error");
 }
 
 - (void)tearDown {
