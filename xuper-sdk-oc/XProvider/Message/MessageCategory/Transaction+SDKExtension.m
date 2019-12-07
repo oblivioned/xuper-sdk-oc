@@ -58,7 +58,7 @@
     /// ["fwmZVPU22gdbgJDdEjh5u6gKF5CohtNbG"]
     /// false
     /// false
-    //    var buf bytes.Buffer
+    /// var buf bytes.Buffer
     NSMutableString *buf = [[NSMutableString alloc] init];
         
     /// 1.txInputsArray
@@ -99,8 +99,7 @@
     if ( self.desc && self.desc.length > 0 ) {
         [buf appendFormat:@"\"%@\"\n", self.desc.xBase64String];
     } else {
-//        transfer from console
-        [buf appendFormat:@"\"%@\"\n", @"transfer from console".xBase64String];
+        [buf appendFormat:@"\"%@\"\n", XSDKDefaultDescString.xBase64String];
     }
 
     /// 4.nonce
@@ -272,11 +271,18 @@
         
         NSMutableDictionary *invokeJsonObject = [NSMutableDictionary dictionary];
         
+        /// args base64,在json的格式中，args是 KEY -> Base64String
+        NSMutableDictionary *base64ValueArgs = [[NSMutableDictionary alloc] init];
+        for ( NSString * key in invoke.args ) {
+            base64ValueArgs[key] = invoke.args[key].xBase64String;
+        }
+        OmitemptySetObject(invokeJsonObject, true, @"args", base64ValueArgs);
+        
         OmitemptySetObject(invokeJsonObject, invoke.moduleName.length > 0, @"module_name", invoke.moduleName);
         OmitemptySetObject(invokeJsonObject, invoke.contractName.length > 0, @"contract_name", invoke.contractName);
-        OmitemptySetObject(invokeJsonObject, true, @"args", invoke.args);
+        OmitemptySetObject(invokeJsonObject, invoke.contractName.length > 0, @"method_name", invoke.methodName);
         OmitemptySetObject(invokeJsonObject, invoke.amount.length > 0, @"amount", invoke.amount);
-
+        
         NSMutableArray *resourceLimitsArray = [[NSMutableArray alloc] init];
         for ( ResourceLimit *limit in invoke.resourceLimitsArray ) {
             [resourceLimitsArray addObject:@{
@@ -286,6 +292,8 @@
         }
         OmitemptySetObject(invokeJsonObject, resourceLimitsArray.count > 0, @"resource_limits", resourceLimitsArray);
         
+        
+        [jsonArrayObject addObject:invokeJsonObject];
     }
     
     NSData *jdata = [NSJSONSerialization dataWithJSONObject:jsonArrayObject options:0 error:error];

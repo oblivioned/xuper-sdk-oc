@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1740FED3EBE7BDA330BFAE5B /* Pods_xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1A7866F84EBD3C56DB9FD7 /* Pods_xuper_sdk_oc_iOS.framework */; };
+		180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */; };
+		180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B61239B47F900D2CB24 /* XTransactionACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		180C2B64239B47F900D2CB24 /* XTransactionACL.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B62239B47F900D2CB24 /* XTransactionACL.m */; };
+		180C2B6B239B504800D2CB24 /* XTransactionOpt+NewAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B69239B504800D2CB24 /* XTransactionOpt+NewAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		180C2B6C239B504800D2CB24 /* XTransactionOpt+NewAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B6A239B504800D2CB24 /* XTransactionOpt+NewAccount.m */; };
 		1815C7102397F514000ADB6D /* Transaction+SDKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C70E2397F514000ADB6D /* Transaction+SDKExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */; };
 		1815C7142397FEC0000ADB6D /* NSMutableData+xCodeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,6 +103,12 @@
 /* Begin PBXFileReference section */
 		07B29224365641793F5DC025 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; sourceTree = "<group>"; };
 		0F99EB3C6E244D51CAE8C983 /* Pods-xuper-sdk-oc-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS/Pods-xuper-sdk-oc-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionDescInvoke.h; sourceTree = "<group>"; };
+		180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionDescInvoke.m; sourceTree = "<group>"; };
+		180C2B61239B47F900D2CB24 /* XTransactionACL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionACL.h; sourceTree = "<group>"; };
+		180C2B62239B47F900D2CB24 /* XTransactionACL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionACL.m; sourceTree = "<group>"; };
+		180C2B69239B504800D2CB24 /* XTransactionOpt+NewAccount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTransactionOpt+NewAccount.h"; sourceTree = "<group>"; };
+		180C2B6A239B504800D2CB24 /* XTransactionOpt+NewAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XTransactionOpt+NewAccount.m"; sourceTree = "<group>"; };
 		1815C70E2397F514000ADB6D /* Transaction+SDKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Transaction+SDKExtension.h"; sourceTree = "<group>"; };
 		1815C70F2397F514000ADB6D /* Transaction+SDKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Transaction+SDKExtension.m"; sourceTree = "<group>"; };
 		1815C7122397FEC0000ADB6D /* NSMutableData+xCodeable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+xCodeable.h"; sourceTree = "<group>"; };
@@ -253,6 +265,8 @@
 			children = (
 				1815C73D239A2553000ADB6D /* XTransactionOpt+Transfer.h */,
 				1815C73E239A2553000ADB6D /* XTransactionOpt+Transfer.m */,
+				180C2B69239B504800D2CB24 /* XTransactionOpt+NewAccount.h */,
+				180C2B6A239B504800D2CB24 /* XTransactionOpt+NewAccount.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -260,8 +274,12 @@
 		1815C72F239A02FC000ADB6D /* XTransactionDesc */ = {
 			isa = PBXGroup;
 			children = (
+				180C2B61239B47F900D2CB24 /* XTransactionACL.h */,
+				180C2B62239B47F900D2CB24 /* XTransactionACL.m */,
 				1815C730239A030E000ADB6D /* XTransactionDesc.h */,
 				1815C731239A030E000ADB6D /* XTransactionDesc.m */,
+				180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */,
+				180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */,
 			);
 			path = XTransactionDesc;
 			sourceTree = "<group>";
@@ -568,6 +586,9 @@
 				1815C732239A030E000ADB6D /* XTransactionDesc.h in Headers */,
 				186FC2E723965DA900DE6E2B /* Xchain.pbobjc.h in Headers */,
 				1815C7182399F30E000ADB6D /* GPBMessage+RandomHeader.h in Headers */,
+				180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */,
+				180C2B6B239B504800D2CB24 /* XTransactionOpt+NewAccount.h in Headers */,
+				180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
 				186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */,
 				186FC2E223965DA900DE6E2B /* Xendorser.pbobjc.h in Headers */,
@@ -746,6 +767,7 @@
 			files = (
 				1815C729239A014E000ADB6D /* XTransactionOpt.m in Sources */,
 				1815C73C239A09AD000ADB6D /* XGlobalFlags.m in Sources */,
+				180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */,
 				186FC3312397584600DE6E2B /* Xendorser.pbrpc.m in Sources */,
 				1815C746239A4516000ADB6D /* XuperClient.m in Sources */,
 				1815C740239A2553000ADB6D /* XTransactionOpt+Transfer.m in Sources */,
@@ -759,6 +781,7 @@
 				186FC33723975A7D00DE6E2B /* XClientGRPC.m in Sources */,
 				186FC34A2397A44C00DE6E2B /* XClient.m in Sources */,
 				186FC2EE239662EF00DE6E2B /* Xendorser.pbobjc.m in Sources */,
+				180C2B6C239B504800D2CB24 /* XTransactionOpt+NewAccount.m in Sources */,
 				186FC3462397A10900DE6E2B /* XProviderConfigure.m in Sources */,
 				186FC2542390D15E00DE6E2B /* XECDSAClient.m in Sources */,
 				186FC3322397584600DE6E2B /* Xcheck.pbrpc.m in Sources */,
@@ -769,6 +792,7 @@
 				186FC2E523965DA900DE6E2B /* Xchain.pbobjc.m in Sources */,
 				186FC2422390CE4500DE6E2B /* XCryptoFactory.m in Sources */,
 				1815C7152397FEC0000ADB6D /* NSMutableData+xCodeable.m in Sources */,
+				180C2B64239B47F900D2CB24 /* XTransactionACL.m in Sources */,
 				1815C738239A03EC000ADB6D /* XTransactionBuilder.m in Sources */,
 				186FC2652392124C00DE6E2B /* NSString+xCodeable.m in Sources */,
 				186FC2612391278B00DE6E2B /* NSData+xCodeable.m in Sources */,

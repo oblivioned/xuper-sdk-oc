@@ -10,7 +10,6 @@
 #import "XBigInt.h"
 #import "XCryptoAccountProtocol.h"
 
-
 @interface XTransactionOpt(Transfer)
 
 + (instancetype _Nonnull) transferOptWithFrom:(XAddress _Nonnull)from

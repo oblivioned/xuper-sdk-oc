@@ -58,13 +58,16 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 #import <xuper_sdk_oc_iOS/XClient.h>
 
 /// XTransaction
-#import <xuper_sdk_oc_iOS/XTransactionBuilder.h>
 #import <xuper_sdk_oc_iOS/XGlobalFlags.h>
+#import <xuper_sdk_oc_iOS/XTransactionBuilder.h>
 #import <xuper_sdk_oc_iOS/XTransactionOpt.h>
+#import <xuper_sdk_oc_iOS/XTransactionACL.h>
 #import <xuper_sdk_oc_iOS/XTransactionDesc.h>
+#import <xuper_sdk_oc_iOS/XTransactionDescInvoke.h>
 
 /// Opts category
 #import <xuper_sdk_oc_iOS/XTransactionOpt+Transfer.h>
+#import <xuper_sdk_oc_iOS/XTransactionOpt+NewAccount.h>
 
 /// XuperClien
 #import <xuper_sdk_oc_iOS/AccountServices.h>

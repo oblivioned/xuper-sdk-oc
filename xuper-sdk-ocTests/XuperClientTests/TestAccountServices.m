@@ -95,10 +95,47 @@ AsyncTestWaiting5S(); }
     XCTAssertNotNil(account.privateKey.jsonFormatString);
 }
 
-- (void)testQueryAccounts {  AsyncTestBegin(@"AccountServices - Query Accounts");
+- (void)testQueryAccounts { AsyncTestBegin(@"AccountServices - Query Accounts");
     
     [self.accountServices queryAccountListWithAddress:self.initorAccount.address handle:^(NSArray<XAccount> * _Nullable accounts, NSError * _Nullable error) {
         XCTAssertNil(error);
+        
+        AsyncTestFulfill();
+    }];
+    
+AsyncTestWaiting5S(); }
+
+- (void)testNewAccount { AsyncTestBegin(@"AccountServices - New Account");
+    
+//    // 组装input 和 剩余output
+//    UtxoInput *ui = [UtxoInput message];
+//    ui.header = UtxoInput.getRandomHeader;
+//    ui.bcname = @"xuper";
+//    ui.address = self.initorAccount.address;
+//    ui.totalNeed = @"0";
+//    ui.needLock = false;
+//
+//    XCTestExpectation *expectation = [self expectationWithDescription:@"SelectUTXO"];
+//    [self.client selectUTXOWithRequest:ui handler:^(UtxoOutput * _Nullable response, NSError * _Nullable error) {
+//
+//        [expectation fulfill];
+//
+//    }];
+//
+//    [self waitForExpectations:expectation timeout:5];
+    
+    XTransactionACL *acl = [XTransactionACL simpleACLWithAddress:self.initorAccount.address];
+    
+    [self.accountServices newAccountWithAddress:self.initorAccount.address acl:acl initorKeypair:self.initorAccount
+                                            fee:[[XBigInt alloc] initWithDecString:@"1000"]
+                                         handle:^(XAccount  _Nullable account, XHexString  _Nullable txhash, NSError * _Nullable error) {
+        
+        XCTAssertNotNil(account);
+        XCTAssertNotNil(txhash);
+        XCTAssertNil(error);
+        
+        NSLog(@"Account:%@", account);
+        NSLog(@"TxHash:%@", txhash);
         
         AsyncTestFulfill();
     }];

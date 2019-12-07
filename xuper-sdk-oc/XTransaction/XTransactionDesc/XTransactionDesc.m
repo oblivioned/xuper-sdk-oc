@@ -11,7 +11,7 @@
 @implementation XTransactionDesc
 
 - (NSData * _Nonnull)encodeToData {
-    return [@"transaction from xuper-sdk-oc" dataUsingEncoding:NSUTF8StringEncoding];
+    return [XSDKDefaultDescString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 + (instancetype _Nullable)descWithString:(NSString * _Nullable)string {
@@ -28,7 +28,7 @@
 - (instancetype _Nonnull) init {
     
     self = [super init];
-    self.string = @"transaction from xuper-sdk-oc";
+    self.string = XSDKDefaultDescString;
     return self;
 }
 

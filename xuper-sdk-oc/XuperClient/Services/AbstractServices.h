@@ -16,6 +16,7 @@
 typedef void(^XServicesResponseBigInt)(XBigInt * _Nullable n, NSError * _Nullable error);
 typedef void(^XServicesResponseContracts)(NSArray<ContractStatus*> * _Nullable contracts, NSError * _Nullable error);
 typedef void(^XServicesResponseAccounts)(NSArray<XAccount> * _Nullable accounts, NSError * _Nullable error);
+typedef void(^XServicesResponseCommonReply)(XAccount _Nullable account, XHexString _Nullable txhash, NSError * _Nullable error);
 
 @interface AbstractServices : NSObject
 

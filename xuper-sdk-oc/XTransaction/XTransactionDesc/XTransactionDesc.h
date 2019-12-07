@@ -7,20 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XCommon.h"
+#import "XTransactionDesc.h"
 
 @interface XTransactionDesc: NSObject
-
 @property (nonatomic, copy)NSArray<NSString*> * _Nullable authRequires;
 
 + (instancetype _Nullable)descWithString:(NSString * _Nullable)string;
-
 - (NSData * _Nonnull)encodeToData;
-
 @end
 
 
 @interface XTransactionDescString: XTransactionDesc
 @property (nonatomic, copy)NSString * _Nullable string;
+
+- (NSData * _Nonnull)encodeToData;
 @end
 
 

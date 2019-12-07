@@ -15,6 +15,7 @@
 #import "Transaction+SDKExtension.h"
 #import "GPBMessage+RandomHeader.h"
 #import "XCryptoFactory.h"
+#import "XTransactionDescInvoke.h"
 
 @implementation XTransactionBuilder
 
@@ -38,11 +39,10 @@
     
     __block Transaction *tx = [Transaction message];
         
-    ///--txversion int32      tx version (default 1)
+    /// --txversion int32      tx version (default 1)
     tx.version = 1;
     tx.coinbase = false;
     
-    //TODO
     tx.desc = opt.desc.encodeToData;
     tx.nonce = self.randomNonce;
     
@@ -52,23 +52,32 @@
 
     XBigInt *totalNeed = XBigInt.Zero;
     
+    /// txoutputs -- 手续费部分
+    if ( opt.fee && [opt.fee greaterThan:XBigInt.Zero] ) {
+        
+        /// 配置了手续费，增加一笔outputs
+        [totalNeed addBigInt:opt.fee];
+        
+        /// 手续费的Output
+        TxOutput *output = [TxOutput message];
+        
+        /// 手续费的固定账号
+        output.toAddr = [@"$" dataUsingEncoding:NSUTF8StringEncoding];
+        output.amount =  opt.fee.data;
+        
+        [tx.txOutputsArray addObject:output];
+    }
+    
     /// txoutputs 转出给其他地址的
     for ( XTranctionToAccountData *toAccountData in opt.to ) {
         
         [totalNeed addBigInt:toAccountData.amount];
         
-        TxDataAccount *to = [TxDataAccount message];
-        to.address = toAccountData.address;
-        to.amount = toAccountData.amount.decString;
-        to.frozenHeight = toAccountData.frozenHeight;
-            
         ///组装output
         TxOutput *output = [TxOutput message];
-
-        /// totalNeed 和 amount 是要分开的，自处因为数值相同，就直接只用同一个对象
-        output.toAddr = [to.address dataUsingEncoding:NSUTF8StringEncoding];
+        output.toAddr = [toAccountData.address dataUsingEncoding:NSUTF8StringEncoding];
         output.amount =  toAccountData.amount.data;
-        output.frozenHeight = to.frozenHeight;
+        output.frozenHeight = toAccountData.frozenHeight;
         
         [tx.txOutputsArray addObject:output];
     }
@@ -140,13 +149,18 @@
         /// 设置auth require
         [tx.authRequireArray addObjectsFromArray:opt.desc.authRequires];
     
-        /// 进行一个预发送流程，不真正执行交易,但是需要填充一些参数主要是 contractRequestsArray,txInputsExtArray,txOutputsExtArray
+        /// 进行一个预发送流程，不真正执行交易,但是需要填充一些参数主要是 contractRequestsArray,txInputsExtArray,txOutputsExtArray,手续费等
         InvokeRPCRequest *preExeRPCReq = [InvokeRPCRequest message];
         preExeRPCReq.header = InvokeRPCRequest.getRandomHeader;
         preExeRPCReq.bcname = opt.globalFlags.blockchainName;
         preExeRPCReq.initiator = opt.from;
         preExeRPCReq.authRequireArray = tx.authRequireArray;
-
+        
+        /// InvokeRPCRequest中记录了合约交互的API和参数,而这些执行需要根据desc来判断
+        if ( [opt.desc isKindOfClass:[XTransactionDescInvoke class]] ) {
+            [preExeRPCReq.requestsArray addObject:((XTransactionDescInvoke*)opt.desc).invokeRequest];
+        }
+        
         [client preExecWithRequest:preExeRPCReq handler:^(InvokeRPCResponse * _Nullable response, NSError * _Nullable error) {
             
             if ( error != nil ) {
@@ -166,6 +180,26 @@
             tx.contractRequestsArray = preExeRes.response.requestsArray;
             tx.txInputsExtArray = preExeRes.response.inputsArray;
             tx.txOutputsExtArray = preExeRes.response.outputsArray;
+            
+            /// 累加手续费
+            XBigInt *totalGasPrice = XBigInt.Zero;
+            
+            if ( preExeRes.response.gasUsed > 0) {
+                    
+                NSString *lldNumberString = [NSString stringWithFormat:@"%lld", preExeRes.response.gasUsed];
+                    
+                [totalGasPrice addBigIntDec:lldNumberString];
+            }
+            
+            /// 当交易需要使用手续费时，但配置的手续不足以支付或根本没有配置支付的金额时跳出
+            if (
+                [totalGasPrice greaterThanOrEqual:XBigInt.Zero] &&
+                (!opt.fee || [opt.fee lessThan:totalGasPrice] ) ) {
+                
+                NSString *errorDomain = [NSString stringWithFormat:@"the gas you cousume is: %@ You need add fee in this transaction.", totalGasPrice.decString];
+                
+                return handleBlock(nil, [NSError errorWithDomain:errorDomain code:-1 userInfo:nil]);
+            }
             
             
             /// 签名和生成txid
@@ -199,32 +233,6 @@
     }];
     
     return ;
-//        TxStatus *tx_status = [TxStatus message];
-//        tx_status.header = TxStatus.getRandomHeader;
-//        tx_status.bcname = @"xuper";
-//        tx_status.status = TransactionStatus_Unconfirm;
-//        tx_status.tx = tx;
-//        tx_status.txid = tx_status.tx.txid;
-        
-//        XCTestExpectation *expectationPostTx = [self expectationWithDescription:@"PostTxWithRequest"];
-//        [self.client postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
-//            XCTAssertNil(error);
-//            XCTAssertNotNil(response);
-//            XCTAssert(response.header.error != XChainErrorEnum_TxVerificationError);
-//            [expectationPostTx fulfill];
-//        }];
-//        [self waitForExpectations:@[expectationPostTx] timeout:5];
-//
-//
-//        TxStatus *txQueryMessage = [TxStatus message];
-//        txQueryMessage.header = TxStatus.getRandomHeader;
-//        txQueryMessage.txid = tx_status.txid;
-//        txQueryMessage.bcname = @"xuper";
-//        [self.client queryTxWithRequest:txQueryMessage handler:^(TxStatus * _Nullable response, NSError * _Nullable error) {
-//            printf("QueryTxResponse:\n");
-//            printf("%s\n", response.tx.description.UTF8String);
-//            AsyncTestFulfill();
-//        }];
 }
 
 
