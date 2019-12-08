@@ -71,7 +71,7 @@ XContractNameStandardModuleName const _Nonnull XContractNameStandardModuleNameKe
         jobject[@"args"] = jargs;
     }
     
-    NSData *jobjData = [NSJSONSerialization dataWithJSONObject:jobject options:0 error:error];
+    NSData *jobjData = [NSJSONSerialization dataWithJSONObject:jobject options:NSJSONWritingSortedKeys error:error];
     if (error) {
         return nil;
     }
@@ -107,14 +107,14 @@ XContractNameStandardModuleName const _Nonnull XContractNameStandardModuleNameKe
                     
                 } else if ( encdoedValue && [encdoedValue isKindOfClass:[NSString class]] ) {
                     
-                    NSData *encdoedValueData = [NSJSONSerialization dataWithJSONObject:encdoedValue options:0 error:nil];
+                    NSData *encdoedValueData = [NSJSONSerialization dataWithJSONObject:encdoedValue options:NSJSONWritingSortedKeys error:nil];
                     if (encdoedValueData) {
                         request.args[key] = encdoedValueData;
                     }
                     
                 } else if ( encdoedValue && ([encdoedValue isKindOfClass:[NSArray class]] || [encdoedValue isKindOfClass:[NSDictionary class]])) {
                     
-                    NSData *encdoedValueData = [NSJSONSerialization dataWithJSONObject:encdoedValue options:0 error:nil];
+                    NSData *encdoedValueData = [NSJSONSerialization dataWithJSONObject:encdoedValue options:NSJSONWritingSortedKeys error:nil];
                     if (encdoedValueData) {
                         request.args[key] = encdoedValueData;
                     }
@@ -132,7 +132,7 @@ XContractNameStandardModuleName const _Nonnull XContractNameStandardModuleNameKe
                     
                 } else if ( value && ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSDictionary class]])) {
                     
-                    NSData *jvalueData = [NSJSONSerialization dataWithJSONObject:value options:0 error:nil];
+                    NSData *jvalueData = [NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingSortedKeys error:nil];
                     if (jvalueData) {
                         request.args[key] = jvalueData;
                     }

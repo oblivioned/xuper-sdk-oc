@@ -33,6 +33,33 @@
     return simpleACL;
 }
 
+- (BOOL) isEqual:(id)object {
+    
+    ///指针相同直接返回true
+    if ( self == object ) {
+        return true;
+    }
+    
+    ///对象不同直接返回false
+    if ( ![object isKindOfClass:[self class]] ) {
+        return false;
+    }
+    
+    ///匹配所有的值
+    XTransactionACL *b = (XTransactionACL*)object;
+    if (
+        self.pm.acceptValue == b.pm.acceptValue &&
+        self.pm.rule == b.pm.rule &&
+        [self.aksWeight isEqualToDictionary:b.aksWeight]
+        ) {
+        
+        return true;
+        
+    } else {
+        return false;
+    }
+}
+
 - (instancetype _Nonnull) init {
     
     self = [super init];
@@ -40,6 +67,20 @@
     self.pm = [[XTransactionPM alloc] init];
     
     self.aksWeight = [[XTransactionAKSWeight alloc] init];
+    
+    return self;
+}
+
+- (instancetype _Nonnull) initWithPBACL:(Acl* _Nonnull)acl {
+    
+    self = [self init];
+    
+    self.pm.rule = acl.pm.rule;
+    self.pm.acceptValue = acl.pm.acceptValue;
+    
+    [acl.aksWeight enumerateKeysAndDoublesUsingBlock:^(NSString * _Nonnull key, double value, BOOL * _Nonnull stop) {
+        self.aksWeight[key] = @(value);
+    }];
     
     return self;
 }
@@ -68,7 +109,7 @@
     
     [jobject setObject:self.aksWeight forKey:@"aksWeight"];
     
-    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jobject options:0 error:error];
+    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jobject options:NSJSONWritingSortedKeys error:error];
     
     if (error) {
         return nil;

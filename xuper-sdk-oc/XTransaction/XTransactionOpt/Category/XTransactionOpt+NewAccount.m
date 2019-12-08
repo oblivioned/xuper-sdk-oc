@@ -23,8 +23,9 @@
     return true;
 }
 
-+ (instancetype _Nullable) newAccountOptWithAddress:(XAddress _Nonnull)address
++ (instancetype _Nullable) optNewAccountWithAddress:(XAddress _Nonnull)address
                                                 acl:(XTransactionACL * _Nonnull)acl
+                                      randomAccount:(NSString * _Nonnull * _Nullable)randomAccount
                                               error:(NSError * _Nonnull * _Nullable)error {
     
     NSTimeInterval t = [[NSDate date] timeIntervalSince1970];
@@ -37,16 +38,20 @@
     
     memcpy(accountName, pc, 18);
     
-    return [self newAccountOptWithAddress:address accountName:accountName acl:acl error:error];
+    if ( randomAccount ) {
+        *randomAccount = [[NSString alloc] initWithData:[NSData dataWithBytes:pc length:16] encoding:NSUTF8StringEncoding];
+    }
+    
+    return [self optNewAccountWithAddress:address accountName:accountName acl:acl error:error];
 }
 
-+ (instancetype _Nullable) newAccountOptWithAddress:(XAddress _Nonnull)address
++ (instancetype _Nullable) optNewAccountWithAddress:(XAddress _Nonnull)address
                                         accountName:(unsigned char [_Nullable 16])accountName
                                                 acl:(XTransactionACL * _Nonnull)acl
                                               error:(NSError * _Nonnull * _Nullable)error {
     
     if ( ![self vaildAccountName:accountName] ) {
-        *error = [NSError errorWithDomain:@"invaild account name, account name expect continuous 16 number." code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"invaild account name, account name expect continuous 16 number." code:-1 userInfo:nil];
         return nil;
     }
     
@@ -66,9 +71,9 @@
     /// 创建交易实际上是发送给自己的交易，有两个outputx，一个是对“$"地址，应该是手续费地址，一个是找零给自己,
     /// 关键的数据还是desc中提供的
     opt.from = address;
-    opt.to = @[
-        [XTranctionToAccountData toAccountDataWithAddress:address amount:XBigInt.Zero forzenHeight:0],
-    ];
+//    opt.to = @[
+//        [XTranctionToAccountData toAccountDataWithAddress:address amount:XBigInt.Zero forzenHeight:0],
+//    ];
     opt.frozenHeight = 0;
     opt.desc = desc;
     

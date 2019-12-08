@@ -99,10 +99,10 @@
 - (NSData * _Nullable) generateEntropyWithBitSize:(int)bitSize error:(NSError * _Nullable * _Nonnull)error;
 
 /// 从导出的私钥文件读取私钥
-- (id<XCryptoAccountProtocol> _Nullable) getPrivateKeyFromJSON:(XJsonString _Nonnull)jsonBytes error:(NSError * _Nullable * _Nonnull)error;
+- (id<XCryptoAccountProtocol> _Nullable) getPrivateKeyFromJSON:(XJsonString _Nonnull)jsonString error:(NSError * _Nullable * _Nonnull)error;
 
 // 从导出的公钥文件读取公钥
-- (id<XCryptoPubKeyProtocol> _Nullable) getPublicKeyFromJSON:(XJsonString _Nonnull)jsonBytes error:(NSError * _Nullable * _Nonnull)error;
+- (id<XCryptoPubKeyProtocol> _Nullable) getPublicKeyFromJSON:(XJsonString _Nonnull)jsonString error:(NSError * _Nullable * _Nonnull)error;
 
 /// 获取私钥的json格式的表达
 - (XJsonString _Nullable) getPrivateKeyJSONFormat:(id<XCryptoAccountProtocol> _Nullable)keypair error:(NSError * _Nullable * _Nonnull)error;

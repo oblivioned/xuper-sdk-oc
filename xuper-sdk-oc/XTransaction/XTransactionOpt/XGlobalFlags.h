@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "XCommon.h"
 
-XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKeyDefault;
-XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKeyECC;
+XSDKExtern XCryptoTypeStringKey const _Nonnull XCryptoTypeStringKeyDefault;
+XSDKExtern XCryptoTypeStringKey const _Nonnull XCryptoTypeStringKeyECC;
 
 @interface XGlobalFlags : NSObject
 
@@ -21,7 +21,7 @@ XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKe
 @property (nonatomic, copy) NSString * _Nonnull keyPath;
 
 /// 加密算法，默认：defalt 对应ECDSA
-@property (nonatomic, copy) XSDKEnumCryptoTypeStringKey _Nonnull cryptoType;
+@property (nonatomic, copy) XCryptoTypeStringKey _Nonnull cryptoType;
 
 + (instancetype _Nonnull) appearance;
 

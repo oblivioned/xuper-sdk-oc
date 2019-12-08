@@ -10,7 +10,7 @@
 
 #import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
 
-@interface XECDSAAccount_ocTests : XCTestCase
+@interface XECDSAAccountTester : XCTestCase
 
 @property (nonatomic, strong) XECDSAClient *client;
 @property (nonatomic, strong) id<XCryptoAccountProtocol> account;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation XECDSAAccount_ocTests
+@implementation XECDSAAccountTester
 
 - (void)setUp {
     
@@ -65,7 +65,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testBase58 {
+- (void)test_Base58 {
     
     NSString *base58Encode = [self.testRawMessage xBase58String];
     
@@ -76,7 +76,7 @@
     XCTAssertTrue( [base58DecodeString isEqualToString:@"xuper-sdk-oc"] );
 }
 
-- (void)testGenerateKey {
+- (void)test_GenerateKey {
     
     XCTAssertTrue(self.account.address && self.account.address.length == 33, @"no address or invaild address");
     XCTAssertTrue(self.account.jsonPrivateKey && self.account.jsonPrivateKey.length > 0, @"no jsonPublicKey");
@@ -92,7 +92,7 @@
 /// 1.使用X,Y 还原一个私钥(XECDSAPrivKey)， X，Y来自xchain-cli生成
 /// 2.使用私钥创建XECDSAAccount
 /// 3.对比地址
-- (void)testAddress {
+- (void)test_Address {
     
     for ( int i = 0; i < self.xuperKeys.count; i++) {
         
@@ -110,7 +110,7 @@
 /// 2.使用相同地址，不同内容验证（预期结果应该为失败）
 /// 3.使用相同地址，相同内容验证（与其结果应该为成功）
 /// 4.使用不同地址，相同结果验证（与其应该为失败）
-- (void)testSignMessageWithXuperDemomKey {
+- (void)test_SignMessageWithXuperDemomKey {
     
     NSError *error = NULL;
     
@@ -154,7 +154,7 @@
 }
 
 /// 签名和验证测试，使用sdk创建公私钥对，就行签名和验证
-- (void)testSignMessageWithGenerateKey {
+- (void)test_SignMessageWithGenerateKey {
     
     NSError *error = NULL;
     
@@ -169,7 +169,7 @@
 }
 
 /// 测试地址格式验证的几个方法
-- (void)testAddressCheckCode {
+- (void)test_AddressCheckCode {
     
     uint32_t version = 0;
     NSError *error = NULL;
@@ -178,20 +178,4 @@
     XCTAssertNil(error);
 }
 
-/// 输出一个签名的实例，到golang的源码中验证签名
-- (void)testPriteSignToGolangTest {
-    
-    XECDSAPrivKey *pk = [XECDSAPrivKey fromExportedDictionary:self.xuperKeys[0]];
-    XECDSAAccount *account = [XECDSAAccount fromPrivateKey:pk];
-    
-    NSLog(@"json:%@", account.publicKey.jsonFormatString);
-    
-    NSError *error;
-    XSignature sig = [self.client signRawMessage:self.testRawMessage keypair:self.account error:&error];
-    XCTAssertNil(error);
-    
-    NSLog(@"Address:%@", self.account.address);
-    NSLog(@"PublicKeyJson:%@", self.account.publicKey.jsonFormatString);
-    NSLog(@"SignatureBase64:%@", sig.xBase64String);
-}
 @end

@@ -31,11 +31,31 @@
     return [NSString stringWithFormat:@"%lld", self.timestamp18];
 }
 
+/// 生成交易，不包含签名
+/// \param client XClient实现类,用于GRPC通讯
+/// \param opt 事务描述对象，为XTransactionOpt的派生类
+/// \param handleBlock 返回结果或者异常的block
 + (void) buildTrsanctionWithClient:(id<XClient> _Nonnull)client
                             option:(XTransactionOpt * _Nonnull)opt
-                     initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)initorKeypair
-               authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nullable)authRequireKeypairs
                             handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
+    
+    return [self trsanctionWithClient:client option:opt ignoreFeeCheck:NO initorKeypair:nil authRequireKeypairs:nil handle:handleBlock];
+}
+
++ (void) buildPreExecTransactionWithClient:(id<XClient> _Nonnull)client
+                                    option:(XTransactionOpt * _Nonnull)opt
+                                    handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
+    
+    return [self trsanctionWithClient:client option:opt ignoreFeeCheck:YES initorKeypair:nil authRequireKeypairs:nil handle:handleBlock];
+    
+}
+
++ (void) trsanctionWithClient:(id<XClient> _Nonnull)client
+                       option:(XTransactionOpt * _Nonnull)opt
+               ignoreFeeCheck:(BOOL)ignoreFeeCheck
+                initorKeypair:(id<XCryptoKeypairProtocol> _Nullable)initorKeypair
+          authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nullable)authRequireKeypairs
+                       handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
     
     __block Transaction *tx = [Transaction message];
         
@@ -193,7 +213,8 @@
             
             /// 当交易需要使用手续费时，但配置的手续不足以支付或根本没有配置支付的金额时跳出
             if (
-                [totalGasPrice greaterThanOrEqual:XBigInt.Zero] &&
+                ignoreFeeCheck && /// 跳过手续费强制检测流程
+                [totalGasPrice greaterThan:XBigInt.Zero] &&
                 (!opt.fee || [opt.fee lessThan:totalGasPrice] ) ) {
                 
                 NSString *errorDomain = [NSString stringWithFormat:@"the gas you cousume is: %@ You need add fee in this transaction.", totalGasPrice.decString];
@@ -203,28 +224,17 @@
             
             
             /// 签名和生成txid
-            NSError *signError;
-            id<XCryptoClientProtocol> cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:opt.globalFlags.cryptoType];
-            if (signError) {
-                return handleBlock(nil, signError);
-            }
-            
-            /// initor sign
-            SignatureInfo *initorSig = [tx txProcessSignInfoWithClient:cryptoClient keypair:initorKeypair error:&signError];
-            [tx.initiatorSignsArray addObject:initorSig];
-            
-            /// authRequire签名
-            for ( id<XCryptoKeypairProtocol> aclKeypari in authRequireKeypairs ) {
+            /// 有一些情况是需要先创建交易，但是不执行签名，比如 mulitsig get，需要从远程服务器请求签名的，所以增加这些判断
+            if ( initorKeypair && authRequireKeypairs ) {
                 
-                SignatureInfo *aclSign = [tx txProcessSignInfoWithClient:cryptoClient keypair:aclKeypari error:&signError];
-                if (signError) {
+                NSError *signError;
+                
+                [self payloadSignTransaction:tx cryptoType:opt.globalFlags.cryptoType initorKeypair:initorKeypair authRequireKeypairs:authRequireKeypairs error:&signError];
+                if ( signError ) {
                     return handleBlock(nil, signError);
                 }
                 
-                [tx.authRequireSignsArray addObject:aclSign];
             }
-            
-            tx.txid = tx.txMakeTransactionID;
             
             return handleBlock(tx, nil);
             
@@ -235,5 +245,80 @@
     return ;
 }
 
+/// 填充Transaction对象中缺失的签名， 签名会填充在传入的Transaction对象中，若出现异常，tx对象不会发生改变
+/// \param tx 需要填充签名的交易
+/// \param initorKeypair 事务发起人的密钥对
+/// \param authRequireKeypairs 所需要的authRequire(ACL)的密钥对
+/// \param error 错误捕获
++ (BOOL) payloadSignTransaction:(Transaction * _Nonnull)tx
+                     cryptoType:(XCryptoTypeStringKey _Nonnull)cryptoType
+                  initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)initorKeypair
+            authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nonnull)authRequireKeypairs
+                          error:(NSError * _Nullable * _Nonnull)error {
+    
+    if ( tx.initiatorSignsArray_Count != 0 ) {
+        if (*error) *error = [NSError errorWithDomain:@"initiatorSigns is already exist." code:-1 userInfo:nil];
+        return false;
+    }
+    
+    if ( tx.authRequireSignsArray_Count != 0 ) {
+        if (*error) *error = [NSError errorWithDomain:@"authRequireSigns is already exist." code:-1 userInfo:nil];
+        return false;
+    }
+    
+    @try {
+        
+        id<XCryptoClientProtocol> cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:cryptoType];
+        
+        /// initor 签名
+        if ( initorKeypair ) {
+            
+            SignatureInfo *initorSig = [tx txProcessSignInfoWithClient:cryptoClient keypair:initorKeypair error:error];
+            if (*error) {
+                @throw [NSException exceptionWithName:(*error).domain reason:(*error).description userInfo:nil];
+            }
+            
+            [tx.initiatorSignsArray addObject:initorSig];
+        }
+        
+        /// authRequire 签名
+        if ( authRequireKeypairs ) {
+            
+            for ( id<XCryptoKeypairProtocol> aclKeypari in authRequireKeypairs ) {
+            
+                SignatureInfo *aclSign = [tx txProcessSignInfoWithClient:cryptoClient keypair:aclKeypari error:error];
+                if (*error) {
+                    @throw [NSException exceptionWithName:(*error).domain reason:(*error).description userInfo:nil];
+                }
+            
+                [tx.authRequireSignsArray addObject:aclSign];
+            }
+        }
+        
+        if ( initorKeypair && authRequireKeypairs ) {
+            tx.txid = tx.txMakeTransactionID;
+        }
+        
+        return true;
+        
+    } @catch (NSException *exception) {
+        
+        [tx.initiatorSignsArray removeAllObjects];
+        [tx.authRequireSignsArray removeAllObjects];
+        tx.txid = [NSData data];
+      
+        if (error) *error = [NSError errorWithDomain:exception.name code:-1 userInfo:nil];
+        return false;
+    }
+
+}
+
++ (void) payloadSignTransaction:(Transaction * _Nonnull)tx
+                    initorSigns:(SignatureInfo * _Nonnull)initorSigns
+               authRequireSigns:(NSArray<SignatureInfo *> *_Nonnull)authRequireSigns {
+    
+    return [tx payloadTxSigns:initorSigns authRequireSigns:authRequireSigns];
+    
+}
 
 @end

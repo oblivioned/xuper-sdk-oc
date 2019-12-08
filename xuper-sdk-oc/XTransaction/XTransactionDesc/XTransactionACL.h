@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XCommon.h"
+#import "Xchain.pbobjc.h"
 
 typedef NS_ENUM(NSUInteger, XTransactionPMRule) {
     XTransactionPMRuleDefault = 1,
@@ -26,6 +27,8 @@ typedef NSMutableDictionary<XAddress, NSNumber*> XTransactionAKSWeight;
 @property (nonatomic, strong) XTransactionAKSWeight * _Nonnull aksWeight;
 
 - (NSString * _Nullable) aclAuthRequireString;
+
+- (instancetype _Nonnull) initWithPBACL:(Acl* _Nonnull)acl;
 
 + (instancetype _Nonnull) simpleACLWithAddress:(XAddress _Nonnull)address;
 

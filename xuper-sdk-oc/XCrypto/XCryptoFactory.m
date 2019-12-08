@@ -9,15 +9,15 @@
 #import "XCryptoFactory.h"
 #import "XECDSAClient.h"
 
-XSDKEnumCryptoTypeStringKey const XSDKEnumCryptoTypeStringKeyECC = @"ECDSA";
+XCryptoTypeStringKey const XCryptoTypeStringKeyECC = @"ECDSA";
 
-XSDKEnumCryptoTypeStringKey const XSDKEnumCryptoTypeStringKeyDefault = XSDKEnumCryptoTypeStringKeyECC;
+XCryptoTypeStringKey const XCryptoTypeStringKeyDefault = XCryptoTypeStringKeyECC;
 
 @implementation XCryptoFactory
 
-+ (id<XCryptoClientProtocol>) cryptoClientWithCryptoType:(XSDKEnumCryptoTypeStringKey)cryptoType {
++ (id<XCryptoClientProtocol>) cryptoClientWithCryptoType:(XCryptoTypeStringKey)cryptoType {
     
-    if ( cryptoType == XSDKEnumCryptoTypeStringKeyECC ) {
+    if ( cryptoType == XCryptoTypeStringKeyECC ) {
         return [[XECDSAClient alloc] init];
     }
     

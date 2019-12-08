@@ -97,10 +97,10 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
     
 }
 
-- (id<XCryptoKeypairProtocol> _Nonnull) newKeysWithCryptoType:(XSDKEnumCryptoTypeStringKey _Nullable)type {
+- (id<XCryptoKeypairProtocol> _Nonnull) newKeysWithCryptoType:(XCryptoTypeStringKey _Nullable)type {
     
     if (!type) {
-        type = XSDKEnumCryptoTypeStringKeyDefault;
+        type = XCryptoTypeStringKeyDefault;
     }
     
     id<XCryptoClientProtocol> cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:type];
@@ -131,25 +131,34 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
 - (void) newAccountWithAddress:(XAddress _Nonnull)address accountName:(unsigned char[_Nullable 18])accountName acl:(XTransactionACL * _Nonnull)acl initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)keypiar fee:(XBigInt * _Nonnull)fee handle:(XServicesResponseCommonReply _Nonnull)handle {
     
     __block XTransactionOpt *opt;
+    __block XAccount xacc;
     
     NSError *error;
     
     if ( accountName ) {
-        opt = [XTransactionOpt newAccountOptWithAddress:address accountName:accountName acl:acl error:&error];
+        
+        opt = [XTransactionOpt optNewAccountWithAddress:address accountName:accountName acl:acl error:&error];
+        xacc = [NSString stringWithFormat:@"XC%s@%@", accountName, self.blockChainName];
+        
     } else {
-        opt = [XTransactionOpt newAccountOptWithAddress:address acl:acl error:&error];
+        
+        NSString *randomedAddress;
+        opt = [XTransactionOpt optNewAccountWithAddress:address acl:acl randomAccount:&randomedAddress error:&error];
+        xacc = [NSString stringWithFormat:@"XC%@@%@", randomedAddress, self.blockChainName];
     }
     opt.fee = fee;
+    
     
     if (error) {
         handle(nil, nil, error);
     }
     
-    [XTransactionBuilder buildTrsanctionWithClient:self.clientRef
-                                            option:opt
-                                     initorKeypair:keypiar
-                               authRequireKeypairs:@[keypiar]
-                                            handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
+    [XTransactionBuilder trsanctionWithClient:self.clientRef
+                                       option:opt
+                               ignoreFeeCheck:NO
+                                initorKeypair:keypiar
+                          authRequireKeypairs:@[keypiar]
+                                       handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
         
         if ( error ) {
             return handle(nil, nil, error);
@@ -181,15 +190,12 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
             }
             
             XHexString hash = tx.txid.xHexString;
-            
-            handle(@"accountname", hash, nil);
-
+            handle(xacc, hash, nil);
         }];
         
     }];
     
 }
-
 
 - (void) newAccountWithAddress:(XAddress _Nonnull)address acl:(XTransactionACL * _Nonnull)acl initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)keypiar fee:(XBigInt * _Nonnull)fee handle:(XServicesResponseCommonReply _Nonnull)handle {
     return [self newAccountWithAddress:address accountName:nil acl:acl initorKeypair:keypiar fee:fee handle:handle];

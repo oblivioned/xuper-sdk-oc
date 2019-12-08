@@ -26,7 +26,7 @@
     self = [super init];
     
     self.blockchainName = @"xuper";
-    self.cryptoType = XSDKEnumCryptoTypeStringKeyDefault;
+    self.cryptoType = XCryptoTypeStringKeyDefault;
     self.keyPath = @"";
     
     return self;

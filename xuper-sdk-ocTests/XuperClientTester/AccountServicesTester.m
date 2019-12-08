@@ -11,7 +11,7 @@
 
 #import "TestCommon.h"
 
-@interface TestAccountServices : XCTestCase
+@interface AccountServicesTester : XCTestCase
 
 @property (nonatomic, strong) XClient *client;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation TestAccountServices
+@implementation AccountServicesTester
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -37,16 +37,17 @@
         @"Y":@"51348715319124770392993866417088542497927816017012182211244120852620959209571",
         @"D":@"29079635126530934056640915735344231956621504557963207107451663058887647996601"
     }];
+
+    self.initorAccount = [XECDSAAccount fromPrivateKey:accountPk];
     
     self.testCaseAccount = @"XC1574829805000000@xuper";
-    self.initorAccount = [XECDSAAccount fromPrivateKey:accountPk];
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testBalanceOf { AsyncTestBegin(@"AccountServices - Account Balance");
+- (void)test_BalanceOf { AsyncTestBegin(@"AccountServices - Account Balance");
     
     /// 测试获取可用余额
     [self.accountServices balanceWithAddress:self.initorAccount.address handle:^(XBigInt * _Nullable n, NSError * _Nullable error) {
@@ -67,7 +68,7 @@
     
 AsyncTestWaiting5S(); }
 
-- (void)testAccountContracts { AsyncTestBegin(@"AccountServices - Account Contracts");
+- (void)test_AccountContracts { AsyncTestBegin(@"AccountServices - Account Contracts");
     
     [self.accountServices contractsWithAccount:@"XC1574829805000000@xuper" handle:^(NSArray<ContractStatus *> * _Nullable contracts, NSError * _Nullable error) {
         XCTAssertNil(error);
@@ -83,7 +84,7 @@ AsyncTestWaiting5S(); }
 AsyncTestWaiting5S(); }
 
 
-- (void)testNewKeys {
+- (void)test_NewKeys {
     
     XECDSAAccount *account = (XECDSAAccount*)[self.accountServices newKeysWithCryptoType:nil];
     
@@ -95,38 +96,27 @@ AsyncTestWaiting5S(); }
     XCTAssertNotNil(account.privateKey.jsonFormatString);
 }
 
-- (void)testQueryAccounts { AsyncTestBegin(@"AccountServices - Query Accounts");
+- (void)test_QueryAccounts { AsyncTestBegin(@"AccountServices - Query Accounts");
     
     [self.accountServices queryAccountListWithAddress:self.initorAccount.address handle:^(NSArray<XAccount> * _Nullable accounts, NSError * _Nullable error) {
         XCTAssertNil(error);
-        
         AsyncTestFulfill();
     }];
     
 AsyncTestWaiting5S(); }
 
-- (void)testNewAccount { AsyncTestBegin(@"AccountServices - New Account");
+- (void)test_NewAccount { AsyncTestBegin(@"AccountServices - New Account");
+        
+    XTransactionACL *acl = [[XTransactionACL alloc] init];
     
-//    // 组装input 和 剩余output
-//    UtxoInput *ui = [UtxoInput message];
-//    ui.header = UtxoInput.getRandomHeader;
-//    ui.bcname = @"xuper";
-//    ui.address = self.initorAccount.address;
-//    ui.totalNeed = @"0";
-//    ui.needLock = false;
-//
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"SelectUTXO"];
-//    [self.client selectUTXOWithRequest:ui handler:^(UtxoOutput * _Nullable response, NSError * _Nullable error) {
-//
-//        [expectation fulfill];
-//
-//    }];
-//
-//    [self waitForExpectations:expectation timeout:5];
+    acl.pm.rule = XTransactionPMRuleDefault;
+    acl.pm.acceptValue = 0.6;
+    acl.aksWeight[self.initorAccount.address] = @(0.5);
+    acl.aksWeight[@"eqMvtH1MQSejd4nzxDy21W1GW12cocrPF"] = @(0.5);
     
-    XTransactionACL *acl = [XTransactionACL simpleACLWithAddress:self.initorAccount.address];
-    
-    [self.accountServices newAccountWithAddress:self.initorAccount.address acl:acl initorKeypair:self.initorAccount
+    [self.accountServices newAccountWithAddress:self.initorAccount.address
+                                            acl:acl
+                                  initorKeypair:self.initorAccount
                                             fee:[[XBigInt alloc] initWithDecString:@"1000"]
                                          handle:^(XAccount  _Nullable account, XHexString  _Nullable txhash, NSError * _Nullable error) {
         

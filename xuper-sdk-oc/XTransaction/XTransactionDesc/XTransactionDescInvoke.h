@@ -27,6 +27,4 @@ XSDKExtern XContractNameStandardModuleName const _Nonnull XContractNameStandardM
 
 - (NSData * _Nonnull)encodeToDataWithError:(NSError * _Nonnull * _Nullable)error;
 
-
-
 @end

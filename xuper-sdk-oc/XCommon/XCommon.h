@@ -17,7 +17,7 @@
 
 #define XSDKExtern extern
 
-typedef NSString* XSDKEnumCryptoTypeStringKey;
+typedef NSString* XCryptoTypeStringKey;
 
 typedef NSString* XJsonString;
 

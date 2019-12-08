@@ -18,4 +18,8 @@
 
 - (instancetype _Nullable) initWithECGroup:(const EC_GROUP * _Nonnull)g rawPublicKey:(NSData * _Nonnull)pp;
 
+- (instancetype _Nullable) initWithJsonFormatString:(NSString * _Nonnull)ppjson error:(NSError * _Nonnull * _Nullable)error;
+
+- (instancetype _Nullable) initWithXString:(NSString * _Nonnull)x yString:(NSString * _Nonnull)y error:(NSError * _Nonnull * _Nullable)error;
+
 @end

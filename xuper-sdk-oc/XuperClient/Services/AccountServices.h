@@ -27,6 +27,6 @@
 //- (void) split
 
 /// 在xchain-cli中是需要通过GRPC通讯后在本地存储私钥，这里提供一个同名的API方便使用，但是不推荐在这里使用，请使用XCrypto中的系列方法来创建和保存私钥,若不指定type，则使用default（ECDSA）ps:其实也暂不支持别的类型   \0.0/
-- (id<XCryptoKeypairProtocol> _Nonnull) newKeysWithCryptoType:(XSDKEnumCryptoTypeStringKey _Nullable)type;
+- (id<XCryptoKeypairProtocol> _Nonnull) newKeysWithCryptoType:(XCryptoTypeStringKey _Nullable)type;
 
 @end
