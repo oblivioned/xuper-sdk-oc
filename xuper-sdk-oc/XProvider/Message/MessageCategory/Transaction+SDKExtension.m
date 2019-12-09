@@ -219,8 +219,9 @@
 
     /// 15.autogen
     [buf appendFormat:@"%@\n", self.autogen ? @"true" : @"false"];
-        
-    return [buf dataUsingEncoding:NSUTF8StringEncoding];
+
+    /// 由于NSMutableArray 在序列化成json的时候，对象中String出现的"/"会被写上转译字符 “\ /” 但是golang中无法正确的识别这个转译字符，需要手动删除
+    return [[buf stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 /// 手动转换TxOutput数组到json格式
@@ -388,10 +389,7 @@
         return nil;
     }
     
-    /// 由于NSMutableArray 在序列化成json的时候，对象中String出现的"/"会被写上转译字符 “\ /” 但是golang中无法正确的识别这个转译字符，需要手动删除
-    NSString *beforRemoveSlash = [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
-    
-    return [beforRemoveSlash stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    return [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
 }
 
 #pragma mark -- SignHash

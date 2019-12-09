@@ -50,6 +50,12 @@
 		1815C752239A48D8000ADB6D /* AccountServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C751239A48D8000ADB6D /* AccountServicesTester.m */; };
 		18472446239D041B00DB6777 /* XTransactionOpt+Contracts.h in Headers */ = {isa = PBXBuildFile; fileRef = 18472444239D041B00DB6777 /* XTransactionOpt+Contracts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18472447239D041B00DB6777 /* XTransactionOpt+Contracts.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472445239D041B00DB6777 /* XTransactionOpt+Contracts.m */; };
+		1847244A239E8CEA00DB6777 /* StatusServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18472448239E8CEA00DB6777 /* StatusServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1847244B239E8CEA00DB6777 /* StatusServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472449239E8CEA00DB6777 /* StatusServices.m */; };
+		18472451239E8E1F00DB6777 /* StatusServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472450239E8E1F00DB6777 /* StatusServicesTester.m */; };
+		18472454239E8F8700DB6777 /* TransferServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18472452239E8F8700DB6777 /* TransferServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18472455239E8F8700DB6777 /* TransferServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472453239E8F8700DB6777 /* TransferServices.m */; };
+		18472457239E967100DB6777 /* TransferServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472456239E967100DB6777 /* TransferServicesTester.m */; };
 		186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */; };
 		186FC2352390CDFF00DE6E2B /* xuper_sdk_oc_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		186FC2412390CE4500DE6E2B /* XCryptoFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC23F2390CE4500DE6E2B /* XCryptoFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -156,6 +162,12 @@
 		1815C753239A5D4C000ADB6D /* TODOList */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODOList; sourceTree = "<group>"; };
 		18472444239D041B00DB6777 /* XTransactionOpt+Contracts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTransactionOpt+Contracts.h"; sourceTree = "<group>"; };
 		18472445239D041B00DB6777 /* XTransactionOpt+Contracts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XTransactionOpt+Contracts.m"; sourceTree = "<group>"; };
+		18472448239E8CEA00DB6777 /* StatusServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusServices.h; sourceTree = "<group>"; };
+		18472449239E8CEA00DB6777 /* StatusServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusServices.m; sourceTree = "<group>"; };
+		18472450239E8E1F00DB6777 /* StatusServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusServicesTester.m; sourceTree = "<group>"; };
+		18472452239E8F8700DB6777 /* TransferServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferServices.h; sourceTree = "<group>"; };
+		18472453239E8F8700DB6777 /* TransferServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferServices.m; sourceTree = "<group>"; };
+		18472456239E967100DB6777 /* TransferServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferServicesTester.m; sourceTree = "<group>"; };
 		186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xuper_sdk_oc_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xuper_sdk_oc_iOS.h; sourceTree = "<group>"; };
 		186FC2282390CDFE00DE6E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -338,6 +350,10 @@
 				180C2B78239CDC3C00D2CB24 /* BlockServices.m */,
 				180C2B7D239CE61000D2CB24 /* MultisigServices.h */,
 				180C2B7E239CE61000D2CB24 /* MultisigServices.m */,
+				18472448239E8CEA00DB6777 /* StatusServices.h */,
+				18472449239E8CEA00DB6777 /* StatusServices.m */,
+				18472452239E8F8700DB6777 /* TransferServices.h */,
+				18472453239E8F8700DB6777 /* TransferServices.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -349,6 +365,8 @@
 				180C2B75239CD2E600D2CB24 /* ACLServicesTester.m */,
 				180C2B7B239CDE8A00D2CB24 /* BlockServicesTester.m */,
 				180C2B81239CF75500D2CB24 /* MultisigServicesTester.m */,
+				18472450239E8E1F00DB6777 /* StatusServicesTester.m */,
+				18472456239E967100DB6777 /* TransferServicesTester.m */,
 			);
 			path = XuperClientTester;
 			sourceTree = "<group>";
@@ -620,7 +638,9 @@
 				180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */,
 				180C2B7F239CE61000D2CB24 /* MultisigServices.h in Headers */,
 				180C2B6B239B504800D2CB24 /* XTransactionOpt+NewAccount.h in Headers */,
+				1847244A239E8CEA00DB6777 /* StatusServices.h in Headers */,
 				18472446239D041B00DB6777 /* XTransactionOpt+Contracts.h in Headers */,
+				18472454239E8F8700DB6777 /* TransferServices.h in Headers */,
 				180C2B79239CDC3C00D2CB24 /* BlockServices.h in Headers */,
 				180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
@@ -818,6 +838,7 @@
 				186FC2EE239662EF00DE6E2B /* Xendorser.pbobjc.m in Sources */,
 				180C2B6C239B504800D2CB24 /* XTransactionOpt+NewAccount.m in Sources */,
 				186FC3462397A10900DE6E2B /* XProviderConfigure.m in Sources */,
+				1847244B239E8CEA00DB6777 /* StatusServices.m in Sources */,
 				186FC2542390D15E00DE6E2B /* XECDSAClient.m in Sources */,
 				186FC3322397584600DE6E2B /* Xcheck.pbrpc.m in Sources */,
 				1815C7242399F6D1000ADB6D /* XBigInt.m in Sources */,
@@ -836,6 +857,7 @@
 				186FC2612391278B00DE6E2B /* NSData+xCodeable.m in Sources */,
 				186FC2972394E7EA00DE6E2B /* XECDSAPrivKey.m in Sources */,
 				186FC2772392376400DE6E2B /* XECDSAAccount.m in Sources */,
+				18472455239E8F8700DB6777 /* TransferServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,9 +868,11 @@
 				186FC32023974D7C00DE6E2B /* XProviderTester.m in Sources */,
 				1815C752239A48D8000ADB6D /* AccountServicesTester.m in Sources */,
 				186FC27E239259A800DE6E2B /* XECDSAAccountTester.m in Sources */,
+				18472457239E967100DB6777 /* TransferServicesTester.m in Sources */,
 				180C2B7C239CDE8A00D2CB24 /* BlockServicesTester.m in Sources */,
 				180C2B82239CF75500D2CB24 /* MultisigServicesTester.m in Sources */,
 				180C2B76239CD2E600D2CB24 /* ACLServicesTester.m in Sources */,
+				18472451239E8E1F00DB6777 /* StatusServicesTester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

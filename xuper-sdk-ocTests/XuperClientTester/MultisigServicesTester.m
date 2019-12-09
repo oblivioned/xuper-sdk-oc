@@ -48,7 +48,7 @@
 /// 测试环境接入地址： 14.215.179.74:37101
 /// 黄反服务的address： XDxkpQkfLwG6h56e896f3vBHhuN5g6M9u
 /// 仅用于测试对应方法的正确性
-- (void)test_getSignWithRemoteNodeURL {  AsyncTestBegin(@"MultisigServices - GetSignWithRemoteNodeURL");
+- (void)test_GetSignWithRemoteNodeURL {  AsyncTestBegin(@"MultisigServices - GetSignWithRemoteNodeURL");
 
     XTransactionDescInvoke *invoke = [[XTransactionDescInvoke alloc] init];
     invoke.authRequires = @[self.initorAccount.address];
@@ -98,7 +98,7 @@ AsyncTestWaiting5S();}
 /// 2.时候sign签名后补充到Tx中
 /// 3.发送交易
 /// 4.检测是否可以成功发送，并且正确响应
-- (void)test_genTransaction { AsyncTestBegin(@"MultisigServices - GenTransactionWithOption");
+- (void)test_Gen_Sign_SendTransaction { AsyncTestBegin(@"MultisigServices - GenTransactionWithOption");
  
     XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:self.initorAccount.address to:@"eqMvtH1MQSejd4nzxDy21W1GW12cocrPF" amount:[[XBigInt alloc] initWithDecString:@"10"] remarks:@"MultisigServices - GenTransactionWithOption" forzenHeight:0];
     
@@ -121,7 +121,6 @@ AsyncTestWaiting5S();}
     SignatureInfo *initorSig = [self.signServices signTransaction:unSignTx cryptoType:XCryptoTypeStringKeyDefault keypair:self.initorAccount error:&error];
     XCTAssertNotNil(initorSig);
     XCTAssertNil(error);
-    
     XCTAssertFalse([unSignTx verifyWithCryptoType:XCryptoTypeStringKeyDefault error:&error], "verifyWithCryptoType must be false in here.");
     
     error = nil;

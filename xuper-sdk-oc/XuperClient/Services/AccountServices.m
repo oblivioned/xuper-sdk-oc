@@ -146,8 +146,8 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
         opt = [XTransactionOpt optNewAccountWithAddress:address acl:acl randomAccount:&randomedAddress error:&error];
         xacc = [NSString stringWithFormat:@"XC%@@%@", randomedAddress, self.blockChainName];
     }
-    opt.fee = fee;
     
+    opt.fee = fee;
     
     if (error) {
         handle(nil, nil, error);

@@ -11,12 +11,19 @@
 @implementation XTransactionDesc
 
 - (NSData * _Nonnull)encodeToData {
+    
     return [XSDKDefaultDescString dataUsingEncoding:NSUTF8StringEncoding];
+    
 }
 
 + (instancetype _Nullable)descWithString:(NSString * _Nullable)string {
+    
     XTransactionDescString *desc = [[XTransactionDescString alloc] init];
-    desc.string = string;
+    
+    if (string) {
+        desc.string = string;
+    }
+    
     return desc;
 }
 
