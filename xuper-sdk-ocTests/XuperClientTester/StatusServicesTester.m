@@ -6,17 +6,9 @@
 //  Copyright © 2019 Martin.Ren. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-
-#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
-
 #import "TestCommon.h"
 
 @interface StatusServicesTester : XCTestCase
-
-@property (nonatomic, strong) XClient *client;
-
-@property (nonatomic, strong) StatusServices *statusServices;
 
 @end
 
@@ -24,9 +16,6 @@
 
 - (void)setUp {
     
-    self.client = [XClient clientWithGRPCHost:@"127.0.0.1:37101"];
-          
-    self.statusServices = [[StatusServices alloc] initWithClient:self.client bcname:@"xuper"];
 }
 
 - (void)tearDown {
@@ -35,7 +24,7 @@
 
 - (void)test_Status { AsyncTestBegin(@"StatusServices - Status");
     
-    [self.statusServices statusWithHandle:^(SystemsStatus * _Nullable status, NSError * _Nullable error) {
+    [T.xuperClient.status statusWithHandle:^(SystemsStatus * _Nullable status, NSError * _Nullable error) {
         
         XCTAssertNotNil(status);
         XCTAssertNil(error);

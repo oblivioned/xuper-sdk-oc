@@ -6,41 +6,16 @@
 //  Copyright © 2019 Martin.Ren. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
-
 #import "TestCommon.h"
 
 @interface AccountServicesTester : XCTestCase
-
-@property (nonatomic, strong) XClient *client;
-
-///dpzuVdosQrF2kmzumhVeFQZa1aYcdgFpN
-@property (nonatomic, strong) XECDSAAccount *initorAccount;
-
-@property (nonatomic, strong) AccountServices *accountServices;
-
-@property (nonatomic, strong) XAccount testCaseAccount;
-
+@property (nonatomic, strong) XuperClient* client;
 @end
 
 @implementation AccountServicesTester
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    self.client = [XClient clientWithGRPCHost:@"127.0.0.1:37101"];
-    self.accountServices = [[AccountServices alloc] initWithClient:self.client bcname:@"xuper"];
-    
-    XECDSAPrivKey *accountPk = [XECDSAPrivKey fromExportedDictionary:@{
-        @"Curvname":@"P-256",
-        @"X":@"74695617477160058757747208220371236837474210247114418775262229497812962582435",
-        @"Y":@"51348715319124770392993866417088542497927816017012182211244120852620959209571",
-        @"D":@"29079635126530934056640915735344231956621504557963207107451663058887647996601"
-    }];
-
-    self.initorAccount = [XECDSAAccount fromPrivateKey:accountPk];
-    
-    self.testCaseAccount = @"XC1574829805000000@xuper";
+    self.client = T.xuperClient;
 }
 
 - (void)tearDown {
@@ -50,14 +25,14 @@
 - (void)test_BalanceOf { AsyncTestBegin(@"AccountServices - Account Balance");
     
     /// 测试获取可用余额
-    [self.accountServices balanceWithAddress:self.initorAccount.address handle:^(XBigInt * _Nullable n, NSError * _Nullable error) {
+    [self.client.account balanceWithAddress:T.initor.address handle:^(XBigInt * _Nullable n, NSError * _Nullable error) {
         XCTAssertNil(error);
         XCTAssertNotNil(n);
         NSLog(@"Balance:%@", n.decString);
     }];
     
     /// 测试获取冻结余额
-    [self.accountServices balanceFrozenWithAddress:self.initorAccount.address handle:^(XBigInt * _Nullable n, NSError * _Nullable error) {
+    [self.client.account balanceFrozenWithAddress:T.initor.address handle:^(XBigInt * _Nullable n, NSError * _Nullable error) {
         XCTAssertNil(error);
         XCTAssertNotNil(n);
         NSLog(@"Frozen:%@", n.decString);
@@ -70,7 +45,7 @@ AsyncTestWaiting5S(); }
 
 - (void)test_AccountContracts { AsyncTestBegin(@"AccountServices - Account Contracts");
     
-    [self.accountServices contractsWithAccount:@"XC1574829805000000@xuper" handle:^(NSArray<ContractStatus *> * _Nullable contracts, NSError * _Nullable error) {
+    [self.client.account contractsWithAccount:T.account handle:^(NSArray<ContractStatus *> * _Nullable contracts, NSError * _Nullable error) {
         XCTAssertNil(error);
         XCTAssert(contracts && contracts.count > 0);
         
@@ -86,7 +61,7 @@ AsyncTestWaiting5S(); }
 
 - (void)test_NewKeys {
     
-    XECDSAAccount *account = (XECDSAAccount*)[self.accountServices newKeysWithCryptoType:nil];
+    XECDSAAccount *account = (XECDSAAccount*)[self.client.account newKeysWithCryptoType:nil];
     
     XCTAssertNotNil(account);
     XCTAssertNotNil(account.address);
@@ -98,7 +73,7 @@ AsyncTestWaiting5S(); }
 
 - (void)test_QueryAccounts { AsyncTestBegin(@"AccountServices - Query Accounts");
     
-    [self.accountServices queryAccountListWithAddress:self.initorAccount.address handle:^(NSArray<XAccount> * _Nullable accounts, NSError * _Nullable error) {
+    [self.client.account queryAccountListWithAddress:T.initor.address handle:^(NSArray<XAccount> * _Nullable accounts, NSError * _Nullable error) {
         XCTAssertNil(error);
         AsyncTestFulfill();
     }];
@@ -111,13 +86,13 @@ AsyncTestWaiting5S(); }
     
     acl.pm.rule = XTransactionPMRuleDefault;
     acl.pm.acceptValue = 0.6;
-    acl.aksWeight[self.initorAccount.address] = @(0.5);
-    acl.aksWeight[@"eqMvtH1MQSejd4nzxDy21W1GW12cocrPF"] = @(0.5);
+    acl.aksWeight[T.initor.address] = @(0.5);
+    acl.aksWeight[T.toAddress] = @(0.5);
     
-    [self.accountServices newAccountWithAddress:self.initorAccount.address
+    [self.client.account newAccountWithAddress:T.initor.address
                                             acl:acl
-                                  initorKeypair:self.initorAccount
-                                            fee:[[XBigInt alloc] initWithDecString:@"1000"]
+                                  initorKeypair:T.initor
+                                       feeAsker:nil
                                          handle:^(XAccount  _Nullable account, XHexString  _Nullable txhash, NSError * _Nullable error) {
         
         XCTAssertNotNil(account);

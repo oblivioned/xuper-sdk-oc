@@ -13,12 +13,8 @@
 
 /// 实际是调用 XTransactionBuilder buildTrsanctionWithClient:option:initorKeypair:authRequireKeypairs:handle
 - (void) genTransactionWithOption:(XTransactionOpt * _Nonnull)opt
-                    initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)initorKeypair
+                    initorKeypair:(id<XCryptoKeypairProtocol> _Nullable)initorKeypair
               authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nullable)authRequireKeypairs
-                           handle:(XTransactionBuilderResponse _Nonnull)handleBlock;
-
-/// 实际是调用 XTransactionBuilder buildTrsanctionWithClient:option:handle
-- (void) genTransactionWithOption:(XTransactionOpt * _Nonnull)opt
                            handle:(XTransactionBuilderResponse _Nonnull)handleBlock;
 
 /// 想远程节点请求一个交易(Transaction)的签名
@@ -26,7 +22,10 @@
 /// \param remoteNodeURL 远程节点地址如 "111.222.12.1:8888"
 /// \param secureConnections 是否使用安全连接，基于3.4版本，对于的xuper节点还未支持安全的grpc连接，所以请暂时使用 "NO"
 /// \param handle 回调block
-- (void) getSignWithTransaction:(Transaction * _Nonnull)tx fromRemoteNodeURL:(NSString * _Nonnull)remoteNodeURL secureConnections:(BOOL)secureConnections handle:(XServicesResponseSignatureInfo _Nonnull)handle;
+- (void) getSignWithTransaction:(Transaction * _Nonnull)tx
+              fromRemoteNodeURL:(NSString * _Nonnull)remoteNodeURL
+              secureConnections:(BOOL)secureConnections
+                         handle:(XServicesResponseSignatureInfo _Nonnull)handle;
 
 - (SignatureInfo * _Nullable) signTransaction:(Transaction * _Nonnull)tx
                                    cryptoType:(XCryptoTypeStringKey _Nonnull)cryptoType

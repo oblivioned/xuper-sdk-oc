@@ -6,6 +6,8 @@
 //  Copyright © 2019 Martin.Ren. All rights reserved.
 //
 
+#import <XCTest/XCTest.h>
+#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
 
 #define AsyncTestBegin(__desc) XCTestExpectation *___expectation = [self expectationWithDescription:__desc]
 #define AsyncTestWaiting(__time) [self waitForExpectationsWithTimeout:__time handler:^(NSError * _Nullable error) { \
@@ -18,3 +20,19 @@
 #define AsyncTestWaiting5S() AsyncTestWaiting(5)
 #define AsyncTestFulfill() [___expectation fulfill]
 
+@interface T : NSObject
+
++ (XuperClient *) xuperClient;
+
++ (XECDSAAccount *) initor;
+
++ (XECDSAAccount *) initor2;
+
++ (XAddress) toAddress;
+
++ (XAccount) account;
+
++ (XHexString) blockID;
+
++ (XHexString) queryTxID;
+@end

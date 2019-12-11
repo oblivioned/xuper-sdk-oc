@@ -78,4 +78,6 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 #import <xuper_sdk_oc_iOS/MultisigServices.h>
 #import <xuper_sdk_oc_iOS/StatusServices.h>
 #import <xuper_sdk_oc_iOS/TransferServices.h>
+#import <xuper_sdk_oc_iOS/TransactionServices.h>
+#import <xuper_sdk_oc_iOS/WasmServices.h>
 

@@ -21,11 +21,5 @@
       authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nullable)authRequireKeypairs
                    handle:(XServicesResponseHash _Nonnull)handle;
 
-- (void) transferWithFrom:(XAddress _Nonnull)from
-                       to:(XAddress _Nonnull)toAddr
-                   amount:(XBigInt * _Nonnull)amount
-            initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)initorKeypair
-                   handle:(XServicesResponseHash _Nonnull)handle;
-
 @end
 

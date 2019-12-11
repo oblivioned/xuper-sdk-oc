@@ -32,6 +32,8 @@
 */
 - (instancetype _Nonnull) initWithDecString:( NSString * _Nonnull )decString;
 
+- (instancetype _Nonnull) initWithUInt:(NSUInteger)n;
+
 /**
  * 获取十六进制表示的数字
 */

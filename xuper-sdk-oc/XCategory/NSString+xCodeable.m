@@ -35,4 +35,25 @@
     
 }
 
+- (NSData   * _Nonnull ) xHexStringData {
+    
+    BIGNUM *num = BN_new();
+    
+    BN_hex2bn(&num, self.UTF8String);
+    
+    int len = BN_num_bytes(num);
+    
+    unsigned char *hexBytes = malloc(len);
+    
+    BN_bn2bin(num, hexBytes);
+
+    NSData *bsData = [NSData dataWithBytes:hexBytes length:len];
+    
+    free(hexBytes);
+    
+    BN_free(num);
+    
+    return bsData;
+}
+
 @end

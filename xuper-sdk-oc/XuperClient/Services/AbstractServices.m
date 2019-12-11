@@ -74,7 +74,7 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
 
 - (void) preExecOpt:(XTransactionOpt * _Nonnull)opt handle:(XServicesResponseInvoke _Nonnull)handle {
     
-    [XTransactionBuilder buildTrsanctionWithClient:self.clientRef option:opt handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
+    [XTransactionBuilder buildPreExecTransactionWithClient:self.clientRef option:opt handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
        
         if ( error ) {
             return handle(nil, error);
@@ -86,7 +86,6 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
         
         return [self preExecTransaction:tx handle:handle];
     }];
-    
 }
 
 @end

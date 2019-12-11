@@ -7,8 +7,6 @@
 //
 
 #import "TransferServices.h"
-#import "XTransactionOpt+Transfer.h"
-#import "NSData+xCodeable.h"
 
 @implementation TransferServices
 

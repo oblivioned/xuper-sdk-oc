@@ -7,15 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "Xchain.pbobjc.h"
+
 #import "XClient.h"
 #import "XCommon.h"
 #import "Transaction+SDKExtension.h"
 #import "GPBMessage+RandomHeader.h"
 #import "XTransactionACL.h"
 #import "XBigInt.h"
-#import "Xchain.pbobjc.h"
 #import "XTransactionOpt.h"
 #import "XTransactionDescInvoke.h"
+#import "XTransactionBuilder.h"
+#import "XTransactionOpt+Transfer.h"
+#import "NSData+xCodeable.h"
 
 typedef InternalBlock XBlock;
 
@@ -30,6 +35,8 @@ typedef void(^XServicesResponseBlock)(XBlock * _Nullable block, NSError * _Nulla
 typedef void(^XServicesResponseSignatureInfo)(SignatureInfo * _Nullable signInfo, NSError * _Nullable error);
 typedef void(^XServicesResponseInvoke)(InvokeResponse * _Nullable response, NSError * _Nullable error);
 typedef void(^XServicesResponseStatus)(SystemsStatus * _Nullable status, NSError * _Nullable error);
+typedef void(^XServicesResponseTransaction)(Transaction * _Nullable tx, NSError * _Nullable error);
+typedef BOOL(^XServicesResponseFeeAsker)( XBigInt * _Nonnull needFee );
 
 @interface AbstractServices : NSObject
 

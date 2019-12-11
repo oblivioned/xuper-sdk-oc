@@ -32,6 +32,6 @@
 @property (nonatomic, strong)   NSArray<XTranctionToAccountData*> * _Nullable to;
 @property (nonatomic, copy)     XBigInt *                           _Nullable fee;
 @property (nonatomic, strong)   XTransactionDesc *                  _Nullable desc;
-@property (nonatomic, assign)   int64_t                                       frozenHeight;
+@property (nonatomic, assign)   NSUInteger                                    frozenHeight;
 
 @end

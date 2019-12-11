@@ -10,6 +10,7 @@
 #define XCommon_h
 
 #import <Foundation/Foundation.h>
+#import "XError.h"
 
 #define XUTXO_Version (1)
 
@@ -35,5 +36,10 @@ typedef NSData* XSignature;
 /// 返回的对象必须可以使用NSJSONSerialization继续序列化！
 - (id _Nullable) encodeToJsonObjectWithError:(NSError * _Nonnull * _Nullable)error;
 @end
+
+
+
+
+
 
 #endif /* XCommon_h */

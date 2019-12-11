@@ -213,9 +213,9 @@
             
             /// 当交易需要使用手续费时，但配置的手续不足以支付或根本没有配置支付的金额时跳出
             if (
-                ignoreFeeCheck && /// 跳过手续费强制检测流程
-                [totalGasPrice greaterThan:XBigInt.Zero] &&
-                (!opt.fee || [opt.fee lessThan:totalGasPrice] ) ) {
+                !ignoreFeeCheck && /// 跳过手续费强制检测流程
+                ([totalGasPrice greaterThan:XBigInt.Zero] &&
+                (!opt.fee || [opt.fee lessThan:totalGasPrice] ) ) ) {
                 
                 NSString *errorDomain = [NSString stringWithFormat:@"the gas you cousume is: %@ You need add fee in this transaction.", totalGasPrice.decString];
                 

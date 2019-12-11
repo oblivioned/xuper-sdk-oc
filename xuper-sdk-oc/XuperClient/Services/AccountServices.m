@@ -128,7 +128,12 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
     
 }
 
-- (void) newAccountWithAddress:(XAddress _Nonnull)address accountName:(unsigned char[_Nullable 18])accountName acl:(XTransactionACL * _Nonnull)acl initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)keypiar fee:(XBigInt * _Nonnull)fee handle:(XServicesResponseCommonReply _Nonnull)handle {
+- (void) newAccountWithAddress:(XAddress _Nonnull)address
+                   accountName:(unsigned char[_Nullable 18])accountName
+                           acl:(XTransactionACL * _Nonnull)acl
+                 initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)keypiar
+                      feeAsker:(XServicesResponseFeeAsker _Nullable)feeAsker
+                        handle:(XServicesResponseCommonReply _Nonnull)handle {
     
     __block XTransactionOpt *opt;
     __block XAccount xacc;
@@ -147,58 +152,77 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
         xacc = [NSString stringWithFormat:@"XC%@@%@", randomedAddress, self.blockChainName];
     }
     
-    opt.fee = fee;
-    
-    if (error) {
-        handle(nil, nil, error);
-    }
-    
-    [XTransactionBuilder trsanctionWithClient:self.clientRef
-                                       option:opt
-                               ignoreFeeCheck:NO
-                                initorKeypair:keypiar
-                          authRequireKeypairs:@[keypiar]
-                                       handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
+    if ( [opt.desc isKindOfClass:[XTransactionDescInvoke class]] ) {
         
-        if ( error ) {
-            return handle(nil, nil, error);
-        }
-        
-        if ( !error && !tx ) {
-            return handle(nil, nil, self.errorRequestNoErrorResponseInvaild);
-        }
-        
-        TxStatus *tx_status = TxStatus.message;
-        tx_status.header = TxStatus.getRandomHeader;
-        tx_status.bcname = self.blockChainName;
-        tx_status.status = TransactionStatus_Unconfirm;
-        tx_status.tx = tx;
-        tx_status.txid = tx.txid;
-        
-        [self.clientRef postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
+        [self preExecInvokesWithInitor:address invokes:@[((XTransactionDescInvoke*)opt.desc).invokeRequest] authrequires:opt.desc.authRequires handle:^(InvokeResponse * _Nullable response, NSError * _Nullable error) {
             
-            if ( error ) {
-                return handle(nil, nil, error);
-            }
-                   
-            if ( !error && !tx ) {
-                return handle(nil, nil, self.errorRequestNoErrorResponseInvaild);
+            BOOL alwaysSend = true;
+            opt.fee = [[XBigInt alloc] initWithUInt:response.gasUsed];
+            if ( feeAsker ) {
+                alwaysSend = feeAsker( opt.fee );
             }
             
-            if ( response.header.error != XChainErrorEnum_Success ) {
-                return handle(nil, nil, [self errorResponseWithCode:response.header.error]);
+            if (!alwaysSend) {
+                return handle(nil, nil, XError.xErrorAksFeeReject);
             }
             
-            XHexString hash = tx.txid.xHexString;
-            handle(xacc, hash, nil);
+            /// 添加手续费后发送
+            [XTransactionBuilder trsanctionWithClient:self.clientRef
+                                               option:opt
+                                       ignoreFeeCheck:NO
+                                        initorKeypair:keypiar
+                                  authRequireKeypairs:@[keypiar]
+                                               handle:^(Transaction * _Nullable tx, NSError * _Nullable error) {
+                
+                if ( error ) {
+                    return handle(nil, nil, error);
+                }
+                
+                if ( !error && !tx ) {
+                    return handle(nil, nil, self.errorRequestNoErrorResponseInvaild);
+                }
+                
+                TxStatus *tx_status = TxStatus.message;
+                tx_status.header = TxStatus.getRandomHeader;
+                tx_status.bcname = self.blockChainName;
+                tx_status.status = TransactionStatus_Unconfirm;
+                tx_status.tx = tx;
+                tx_status.txid = tx.txid;
+                
+                [self.clientRef postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
+                    
+                    if ( error ) {
+                        return handle(nil, nil, error);
+                    }
+                           
+                    if ( !error && !tx ) {
+                        return handle(nil, nil, self.errorRequestNoErrorResponseInvaild);
+                    }
+                    
+                    if ( response.header.error != XChainErrorEnum_Success ) {
+                        return handle(nil, nil, [self errorResponseWithCode:response.header.error]);
+                    }
+                    
+                    XHexString hash = tx.txid.xHexString;
+                    handle(xacc, hash, nil);
+                }];
+                
+            }];
         }];
         
-    }];
+    }
     
 }
 
-- (void) newAccountWithAddress:(XAddress _Nonnull)address acl:(XTransactionACL * _Nonnull)acl initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)keypiar fee:(XBigInt * _Nonnull)fee handle:(XServicesResponseCommonReply _Nonnull)handle {
-    return [self newAccountWithAddress:address accountName:nil acl:acl initorKeypair:keypiar fee:fee handle:handle];
+- (void) newAccountWithAddress:(XAddress _Nonnull)address
+                           acl:(XTransactionACL * _Nonnull)acl
+                 initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)keypiar
+                      feeAsker:(XServicesResponseFeeAsker _Nullable)feeAsker
+                        handle:(XServicesResponseCommonReply _Nonnull)handle {
+    
+    return [self newAccountWithAddress:address accountName:nil acl:acl initorKeypair:keypiar
+                              feeAsker:feeAsker
+                                handle:handle];
 }
 
 @end

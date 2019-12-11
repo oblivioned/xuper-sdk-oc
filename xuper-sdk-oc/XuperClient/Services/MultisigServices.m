@@ -24,24 +24,38 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
 @implementation MultisigServices
 
 - (void) genTransactionWithOption:(XTransactionOpt * _Nonnull)opt
-                    initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)initorKeypair
-              authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nullable)authRequireKeypairs
+                    initorKeypair:(id<XCryptoKeypairProtocol> _Nullable)initorKeypair
+              authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> * _Nullable)authRequireKeypairs
                            handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
     
-    return [XTransactionBuilder trsanctionWithClient:self.clientRef
-                                              option:opt
-                                      ignoreFeeCheck:NO
-                                       initorKeypair:initorKeypair
-                                 authRequireKeypairs:authRequireKeypairs
-                                              handle:handleBlock];
-}
-
-
-/// 实际是调用 XTransactionBuilder buildTrsanctionWithClient:option:handle
-- (void) genTransactionWithOption:(XTransactionOpt * _Nonnull)opt
-                           handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
+    if ( [opt.desc isKindOfClass:[XTransactionDescInvoke class]] && !opt.fee ) {
+        
+        [self preExecOpt:opt handle:^(InvokeResponse * _Nullable response, NSError * _Nullable error) {
+            
+            if ( error ) {
+                return handleBlock(nil, error);
+            }
+            
+            opt.fee = [[XBigInt alloc] initWithUInt:response.gasUsed];
+            
+            return [XTransactionBuilder trsanctionWithClient:self.clientRef
+                                                      option:opt
+                                              ignoreFeeCheck:NO
+                                               initorKeypair:initorKeypair
+                                         authRequireKeypairs:authRequireKeypairs
+                                                      handle:handleBlock];
+            
+        }];
+        
+    } else {
     
-    return [XTransactionBuilder buildTrsanctionWithClient:self.clientRef option:opt handle:handleBlock];
+        return [XTransactionBuilder trsanctionWithClient:self.clientRef
+                                                  option:opt
+                                          ignoreFeeCheck:NO
+                                           initorKeypair:initorKeypair
+                                     authRequireKeypairs:authRequireKeypairs
+                                                  handle:handleBlock];
+    }
 }
 
 - (void) getSignWithTransaction:(Transaction * _Nonnull)tx fromRemoteNodeURL:(NSString * _Nonnull)remoteNodeURL secureConnections:(BOOL)secureConnections handle:(XServicesResponseSignatureInfo _Nonnull)handle {

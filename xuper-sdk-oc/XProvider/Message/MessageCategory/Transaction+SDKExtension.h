@@ -10,6 +10,7 @@
 #import "Xchain.pbobjc.h"
 #import "XCommon.h"
 #import "XCryptoClientProtocol.h"
+#import "Transaction+SDKExtension.h"
 
 @interface Transaction(SDKExtension)
 

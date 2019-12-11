@@ -48,21 +48,21 @@
     
     XBigInt *one = [[XBigInt alloc] initWithDecString:@"1"];
     
-    NSLog(@"%@", one.decString);
-    NSLog(@"%@", one.hexString);
-    
     [self.transferServices transferWithFrom:self.initorAccount.address
                                          to:@"eqMvtH1MQSejd4nzxDy21W1GW12cocrPF"
-                                     amount:[[XBigInt alloc] initWithDecString:@"1"]
+                                     amount:one
+                                    remarks:nil
+                               forzenHeight:0
                               initorKeypair:self.initorAccount
-                                     handle:^(XHexString  _Nullable txhash, NSError * _Nullable error) {
-
+                        authRequireKeypairs:@[self.initorAccount] handle:^(XHexString  _Nullable txhash, NSError * _Nullable error) {
+       
         XCTAssertNotNil(txhash);
         XCTAssertNil(error);
         
         NSLog(@"TXID:%@", txhash);
         
         AsyncTestFulfill();
+        
     }];
     
 AsyncTestWaiting5S();}

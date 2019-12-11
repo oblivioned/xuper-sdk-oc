@@ -56,6 +56,15 @@
 		18472454239E8F8700DB6777 /* TransferServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18472452239E8F8700DB6777 /* TransferServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18472455239E8F8700DB6777 /* TransferServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472453239E8F8700DB6777 /* TransferServices.m */; };
 		18472457239E967100DB6777 /* TransferServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472456239E967100DB6777 /* TransferServicesTester.m */; };
+		1847245A239FD5F100DB6777 /* TransactionServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18472458239FD5F100DB6777 /* TransactionServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1847245B239FD5F100DB6777 /* TransactionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472459239FD5F100DB6777 /* TransactionServices.m */; };
+		18472461239FE68200DB6777 /* TxServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472460239FE68200DB6777 /* TxServicesTester.m */; };
+		18472464239FE92800DB6777 /* WasmServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18472462239FE92800DB6777 /* WasmServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18472465239FE92800DB6777 /* WasmServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18472463239FE92800DB6777 /* WasmServices.m */; };
+		1847246C23A0CC8D00DB6777 /* XError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1847246A23A0CC8D00DB6777 /* XError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1847246D23A0CC8D00DB6777 /* XError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847246B23A0CC8D00DB6777 /* XError.m */; };
+		1847247323A10A7000DB6777 /* WasmServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847247223A10A7000DB6777 /* WasmServicesTester.m */; };
+		1847247723A110C200DB6777 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847247623A110C200DB6777 /* TestCommon.m */; };
 		186FC22E2390CDFF00DE6E2B /* xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */; };
 		186FC2352390CDFF00DE6E2B /* xuper_sdk_oc_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		186FC2412390CE4500DE6E2B /* XCryptoFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC23F2390CE4500DE6E2B /* XCryptoFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,7 +99,6 @@
 		186FC2EC239662EF00DE6E2B /* XchainSpv.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2D423965DA800DE6E2B /* XchainSpv.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2D923965DA900DE6E2B /* Xcheck.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186FC2EE239662EF00DE6E2B /* Xendorser.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC2CC23965DA800DE6E2B /* Xendorser.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		186FC32023974D7C00DE6E2B /* XProviderTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC31F23974D7C00DE6E2B /* XProviderTester.m */; };
 		186FC32D2397584600DE6E2B /* Xendorser.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		186FC32E2397584600DE6E2B /* Xchain.pbrpc.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC3282397584600DE6E2B /* Xchain.pbrpc.m */; };
 		186FC32F2397584600DE6E2B /* Xcheck.pbrpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -168,6 +176,15 @@
 		18472452239E8F8700DB6777 /* TransferServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferServices.h; sourceTree = "<group>"; };
 		18472453239E8F8700DB6777 /* TransferServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferServices.m; sourceTree = "<group>"; };
 		18472456239E967100DB6777 /* TransferServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferServicesTester.m; sourceTree = "<group>"; };
+		18472458239FD5F100DB6777 /* TransactionServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionServices.h; sourceTree = "<group>"; };
+		18472459239FD5F100DB6777 /* TransactionServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionServices.m; sourceTree = "<group>"; };
+		18472460239FE68200DB6777 /* TxServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TxServicesTester.m; sourceTree = "<group>"; };
+		18472462239FE92800DB6777 /* WasmServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WasmServices.h; sourceTree = "<group>"; };
+		18472463239FE92800DB6777 /* WasmServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WasmServices.m; sourceTree = "<group>"; };
+		1847246A23A0CC8D00DB6777 /* XError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XError.h; sourceTree = "<group>"; };
+		1847246B23A0CC8D00DB6777 /* XError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XError.m; sourceTree = "<group>"; };
+		1847247223A10A7000DB6777 /* WasmServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WasmServicesTester.m; sourceTree = "<group>"; };
+		1847247623A110C200DB6777 /* TestCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
 		186FC2242390CDFE00DE6E2B /* xuper_sdk_oc_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xuper_sdk_oc_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FC2272390CDFE00DE6E2B /* xuper_sdk_oc_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xuper_sdk_oc_iOS.h; sourceTree = "<group>"; };
 		186FC2282390CDFE00DE6E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -205,7 +222,6 @@
 		186FC2D723965DA900DE6E2B /* Xchain.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xchain.pbobjc.h; sourceTree = "<group>"; };
 		186FC2D823965DA900DE6E2B /* Chainedbft.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chainedbft.pbobjc.m; sourceTree = "<group>"; };
 		186FC2D923965DA900DE6E2B /* Xcheck.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xcheck.pbobjc.m; sourceTree = "<group>"; };
-		186FC31F23974D7C00DE6E2B /* XProviderTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XProviderTester.m; sourceTree = "<group>"; };
 		186FC3272397584600DE6E2B /* Xendorser.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xendorser.pbrpc.h; sourceTree = "<group>"; };
 		186FC3282397584600DE6E2B /* Xchain.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xchain.pbrpc.m; sourceTree = "<group>"; };
 		186FC3292397584600DE6E2B /* Xcheck.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcheck.pbrpc.h; sourceTree = "<group>"; };
@@ -354,6 +370,10 @@
 				18472449239E8CEA00DB6777 /* StatusServices.m */,
 				18472452239E8F8700DB6777 /* TransferServices.h */,
 				18472453239E8F8700DB6777 /* TransferServices.m */,
+				18472458239FD5F100DB6777 /* TransactionServices.h */,
+				18472459239FD5F100DB6777 /* TransactionServices.m */,
+				18472462239FE92800DB6777 /* WasmServices.h */,
+				18472463239FE92800DB6777 /* WasmServices.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -367,6 +387,8 @@
 				180C2B81239CF75500D2CB24 /* MultisigServicesTester.m */,
 				18472450239E8E1F00DB6777 /* StatusServicesTester.m */,
 				18472456239E967100DB6777 /* TransferServicesTester.m */,
+				18472460239FE68200DB6777 /* TxServicesTester.m */,
+				1847247223A10A7000DB6777 /* WasmServicesTester.m */,
 			);
 			path = XuperClientTester;
 			sourceTree = "<group>";
@@ -414,7 +436,6 @@
 			children = (
 				186FC34B2397A9CA00DE6E2B /* TestCommon */,
 				1815C750239A48A7000ADB6D /* XuperClientTester */,
-				186FC31E23974D3400DE6E2B /* XProviderTester */,
 				186FC27C2392598B00DE6E2B /* XCryptoTester */,
 				186FC2342390CDFF00DE6E2B /* Info.plist */,
 			);
@@ -436,6 +457,8 @@
 			isa = PBXGroup;
 			children = (
 				186FC2442390CE6800DE6E2B /* XCommon.h */,
+				1847246A23A0CC8D00DB6777 /* XError.h */,
+				1847246B23A0CC8D00DB6777 /* XError.m */,
 			);
 			path = XCommon;
 			sourceTree = "<group>";
@@ -549,14 +572,6 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-		186FC31E23974D3400DE6E2B /* XProviderTester */ = {
-			isa = PBXGroup;
-			children = (
-				186FC31F23974D7C00DE6E2B /* XProviderTester.m */,
-			);
-			path = XProviderTester;
-			sourceTree = "<group>";
-		};
 		186FC33323975A5200DE6E2B /* XClientGRPC */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				186FC3502397A9FB00DE6E2B /* TestCommon.h */,
+				1847247623A110C200DB6777 /* TestCommon.m */,
 			);
 			path = TestCommon;
 			sourceTree = "<group>";
@@ -637,11 +653,14 @@
 				1815C7182399F30E000ADB6D /* GPBMessage+RandomHeader.h in Headers */,
 				180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */,
 				180C2B7F239CE61000D2CB24 /* MultisigServices.h in Headers */,
+				1847245A239FD5F100DB6777 /* TransactionServices.h in Headers */,
 				180C2B6B239B504800D2CB24 /* XTransactionOpt+NewAccount.h in Headers */,
+				18472464239FE92800DB6777 /* WasmServices.h in Headers */,
 				1847244A239E8CEA00DB6777 /* StatusServices.h in Headers */,
 				18472446239D041B00DB6777 /* XTransactionOpt+Contracts.h in Headers */,
 				18472454239E8F8700DB6777 /* TransferServices.h in Headers */,
 				180C2B79239CDC3C00D2CB24 /* BlockServices.h in Headers */,
+				1847246C23A0CC8D00DB6777 /* XError.h in Headers */,
 				180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
 				186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */,
@@ -820,8 +839,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1815C729239A014E000ADB6D /* XTransactionOpt.m in Sources */,
+				1847246D23A0CC8D00DB6777 /* XError.m in Sources */,
 				180C2B7A239CDC3C00D2CB24 /* BlockServices.m in Sources */,
 				1815C73C239A09AD000ADB6D /* XGlobalFlags.m in Sources */,
+				18472465239FE92800DB6777 /* WasmServices.m in Sources */,
 				180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */,
 				186FC3312397584600DE6E2B /* Xendorser.pbrpc.m in Sources */,
 				1815C746239A4516000ADB6D /* XuperClient.m in Sources */,
@@ -829,6 +850,7 @@
 				1815C74F239A45A3000ADB6D /* AbstractServices.m in Sources */,
 				186FC2EC239662EF00DE6E2B /* XchainSpv.pbobjc.m in Sources */,
 				1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */,
+				1847245B239FD5F100DB6777 /* TransactionServices.m in Sources */,
 				186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */,
 				1815C74B239A453D000ADB6D /* AccountServices.m in Sources */,
 				1815C7192399F30E000ADB6D /* GPBMessage+RandomHeader.m in Sources */,
@@ -865,11 +887,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186FC32023974D7C00DE6E2B /* XProviderTester.m in Sources */,
 				1815C752239A48D8000ADB6D /* AccountServicesTester.m in Sources */,
 				186FC27E239259A800DE6E2B /* XECDSAAccountTester.m in Sources */,
+				18472461239FE68200DB6777 /* TxServicesTester.m in Sources */,
+				1847247323A10A7000DB6777 /* WasmServicesTester.m in Sources */,
 				18472457239E967100DB6777 /* TransferServicesTester.m in Sources */,
 				180C2B7C239CDE8A00D2CB24 /* BlockServicesTester.m in Sources */,
+				1847247723A110C200DB6777 /* TestCommon.m in Sources */,
 				180C2B82239CF75500D2CB24 /* MultisigServicesTester.m in Sources */,
 				180C2B76239CD2E600D2CB24 /* ACLServicesTester.m in Sources */,
 				18472451239E8E1F00DB6777 /* StatusServicesTester.m in Sources */,
