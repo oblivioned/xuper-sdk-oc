@@ -26,6 +26,7 @@ typedef InternalBlock XBlock;
 
 typedef void(^XServicesResponseHandle)(BOOL success, NSError * _Nullable error);
 typedef void(^XServicesResponseHash)(XHexString _Nullable txhash, NSError * _Nullable error);
+typedef void(^XServicesResponseRawURL)(NSString * _Nullable neturl, NSError * _Nullable error);
 typedef void(^XServicesResponseBigInt)(XBigInt * _Nullable n, NSError * _Nullable error);
 typedef void(^XServicesResponseContracts)(NSArray<ContractStatus*> * _Nullable contracts, NSError * _Nullable error);
 typedef void(^XServicesResponseAccounts)(NSArray<XAccount> * _Nullable accounts, NSError * _Nullable error);
@@ -36,7 +37,13 @@ typedef void(^XServicesResponseSignatureInfo)(SignatureInfo * _Nullable signInfo
 typedef void(^XServicesResponseInvoke)(InvokeResponse * _Nullable response, NSError * _Nullable error);
 typedef void(^XServicesResponseStatus)(SystemsStatus * _Nullable status, NSError * _Nullable error);
 typedef void(^XServicesResponseTransaction)(Transaction * _Nullable tx, NSError * _Nullable error);
-typedef BOOL(^XServicesResponseFeeAsker)( XBigInt * _Nonnull needFee );
+typedef BOOL(^XServicesResponseFeeAsker)(XBigInt * _Nonnull needFee);
+typedef void(^XServicesResponseList)(NSArray * _Nullable response, NSError * _Nullable error);
+typedef void(^XServicesResponseNumber)(NSInteger num, NSError * _Nullable error);
+typedef void(^XServicesResponseNominateInfoArray)(NSArray<DposNominateInfo*> * _Nullable list, NSError * _Nullable error);
+typedef void(^XServicesResponseVoteRecords)(NSArray<voteRecord*> * _Nullable list, NSError * _Nullable error);
+typedef void(^XServicesResponseVotedRecords)(NSArray<votedRecord*> * _Nullable list, NSError * _Nullable error);
+typedef void(^XServicesResponseDposStatus)(DposStatus * _Nullable status, NSError * _Nullable error);
 
 @interface AbstractServices : NSObject
 
@@ -46,11 +53,6 @@ typedef BOOL(^XServicesResponseFeeAsker)( XBigInt * _Nonnull needFee );
 @property (nonatomic, copy) NSString * _Nonnull blockChainName;
 
 - (instancetype _Nonnull) initWithClient:(id<XClient> _Nonnull)clientRef bcname:(NSString * _Nullable)blockChainName;
-
-/// 请求没有问题，但是返回的对象为空
-- (NSError * _Nonnull) errorRequestNoErrorResponseInvaild;
-
-- (NSError * _Nonnull) errorResponseWithCode:(NSUInteger)code;
 
 /// 预执行的方法，即不真实的在链上写入这笔交易，只是执行拿到结果类似 以太坊中的 “eth_call”
 - (void) preExecTransaction:(Transaction * _Nonnull)tx handle:(XServicesResponseInvoke _Nonnull)handle;

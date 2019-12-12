@@ -16,11 +16,8 @@
 if ( (err) ) {\
     return handle(nil, (err));\
 }\
-if ( !(err) && !(rsp) ) {\
-    return handle(nil, self.errorRequestNoErrorResponseInvaild);\
-}\
 if ( (rsp).header.error != XChainErrorEnum_Success ) {\
-    return handle(nil, [self errorResponseWithCode:response.header.error]);\
+    return handle(nil, [XError xErrorTransactionContextRPCWithCode:rsp.header.error]);\
 }
 
 @implementation AccountServices
@@ -178,10 +175,6 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
                     return handle(nil, nil, error);
                 }
                 
-                if ( !error && !tx ) {
-                    return handle(nil, nil, self.errorRequestNoErrorResponseInvaild);
-                }
-                
                 TxStatus *tx_status = TxStatus.message;
                 tx_status.header = TxStatus.getRandomHeader;
                 tx_status.bcname = self.blockChainName;
@@ -194,13 +187,9 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
                     if ( error ) {
                         return handle(nil, nil, error);
                     }
-                           
-                    if ( !error && !tx ) {
-                        return handle(nil, nil, self.errorRequestNoErrorResponseInvaild);
-                    }
-                    
+
                     if ( response.header.error != XChainErrorEnum_Success ) {
-                        return handle(nil, nil, [self errorResponseWithCode:response.header.error]);
+                        return handle(nil, nil, [XError xErrorTransactionContextRPCWithCode:response.header.error]);
                     }
                     
                     XHexString hash = tx.txid.xHexString;

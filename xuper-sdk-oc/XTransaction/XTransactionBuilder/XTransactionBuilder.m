@@ -35,19 +35,11 @@
 /// \param client XClient实现类,用于GRPC通讯
 /// \param opt 事务描述对象，为XTransactionOpt的派生类
 /// \param handleBlock 返回结果或者异常的block
-+ (void) buildTrsanctionWithClient:(id<XClient> _Nonnull)client
-                            option:(XTransactionOpt * _Nonnull)opt
-                            handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
-    
-    return [self trsanctionWithClient:client option:opt ignoreFeeCheck:NO initorKeypair:nil authRequireKeypairs:nil handle:handleBlock];
-}
-
 + (void) buildPreExecTransactionWithClient:(id<XClient> _Nonnull)client
                                     option:(XTransactionOpt * _Nonnull)opt
                                     handle:(XTransactionBuilderResponse _Nonnull)handleBlock {
     
     return [self trsanctionWithClient:client option:opt ignoreFeeCheck:YES initorKeypair:nil authRequireKeypairs:nil handle:handleBlock];
-    
 }
 
 + (void) trsanctionWithClient:(id<XClient> _Nonnull)client
@@ -59,7 +51,7 @@
     
     __block Transaction *tx = [Transaction message];
         
-    /// --txversion int32      tx version (default 1)
+    /// --txversion int32 tx version (default 1)
     tx.version = 1;
     tx.coinbase = false;
     
@@ -190,11 +182,7 @@
             if ( response.header.error != XChainErrorEnum_Success ) {
                 return handleBlock(nil, [NSError errorWithDomain:@"preExecWithRequest response a error." code:response.header.error userInfo:nil]);
             }
-            
-            if ( !response ) {
-                return handleBlock(nil, [NSError errorWithDomain:@"preExecWithRequest no error, but response is invaild." code:response.header.error userInfo:nil]);
-            }
-            
+                        
             InvokeRPCResponse * preExeRes = response;
             
             tx.contractRequestsArray = preExeRes.response.requestsArray;
@@ -222,7 +210,7 @@
                 return handleBlock(nil, [NSError errorWithDomain:errorDomain code:-1 userInfo:nil]);
             }
             
-            
+
             /// 签名和生成txid
             /// 有一些情况是需要先创建交易，但是不执行签名，比如 mulitsig get，需要从远程服务器请求签名的，所以增加这些判断
             if ( initorKeypair && authRequireKeypairs ) {

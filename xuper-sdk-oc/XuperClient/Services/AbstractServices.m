@@ -13,11 +13,8 @@
 if ( (err) ) {\
     return handle(nil, (err));\
 }\
-if ( !(err) && !(rsp) ) {\
-    return handle(nil, self.errorRequestNoErrorResponseInvaild);\
-}\
 if ( (rsp).header.error != XChainErrorEnum_Success ) {\
-    return handle(nil, [self errorResponseWithCode:response.header.error]);\
+    return handle(nil, [XError xErrorTransactionContextRPCWithCode:rsp.header.error]);\
 }
 
 @implementation AbstractServices
@@ -35,14 +32,6 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
     }
     
     return self;
-}
-
-- (NSError * _Nonnull) errorResponseWithCode:(NSUInteger)code {
-    return [NSError errorWithDomain:@"response invalid" code:code userInfo:nil];
-}
-
-- (NSError * _Nonnull) errorRequestNoErrorResponseInvaild {
-    return [NSError errorWithDomain:@"request no error, but response invalid." code:-1 userInfo:nil];
 }
 
 - (void) preExecTransaction:(Transaction * _Nonnull)tx handle:(XServicesResponseInvoke _Nonnull)handle {
@@ -78,10 +67,6 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
        
         if ( error ) {
             return handle(nil, error);
-        }
-        
-        if ( !error && !tx ) {
-            return handle(nil, self.errorRequestNoErrorResponseInvaild);
         }
         
         return [self preExecTransaction:tx handle:handle];

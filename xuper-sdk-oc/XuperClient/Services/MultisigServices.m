@@ -14,11 +14,8 @@
 if ( (err) ) {\
     return handle(nil, (err));\
 }\
-if ( !(err) && !(rsp) ) {\
-    return handle(nil, self.errorRequestNoErrorResponseInvaild);\
-}\
 if ( (rsp).header.error != XChainErrorEnum_Success ) {\
-    return handle(nil, [self errorResponseWithCode:response.header.error]);\
+    return handle(nil, [XError xErrorTransactionContextRPCWithCode:rsp.header.error]);\
 }
 
 @implementation MultisigServices
@@ -125,13 +122,9 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
         if ( error ) {
             return handle(false, error);
         }
-               
-        if ( !error && !response ) {
-            return handle(false, self.errorRequestNoErrorResponseInvaild);
-        }
-        
+
         if ( response.header.error != XChainErrorEnum_Success ) {
-            return handle(false, [self errorResponseWithCode:response.header.error]);
+            return handle(false, [XError xErrorTransactionContextRPCWithCode:response.header.error]);
         }
         
         handle(true, nil);

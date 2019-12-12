@@ -12,11 +12,8 @@
 if ( (err) ) {\
     return handle(nil, (err));\
 }\
-if ( !(err) && !(rsp) ) {\
-    return handle(nil, self.errorRequestNoErrorResponseInvaild);\
-}\
 if ( (rsp).header.error != XChainErrorEnum_Success ) {\
-    return handle(nil, [self errorResponseWithCode:response.header.error]);\
+    return handle(nil, [XError xErrorTransactionContextRPCWithCode:rsp.header.error]);\
 }
 
 @implementation ACLServices

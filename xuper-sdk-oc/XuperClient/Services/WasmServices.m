@@ -14,11 +14,8 @@
 if ( (err) ) {\
     return handle(nil, (err));\
 }\
-if ( !(err) && !(rsp) ) {\
-    return handle(nil, self.errorRequestNoErrorResponseInvaild);\
-}\
 if ( (rsp).header.error != XChainErrorEnum_Success ) {\
-    return handle(nil, [self errorResponseWithCode:response.header.error]);\
+    return handle(nil, [XError xErrorTransactionContextRPCWithCode:rsp.header.error]);\
 }
 
 @implementation WasmServices
@@ -77,17 +74,7 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
             
             [self.clientRef postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
                 
-                if ( error ) {
-                    return handle(false, error);
-                }
-                       
-                if ( !error && !response ) {
-                    return handle(false, self.errorRequestNoErrorResponseInvaild);
-                }
-                
-                if ( response.header.error != XChainErrorEnum_Success ) {
-                    return handle(false, [self errorResponseWithCode:response.header.error]);
-                }
+                XHandleWasmServicesError(handle, response, error);
                 
                 handle(tx.txid.xHexString, nil);
             }];

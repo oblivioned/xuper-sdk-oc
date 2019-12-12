@@ -307,7 +307,8 @@
             base64ValueArgs[key] = invoke.args[key].xBase64String;
         }
         if (base64ValueArgs.count > 0) {
-            NSData *base64ValueArgsData = [NSJSONSerialization dataWithJSONObject:base64ValueArgs options:0 error:error];
+            
+            NSData *base64ValueArgsData = [NSJSONSerialization dataWithJSONObject:base64ValueArgs options:NSJSONWritingSortedKeys error:error];
             if (*error) {
                 return nil;
             }

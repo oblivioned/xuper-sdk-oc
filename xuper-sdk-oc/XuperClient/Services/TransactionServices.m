@@ -24,12 +24,8 @@
             return handle(nil, error);
         }
 
-        if ( !error && !response ) {
-            return handle(nil, self.errorRequestNoErrorResponseInvaild);
-        }
-
         if ( response.header.error != XChainErrorEnum_Success ) {
-            return handle(nil, [self errorResponseWithCode:response.header.error]);
+            return handle(nil, [XError xErrorTransactionContextRPCWithCode:response.header.error]);
         }
 
         handle(response.tx, nil);

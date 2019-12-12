@@ -15,6 +15,8 @@
 #import "TransferServices.h"
 #import "TransactionServices.h"
 #import "WasmServices.h"
+#import "NetURLServices.h"
+#import "TDPOSServices.h"
 
 @interface XuperClient : NSObject
 
@@ -25,6 +27,8 @@
 @property (nonnull, readonly) StatusServices * status;
 @property (nonnull, readonly) TransactionServices * tx;
 @property (nonnull, readonly) WasmServices * wasm;
+@property (nonnull, readonly) NetURLServices * netURL;
+@property (nonnull, readonly) TDPOSServices * tdpos;
 
 @property (nonnull, readonly) XClient *rpcClient;
 @property (nonnull, readonly) NSString *blockChainName;

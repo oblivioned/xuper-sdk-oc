@@ -22,7 +22,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)test_Query {  AsyncTestBegin(@"WasmServices - Query");
+- (void)test_Query { AsyncTestBegin(@"WasmServices - Query");
 
     [T.xuperClient.wasm queryWithAddress:T.initor.address
                            authRequires:@[T.initor.address]
@@ -40,8 +40,8 @@
 AsyncTestWaiting5S(); }
 
 
-- (void) testt_Invoke {  AsyncTestBegin(@"WasmServices - Invoke");
-    
+- (void) test_Invoke {  AsyncTestBegin(@"WasmServices - Invoke");
+        
     [T.xuperClient.wasm invokeWithAddress:T.initor.address
                              authRequires:@[T.initor.address]
                              contractName:@"ERC20"

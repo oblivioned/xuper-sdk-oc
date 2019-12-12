@@ -36,10 +36,6 @@
             return handle(nil, error);
         }
 
-        if ( !error && !tx ) {
-            return handle(nil, self.errorRequestNoErrorResponseInvaild);
-        }
-
         TxStatus *tx_status = TxStatus.message;
         tx_status.header = TxStatus.getRandomHeader;
         tx_status.bcname = self.blockChainName;
@@ -53,12 +49,8 @@
                 return handle(nil, error);
             }
 
-            if ( !error && !tx ) {
-                return handle(nil, self.errorRequestNoErrorResponseInvaild);
-            }
-
             if ( response.header.error != XChainErrorEnum_Success ) {
-                return handle(nil, [self errorResponseWithCode:response.header.error]);
+                return handle(nil, [XError xErrorTransactionContextRPCWithCode:response.header.error]);
             }
 
             handle(tx_status.txid.xHexString, nil);

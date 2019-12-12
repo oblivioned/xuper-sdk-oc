@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1740FED3EBE7BDA330BFAE5B /* Pods_xuper_sdk_oc_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1A7866F84EBD3C56DB9FD7 /* Pods_xuper_sdk_oc_iOS.framework */; };
+		18033AFE23A2100A0031FE41 /* NetURLServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033AFC23A2100A0031FE41 /* NetURLServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18033AFF23A2100A0031FE41 /* NetURLServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033AFD23A2100A0031FE41 /* NetURLServices.m */; };
+		18033B0123A212400031FE41 /* NetURLServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0023A212400031FE41 /* NetURLServicesTester.m */; };
+		18033B0423A24E360031FE41 /* TDPOSServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033B0223A24E360031FE41 /* TDPOSServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18033B0523A24E360031FE41 /* TDPOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0323A24E360031FE41 /* TDPOSServices.m */; };
+		18033B0723A25D360031FE41 /* TDPOSServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0623A25D360031FE41 /* TDPOSServicesTester.m */; };
 		180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */; };
 		180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B61239B47F900D2CB24 /* XTransactionACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -127,6 +133,12 @@
 /* Begin PBXFileReference section */
 		07B29224365641793F5DC025 /* Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-xuper-sdk-ocTests/Pods-xuper-sdk-oc-xuper-sdk-ocTests.release.xcconfig"; sourceTree = "<group>"; };
 		0F99EB3C6E244D51CAE8C983 /* Pods-xuper-sdk-oc-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xuper-sdk-oc-iOS.debug.xcconfig"; path = "Target Support Files/Pods-xuper-sdk-oc-iOS/Pods-xuper-sdk-oc-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		18033AFC23A2100A0031FE41 /* NetURLServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetURLServices.h; sourceTree = "<group>"; };
+		18033AFD23A2100A0031FE41 /* NetURLServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetURLServices.m; sourceTree = "<group>"; };
+		18033B0023A212400031FE41 /* NetURLServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetURLServicesTester.m; sourceTree = "<group>"; };
+		18033B0223A24E360031FE41 /* TDPOSServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPOSServices.h; sourceTree = "<group>"; };
+		18033B0323A24E360031FE41 /* TDPOSServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDPOSServices.m; sourceTree = "<group>"; };
+		18033B0623A25D360031FE41 /* TDPOSServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDPOSServicesTester.m; sourceTree = "<group>"; };
 		180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionDescInvoke.h; sourceTree = "<group>"; };
 		180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionDescInvoke.m; sourceTree = "<group>"; };
 		180C2B61239B47F900D2CB24 /* XTransactionACL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionACL.h; sourceTree = "<group>"; };
@@ -374,6 +386,10 @@
 				18472459239FD5F100DB6777 /* TransactionServices.m */,
 				18472462239FE92800DB6777 /* WasmServices.h */,
 				18472463239FE92800DB6777 /* WasmServices.m */,
+				18033AFC23A2100A0031FE41 /* NetURLServices.h */,
+				18033AFD23A2100A0031FE41 /* NetURLServices.m */,
+				18033B0223A24E360031FE41 /* TDPOSServices.h */,
+				18033B0323A24E360031FE41 /* TDPOSServices.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -389,6 +405,8 @@
 				18472456239E967100DB6777 /* TransferServicesTester.m */,
 				18472460239FE68200DB6777 /* TxServicesTester.m */,
 				1847247223A10A7000DB6777 /* WasmServicesTester.m */,
+				18033B0023A212400031FE41 /* NetURLServicesTester.m */,
+				18033B0623A25D360031FE41 /* TDPOSServicesTester.m */,
 			);
 			path = XuperClientTester;
 			sourceTree = "<group>";
@@ -659,9 +677,11 @@
 				1847244A239E8CEA00DB6777 /* StatusServices.h in Headers */,
 				18472446239D041B00DB6777 /* XTransactionOpt+Contracts.h in Headers */,
 				18472454239E8F8700DB6777 /* TransferServices.h in Headers */,
+				18033AFE23A2100A0031FE41 /* NetURLServices.h in Headers */,
 				180C2B79239CDC3C00D2CB24 /* BlockServices.h in Headers */,
 				1847246C23A0CC8D00DB6777 /* XError.h in Headers */,
 				180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */,
+				18033B0423A24E360031FE41 /* TDPOSServices.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
 				186FC2E023965DA900DE6E2B /* XchainSpv.pbobjc.h in Headers */,
 				186FC2E223965DA900DE6E2B /* Xendorser.pbobjc.h in Headers */,
@@ -852,6 +872,7 @@
 				1815C7112397F514000ADB6D /* Transaction+SDKExtension.m in Sources */,
 				1847245B239FD5F100DB6777 /* TransactionServices.m in Sources */,
 				186FC2ED239662EF00DE6E2B /* Xcheck.pbobjc.m in Sources */,
+				18033AFF23A2100A0031FE41 /* NetURLServices.m in Sources */,
 				1815C74B239A453D000ADB6D /* AccountServices.m in Sources */,
 				1815C7192399F30E000ADB6D /* GPBMessage+RandomHeader.m in Sources */,
 				186FC32E2397584600DE6E2B /* Xchain.pbrpc.m in Sources */,
@@ -877,6 +898,7 @@
 				1815C738239A03EC000ADB6D /* XTransactionBuilder.m in Sources */,
 				186FC2652392124C00DE6E2B /* NSString+xCodeable.m in Sources */,
 				186FC2612391278B00DE6E2B /* NSData+xCodeable.m in Sources */,
+				18033B0523A24E360031FE41 /* TDPOSServices.m in Sources */,
 				186FC2972394E7EA00DE6E2B /* XECDSAPrivKey.m in Sources */,
 				186FC2772392376400DE6E2B /* XECDSAAccount.m in Sources */,
 				18472455239E8F8700DB6777 /* TransferServices.m in Sources */,
@@ -887,6 +909,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18033B0123A212400031FE41 /* NetURLServicesTester.m in Sources */,
+				18033B0723A25D360031FE41 /* TDPOSServicesTester.m in Sources */,
 				1815C752239A48D8000ADB6D /* AccountServicesTester.m in Sources */,
 				186FC27E239259A800DE6E2B /* XECDSAAccountTester.m in Sources */,
 				18472461239FE68200DB6777 /* TxServicesTester.m in Sources */,

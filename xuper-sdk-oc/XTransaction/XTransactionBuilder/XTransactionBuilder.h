@@ -33,14 +33,10 @@ typedef void(^XTransactionBuilderResponse)(Transaction * _Nullable tx, NSError *
           authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nullable)authRequireKeypairs
                        handle:(XTransactionBuilderResponse _Nonnull)handleBlock;
 
-/// 生成交易，不包含签名
+/// 生成交易，不包含签名,可以用于预执行过程
 /// \param client XClient实现类,用于GRPC通讯
 /// \param opt 事务描述对象，为XTransactionOpt的派生类
 /// \param handleBlock 返回结果或者异常的block
-+ (void) buildTrsanctionWithClient:(id<XClient> _Nonnull)client
-                            option:(XTransactionOpt * _Nonnull)opt
-                            handle:(XTransactionBuilderResponse _Nonnull)handleBlock;
-
 + (void) buildPreExecTransactionWithClient:(id<XClient> _Nonnull)client
                                     option:(XTransactionOpt * _Nonnull)opt
                                     handle:(XTransactionBuilderResponse _Nonnull)handleBlock;

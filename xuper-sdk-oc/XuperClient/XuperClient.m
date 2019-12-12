@@ -17,6 +17,8 @@
     StatusServices      * statusServices;
     TransactionServices * txServices;
     WasmServices        * wasmServices;
+    NetURLServices      * netURLServices;
+    TDPOSServices       * tdposServices;
     
     NSString            * remoteHostURL;
     NSString            * bcname;
@@ -102,6 +104,24 @@
     }
     
     return self->wasmServices;
+}
+
+- (NetURLServices *)netURL {
+    
+    if ( !self->netURLServices ) {
+        self->netURLServices = [[NetURLServices alloc] initWithClient:self.rpcClient bcname:self.blockChainName];
+    }
+    
+    return self->netURLServices;
+}
+
+- (TDPOSServices *)tdpos {
+    
+    if ( !self->tdposServices ) {
+        self->tdposServices = [[TDPOSServices alloc] initWithClient:self.rpcClient bcname:self.blockChainName];
+    }
+    
+    return self->tdposServices;
 }
 
 - (XClient *)rpcClient {
