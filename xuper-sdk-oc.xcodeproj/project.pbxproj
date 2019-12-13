@@ -14,6 +14,7 @@
 		18033B0423A24E360031FE41 /* TDPOSServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033B0223A24E360031FE41 /* TDPOSServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18033B0523A24E360031FE41 /* TDPOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0323A24E360031FE41 /* TDPOSServices.m */; };
 		18033B0723A25D360031FE41 /* TDPOSServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0623A25D360031FE41 /* TDPOSServicesTester.m */; };
+		18033B0A23A332810031FE41 /* NilParamTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0923A332810031FE41 /* NilParamTester.m */; };
 		180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */; };
 		180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B61239B47F900D2CB24 /* XTransactionACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -139,6 +140,7 @@
 		18033B0223A24E360031FE41 /* TDPOSServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPOSServices.h; sourceTree = "<group>"; };
 		18033B0323A24E360031FE41 /* TDPOSServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDPOSServices.m; sourceTree = "<group>"; };
 		18033B0623A25D360031FE41 /* TDPOSServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDPOSServicesTester.m; sourceTree = "<group>"; };
+		18033B0923A332810031FE41 /* NilParamTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NilParamTester.m; sourceTree = "<group>"; };
 		180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionDescInvoke.h; sourceTree = "<group>"; };
 		180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionDescInvoke.m; sourceTree = "<group>"; };
 		180C2B61239B47F900D2CB24 /* XTransactionACL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionACL.h; sourceTree = "<group>"; };
@@ -278,6 +280,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18033B0823A332680031FE41 /* NilParamTester */ = {
+			isa = PBXGroup;
+			children = (
+				18033B0923A332810031FE41 /* NilParamTester.m */,
+			);
+			path = NilParamTester;
+			sourceTree = "<group>";
+		};
 		1815C70D2397F4AB000ADB6D /* MessageCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				186FC34B2397A9CA00DE6E2B /* TestCommon */,
+				18033B0823A332680031FE41 /* NilParamTester */,
 				1815C750239A48A7000ADB6D /* XuperClientTester */,
 				186FC27C2392598B00DE6E2B /* XCryptoTester */,
 				186FC2342390CDFF00DE6E2B /* Info.plist */,
@@ -915,6 +926,7 @@
 				186FC27E239259A800DE6E2B /* XECDSAAccountTester.m in Sources */,
 				18472461239FE68200DB6777 /* TxServicesTester.m in Sources */,
 				1847247323A10A7000DB6777 /* WasmServicesTester.m in Sources */,
+				18033B0A23A332810031FE41 /* NilParamTester.m in Sources */,
 				18472457239E967100DB6777 /* TransferServicesTester.m in Sources */,
 				180C2B7C239CDE8A00D2CB24 /* BlockServicesTester.m in Sources */,
 				1847247723A110C200DB6777 /* TestCommon.m in Sources */,

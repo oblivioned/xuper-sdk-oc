@@ -61,7 +61,7 @@
     /// false
     /// var buf bytes.Buffer
     NSMutableString *buf = [[NSMutableString alloc] init];
-        
+
     /// 1.txInputsArray
     for ( TxInput *txInput in self.txInputsArray ) {
         
