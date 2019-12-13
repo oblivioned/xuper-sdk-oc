@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
   s.name     = 'xuper-sdk-oc'
-  s.version  = '0.0.1'
-  s.license  = '...'
-  s.authors  = { 'oblivioned' => '371397938@qq.com' }
-  s.homepage = '...'
+  s.version  = 'v0.0.1'
+  s.license  = { :type => 'Apache License Version 2.0', :file => 'LICENSE' }
+  s.authors  = { 'oblivioned' => '...' }
+  s.homepage = 'https://github.com/oblivioned/xuper-sdk-oc'
   s.summary = 'xuper'
-  s.source = { :git => 'https://github.com/oblivioned/xuper-sdk-oc' }
+  s.source = { :git => 'https://github.com/oblivioned/xuper-sdk-oc.git', :tag => 'v0.0.1' }
 
   s.ios.deployment_target = '8.0'
-  # s.osx.deployment_target = '10.9'
+  s.osx.deployment_target = '10.9'
   # s.tvos.deployment_target = '10.0'
   # s.watchos.deployment_target = '4.0'
 

@@ -29,6 +29,7 @@
 @property (nonnull, readonly) WasmServices * wasm;
 @property (nonnull, readonly) NetURLServices * netURL;
 @property (nonnull, readonly) TDPOSServices * tdpos;
+@property (nonnull, readonly) TransferServices * transfer;
 
 @property (nonnull, readonly) XClient *rpcClient;
 @property (nonnull, readonly) NSString *blockChainName;

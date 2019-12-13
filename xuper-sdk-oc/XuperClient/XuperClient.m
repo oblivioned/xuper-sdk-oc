@@ -19,6 +19,7 @@
     WasmServices        * wasmServices;
     NetURLServices      * netURLServices;
     TDPOSServices       * tdposServices;
+    TransferServices    * transferServices;
     
     NSString            * remoteHostURL;
     NSString            * bcname;
@@ -95,6 +96,16 @@
     }
     
     return self->txServices;
+}
+
+
+- (TransferServices *)transfer {
+    
+    if (!self->transferServices) {
+        self->transferServices = [[TransferServices alloc] initWithClient:self.rpcClient bcname:self.blockChainName];
+    }
+    
+    return self->transferServices;
 }
 
 - (WasmServices *)wasm {
