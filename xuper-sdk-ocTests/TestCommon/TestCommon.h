@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
+#import <xuper_sdk_oc/xuper_sdk_oc.h>
 
 #define AsyncTestBegin(__desc) XCTestExpectation *___expectation = [self expectationWithDescription:__desc]
 #define AsyncTestWaiting(__time) [self waitForExpectationsWithTimeout:__time handler:^(NSError * _Nullable error) { \

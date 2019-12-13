@@ -8,8 +8,6 @@
 
 #import <XCTest/XCTest.h>
 
-#import <xuper_sdk_oc_iOS/xuper_sdk_oc_iOS.h>
-
 #import "TestCommon.h"
 
 @interface TransferServicesTester : XCTestCase
