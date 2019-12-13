@@ -8,10 +8,12 @@ target 'xuper-sdk-oc-iOS' do
 
   # Pods for xuper-sdk-oc-iOS
   pod 'xuper-sdk-oc-grpc', :path => "./Podspec"
+  pod 'OpenSSL-Universal/Framework', '~> 1.0.2.19'
 
   target 'xuper-sdk-oc-iOSTests' do
     # Pods for testing
     pod 'xuper-sdk-oc-grpc', :path => "./Podspec"
+    pod 'OpenSSL-Universal/Framework', '~> 1.0.2.19'
   end
 
 end

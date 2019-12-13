@@ -156,7 +156,7 @@
     self->_d = EC_KEY_get0_private_key(self->_ec_key);
     self->_ec_pub_key = EC_KEY_get0_public_key(self->_ec_key);
     
-    if ( !EC_POINT_get_affine_coordinates(self->_ec_group, self->_ec_pub_key, self->_x, self->_y, self->_bn_ctx) ) {
+    if ( !EC_POINT_get_affine_coordinates_GFp(self->_ec_group, self->_ec_pub_key, self->_x, self->_y, self->_bn_ctx) ) {
         return nil;
     }
     

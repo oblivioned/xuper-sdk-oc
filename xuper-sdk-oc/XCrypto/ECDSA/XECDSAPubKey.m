@@ -122,7 +122,7 @@
     
     const EC_POINT *p = EC_KEY_get0_public_key(self->_ec_key);
     
-    if ( !EC_POINT_get_affine_coordinates(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
+    if ( !EC_POINT_get_affine_coordinates_GFp(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
         return nil;
     }
     
@@ -142,7 +142,7 @@
         return nil;
     }
     
-    if ( !EC_POINT_get_affine_coordinates(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
+    if ( !EC_POINT_get_affine_coordinates_GFp(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
         return nil;
     }
     

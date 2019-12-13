@@ -1074,11 +1074,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/lib";
-				OTHER_LDFLAGS = (
-					"-Objc",
-					"-lssl",
-					"-lcrypto",
-				);
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.martin.xuper-sdk-oc";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1110,11 +1106,7 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/lib";
-				OTHER_LDFLAGS = (
-					"-Objc",
-					"-lssl",
-					"-lcrypto",
-				);
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.martin.xuper-sdk-oc";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
