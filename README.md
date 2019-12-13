@@ -8,7 +8,7 @@
 
 ## License
 
-xuper-sdk-oc is under the [Apache License, Version 2.0](https://github.com/oblivioned/xuper-sdk-oc/blob/master/README.md).
+xuper-sdk-oc is under the [Apache License, Version 2.0](https://github.com/oblivioned/xuper-sdk-oc/blob/master/LICENSE).
 
 ### 支持的平台
 
