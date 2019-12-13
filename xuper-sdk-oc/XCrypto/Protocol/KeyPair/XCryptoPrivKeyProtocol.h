@@ -18,5 +18,7 @@
 
 @protocol XCryptoPrivKeyProtocol <NSObject>
 
+- (XJsonString _Nonnull) jsonFormatString;
+
 @end
 

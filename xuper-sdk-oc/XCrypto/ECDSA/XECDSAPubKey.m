@@ -11,6 +11,7 @@
 #import <openssl/sha.h>
 #import <openssl/ripemd.h>
 #import <openssl/ec.h>
+#import <openssl/objects.h>
 
 #import "NSData+xCodeable.h"
 
@@ -46,6 +47,65 @@
     return self;
 }
 
+- (instancetype _Nullable) initWithJsonFormatString:(NSString *)ppjson error:(NSError * _Nonnull * _Nullable)error {
+    
+    if ( [ppjson rangeOfString:@"P-256"].location == NSNotFound ) {
+        return nil;
+    }
+    
+    NSString *xpattern = @"\\\"[a-zA-Z]\\\"\\:[\\d]*";
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:xpattern options:0 error:nil];
+
+    NSArray *matches = [regex matchesInString:ppjson options:0 range:NSMakeRange(0, ppjson.length)];
+    
+    if (matches.count != 2) {
+        return nil;
+    }
+
+    NSString *xstring = @"";
+    NSString *ystring = @"";
+    
+    for (NSTextCheckingResult* match in matches) {
+        
+        NSString *rangeString = [ppjson substringWithRange:match.range];
+        
+        NSArray<NSString*> *split = [rangeString componentsSeparatedByString:@":"];
+        
+        if ( [split[0] isEqualToString:@"\"X\""] ) {
+            xstring = split[1];
+        } else if ( [split[0] isEqualToString:@"\"Y\""] ) {
+            ystring = split[1];
+        }
+    }
+    
+    return [self initWithXString:xstring yString:ystring error:error];
+}
+
+- (instancetype _Nullable) initWithXString:(NSString * _Nonnull)x yString:(NSString * _Nonnull)y error:(NSError * _Nonnull * _Nullable)error {
+    
+    self = [super init];
+    
+    /// malloc
+    self->_ec_key = EC_KEY_new_by_curve_name( NID_X9_62_prime256v1 );
+    self->_bn_ctx = BN_CTX_new();
+    self->_x = BN_new();
+    self->_y = BN_new();
+    
+    /// init
+    self->_group = EC_KEY_get0_group(self->_ec_key);
+    
+    if ( !BN_dec2bn(&(self->_x), x.UTF8String ) ) {
+        return nil;
+    }
+    
+    if ( !BN_dec2bn(&(self->_y), y.UTF8String ) ) {
+        return nil;
+    }
+    
+    return self;
+}
+
 - (instancetype _Nullable) initWithECGroup:(const EC_GROUP * _Nonnull)g rawPublicKey:(NSData * _Nonnull)pp {
     
     self = [self init];
@@ -62,7 +122,7 @@
     
     const EC_POINT *p = EC_KEY_get0_public_key(self->_ec_key);
     
-    if ( !EC_POINT_get_affine_coordinates(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
+    if ( !EC_POINT_get_affine_coordinates_GFp(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
         return nil;
     }
     
@@ -82,7 +142,7 @@
         return nil;
     }
     
-    if ( !EC_POINT_get_affine_coordinates(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
+    if ( !EC_POINT_get_affine_coordinates_GFp(self->_group, p, self->_x, self->_y, self->_bn_ctx) ) {
         return nil;
     }
     

@@ -10,45 +10,116 @@
 #import "Xchain.pbobjc.h"
 #import "XCommon.h"
 #import "XCryptoClientProtocol.h"
+#import "Transaction+SDKExtension.h"
 
 @interface Transaction(SDKExtension)
 
-/// 从golang的源码中得知，交易的Hash过程如下,因为很可能在后续的维护中升级这个算法，所以此处加入V1标示，对应 <= 3.4 xuper的交易版本
-/// 1.将Transaction序列化，（json）
-/// 2.json计算SHA256
-/// 源码位置 txhash.go:33 func encodeTxData(tx *pb.Transaction, includeSigns bool) ([]byte, error);
-/// golang源码中的序列化实例 :
-/// "43MLFX5gusBD5e3W157J1JHkU4j8krK4Td64SFVaGUA="
-/// 0
-/// "ZndtWlZQVTIyZ2RiZ0pEZEVqaDV1NmdLRjVDb2h0TmJH"
-/// "AYag"
-/// 0
-/// [{"amount":"ZA==","to_addr":"V05XazNla1hlTTVNMjIzMmRZMnVDSm1FcVdoZlFpRFlU"},{"amount":"AYY8","to_addr":"ZndtWlZQVTIyZ2RiZ0pEZEVqaDV1NmdLRjVDb2h0TmJH"}]
-/// "dHJhbnNmZXIgZnJvbSBjb25zb2xl"
-/// "157546990298498081"
-/// 1575469902778270000
-/// 1
-/// null
-/// "fwmZVPU22gdbgJDdEjh5u6gKF5CohtNbG"
-/// ["fwmZVPU22gdbgJDdEjh5u6gKF5CohtNbG"]
-/// false
-/// false
-/// 疑问1: 这里序列化的格式生成的txid 是否会在节点收到以后重新计算和校验？因为没有找到类似txhash这个字段。如果不校验，如何确保交易没有发生篡改？
-/// 使用golang版本中相同的算法序列化transaction，注意正向序列化得到的结果的NSData是无法逆向计算得到Trnasaction对象的，因为encoder的过程只是把值拼接，而且算法中会跳过一些null值，所以无法逆向序列化！
+/*!
+ * 将Transaction对象按照xuper的规则就行序列化，一般用于求取签名原串或者计算TXID。
+ *
+ * @param hasSigns
+ * 是否包含签名,Transaction对象中有两个属性描述签名，在生产TXID时是需要写入签名信息的，但是在计算签名原串时则不需要。
+ *
+ * @result
+ * 结果
+ */
 - (NSData * _Nonnull) txEncodeIncludeSignV1:(BOOL)hasSigns;
 
+/*!
+ * 将Transaction对象按照xuper的规则就行序列化，不包含签名对应xuper V1 版本的Transaction规则
+ *
+ * @result
+ * 结果
+ */
 - (NSData * _Nonnull) txHashNoSignsV1;
+
+/*!
+ * 将Transaction对象按照xuper的规则就行序列化，包含签名一般用于签名后计算TXID
+ *
+ * @result
+ * 结果
+ */
 - (NSData * _Nonnull) txHashHasSignsV1;
 
-/// 创建交易摘要的Hash值 - 不包含签名相关字段
+/*!
+ * 获取该交易的摘要Hash值
+ *
+ * @result
+ * 摘要Hash的NSData对象
+ */
 - (NSData * _Nonnull) txMakeDigestHash;
 
-/// 创建该交易的TXID
+/*!
+ * 获取该交易的TXID
+ *
+ * @result
+ * TXID
+ */
 - (NSData * _Nonnull) txMakeTransactionID;
 
-/// 对交易的双重SHA签名
-- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error;
+/*!
+ * 使用对应的密钥对，对交易签名，并且返回签名内容XSignature，方法不会把签名结果写入当前交易。
+ *
+ * @param cryptoClient
+ * 实现了XCryptoClientProtocol协议的加解密算法支持对象
+ *
+ * @param ks
+ * 签名使用的密钥对
+ *
+ * @param error
+ * 错误输出对象指针
+ *
+ * @result
+ * 签名串
+ */
+- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable)error;
 
-- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error;
+/*!
+ * 使用对应的密钥对，对交易签名，并且返回SignatureInfo对象，该对象可以用于下文调用其他
+ *
+ * @param cryptoClient
+ * 实现了XCryptoClientProtocol协议的加解密算法支持对象
+ *
+ * @param ks
+ * 签名使用的密钥对
+ *
+ * @param error
+ * 错误对象输出指针
+ *
+ * @result
+ * 包含X，Y，Sign三个对象，其中X,Y是公钥参数，Sign为签名的实际结果
+ */
+- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable )error;
+
+/*!
+ * 检测签名是否正确，或者说用来检测交易是否具备发送条件，一般来说如果返回true，则说明这个交易可以接入Tx_Status中直接进行grpc调用postTx。
+ *
+ * @param cryptoType
+ * 已经实现的加解密类型
+ *
+ * @param error
+ * 错误对象输出指针
+ *
+ * @result
+ * 验证结果
+*/
+- (BOOL) verifyWithCryptoType:(XCryptoTypeStringKey _Nullable)cryptoType error:(NSError * _Nonnull * _Nullable)error;
+
+/*!
+ * 将签名串填充入Transaction对象中
+ *
+ * @discussion
+ * Transaction的签名有两个类型一个是initor，可认为是交易发起地址，另一个为authRequires，可认为是授权人，根据ACL的设置提供签名，
+ * 若ACL要求需要authRequires，而实际交易中没有附带足够权值的authRequires节点回返回签名验证失败。填充方法中并不会对交易就行
+ * ACL的获取和验证操作。
+ *
+ * @param initorSigs
+ * 交易发起者的签名，也可以理解为from的签名
+ *
+ * @param authRequiresSigns
+ * 授权签名，请按照对应交易的ACL就行填充，若没有ACL则填写initor的签名串
+ *
+ */
+- (void) payloadTxSigns:(SignatureInfo * _Nonnull)initorSigs authRequireSigns:(NSArray<SignatureInfo*> *_Nonnull)authRequiresSigns;
 
 @end

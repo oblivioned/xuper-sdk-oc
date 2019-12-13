@@ -12,5 +12,5 @@
 
 - (NSString * _Nonnull ) xBigNumberString;
 - (NSString * _Nonnull ) xBase64String;
-
+- (NSData   * _Nonnull ) xHexStringData;
 @end

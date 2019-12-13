@@ -22,15 +22,15 @@
 @implementation XECDSAClient
 
 /// 创建一个新的密钥
-- (id<XCryptoAccountProtocol> _Nullable) generateKeyWithError:(NSError * _Nullable * _Nonnull)err {
+- (id<XCryptoAccountProtocol> _Nullable) generateKey {
     return [XECDSAAccount generatECDSAKey];
 }
 
 /// 使用私钥签名,签名前不会计算摘要
-- (NSData * _Nullable) signRawMessage:(NSData * _Nonnull)rawmessage keypair:(id<XCryptoKeypairProtocol> _Nonnull)keypair error:(NSError * _Nullable * _Nonnull)err {
+- (NSData * _Nullable) signRawMessage:(NSData * _Nonnull)rawmessage keypair:(id<XCryptoKeypairProtocol> _Nonnull)keypair error:(NSError * _Nonnull * _Nullable)error {
 
     if ( ![keypair isKindOfClass:[XECDSAAccount class]]) {
-        *err = [NSError errorWithDomain:@"keypair is not a XECDSAKey object" code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"keypair is not a XECDSAKey object" code:-1 userInfo:nil];
         return nil;
     }
 
@@ -49,12 +49,12 @@
     
     ecdsa_sig = ECDSA_do_sign(message, (int)rawmessage.length, (EC_KEY*)eckey256);
     if ( !ecdsa_sig ) {
-        *err = [NSError errorWithDomain:@"ECDSA_do_sign failure." code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"ECDSA_do_sign failure." code:-1 userInfo:nil];
         goto ErrorReturn;
     }
     
     if ( !i2d_ECDSA_SIG(ecdsa_sig, &asnisig_ref)  ) {
-        *err = [NSError errorWithDomain:@"i2d_ECDSA_SIG failure." code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"i2d_ECDSA_SIG failure." code:-1 userInfo:nil];
         goto ErrorReturn;
     }
   
@@ -71,10 +71,10 @@ ErrorReturn:
 }
 
 /// 使用ECC公钥来验证签名
-- (BOOL) verifyWithPublicKey:(id<XCryptoPubKeyProtocol> _Nonnull)publickey signature:(XSignature _Nonnull)signature rawMessage:(NSData * _Nonnull)rawmessage error:(NSError * _Nullable * _Nonnull)err {
+- (BOOL) verifyWithPublicKey:(id<XCryptoPubKeyProtocol> _Nonnull)publickey signature:(XSignature _Nonnull)signature rawMessage:(NSData * _Nonnull)rawmessage error:(NSError * _Nonnull * _Nullable)error {
     
     if ( ![publickey isKindOfClass:[XECDSAPubKey class]]) {
-        *err = [NSError errorWithDomain:@"keypair is not a XECDSAPubKey object" code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"keypair is not a XECDSAPubKey object" code:-1 userInfo:nil];
         return nil;
     }
     
@@ -83,11 +83,10 @@ ErrorReturn:
     return ECDSA_verify(0, rawmessage.bytes, (int)rawmessage.length, signature.bytes, (int)signature.length, (EC_KEY*)UNSAFE_pub_key.UNSAFE_ec_public_key);
 }
 
-
-- (XAddress _Nullable) getAddressWithPublicKey:(id<XCryptoPubKeyProtocol> _Nonnull)publickey error:(NSError * _Nullable * _Nonnull)err {
+- (XAddress _Nullable) getAddressWithPublicKey:(id<XCryptoPubKeyProtocol> _Nonnull)publickey error:(NSError * _Nonnull * _Nullable)error {
     
     if ( ![publickey isKindOfClass:[XECDSAPubKey class]]) {
-        *err = [NSError errorWithDomain:@"keypair is not a XECDSAPubKey object" code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"keypair is not a XECDSAPubKey object" code:-1 userInfo:nil];
         return nil;
     }
     
@@ -95,7 +94,7 @@ ErrorReturn:
 }
 
 /// 验证钱包地址是否是合法的格式。如果成功，返回true和对应的版本号；如果失败，返回false和默认的版本号0
-- (BOOL) checkFormatWithAddress:(XAddress _Nonnull)address version:( unsigned int * _Nullable )version error:(NSError * _Nullable * _Nonnull)err {
+- (BOOL) checkFormatWithAddress:(XAddress _Nonnull)address version:( unsigned int * _Nullable )version error:(NSError * _Nonnull * _Nullable)error {
     
     /// 地址一共25个字符
     /// [0] 版本
@@ -110,7 +109,7 @@ ErrorReturn:
     unsigned int v = (unsigned int)binAddress[0];
     if ( !(v > 0 && v < 3) ) {
         *version = 0;
-        *err = [NSError errorWithDomain:@"this cryptography has not been supported yet." code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"this cryptography has not been supported yet." code:-1 userInfo:nil];
         return false;
     }
     else if ( version ) {
@@ -128,7 +127,7 @@ ErrorReturn:
     
     /// 使用二进制地址的后4位 （binAddress + 21） 和 双重hash的后4位对比，结果一致则说明地址格式正确
     if ( !memcmp(binAddress + 21, hash + (32 - 4), 4) ) {
-        *err = [NSError errorWithDomain:@"invaild address." code:-1 userInfo:nil];
+        if (error) *error = [NSError errorWithDomain:@"invaild address." code:-1 userInfo:nil];
         return false;
     }
     
@@ -136,8 +135,12 @@ ErrorReturn:
 }
 
 /// 验证钱包地址是否和指定的公钥match。如果成功，返回true和对应的版本号；如果失败，返回false和默认的版本号0
-- (BOOL) verifyUsingPublicKeyWithAddress:(XAddress _Nonnull)address publicKey:(id<XCryptoPubKeyProtocol> _Nonnull)publickey version:(uint8_t * _Nullable * _Nonnull)version error:(NSError * _Nullable * _Nonnull)err {
+- (BOOL) verifyUsingPublicKeyWithAddress:(XAddress _Nonnull)address publicKey:(id<XCryptoPubKeyProtocol> _Nonnull)publickey version:(uint8_t * _Nullable * _Nonnull)version error:(NSError * _Nonnull * _Nullable)error {
     return false;
+}
+
+- (id<XCryptoPubKeyProtocol>)getPublicKeyFromJSON:(XJsonString)jsonString error:(NSError * _Nonnull * _Nullable)error {
+    return [[XECDSAPubKey alloc] initWithJsonFormatString:jsonString error:error];
 }
 
 @end

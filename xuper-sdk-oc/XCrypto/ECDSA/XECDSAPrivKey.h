@@ -31,8 +31,6 @@
 
 - (id<XCryptoPubKeyProtocol> _Nonnull) publicKey;
 
-- (XJsonString _Nonnull) jsonFormatString;
-
 + (instancetype _Nullable) generateKey;
 
 @end

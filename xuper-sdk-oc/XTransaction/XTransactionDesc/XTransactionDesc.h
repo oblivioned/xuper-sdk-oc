@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XCommon.h"
+#import "XTransactionDesc.h"
 
 @interface XTransactionDesc: NSObject
 
@@ -20,7 +22,11 @@
 
 
 @interface XTransactionDescString: XTransactionDesc
+
 @property (nonatomic, copy)NSString * _Nullable string;
+
+- (NSData * _Nonnull)encodeToData;
+
 @end
 
 

@@ -11,11 +11,11 @@
 #import "XCommon.h"
 #import "XCryptoClientProtocol.h"
 
-XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKeyDefault;
-XSDKExtern XSDKEnumCryptoTypeStringKey const _Nonnull XSDKEnumCryptoTypeStringKeyECC;
+XSDKExtern XCryptoTypeStringKey const _Nonnull XCryptoTypeStringKeyDefault;
+XSDKExtern XCryptoTypeStringKey const _Nonnull XCryptoTypeStringKeyECC;
 
 @interface XCryptoFactory : NSObject
 
-+ (id<XCryptoClientProtocol> _Nullable) cryptoClientWithCryptoType:(XSDKEnumCryptoTypeStringKey _Nonnull)cryptoType;
++ (id<XCryptoClientProtocol> _Nullable) cryptoClientWithCryptoType:(XCryptoTypeStringKey _Nonnull)cryptoType;
 
 @end

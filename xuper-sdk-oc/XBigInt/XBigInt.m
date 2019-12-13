@@ -81,6 +81,13 @@
     return self;
 }
 
+- (instancetype _Nonnull) initWithUInt:(NSUInteger)n {
+    
+    self = [self initWithDecString:[NSString stringWithFormat:@"%lld", n]];
+    
+    return self;
+}
+
 /**
  * 获取十六进制表示的数字
 */

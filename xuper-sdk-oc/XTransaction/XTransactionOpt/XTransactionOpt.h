@@ -27,11 +27,11 @@
 @interface XTransactionOpt : NSObject
 
 /// 若指定则使用指定的global参数，否则使用默认的XGlobalFlags，若要修改默认的XGlobalFlags，可以使用 XGlobalFlags.appearance.xxx = xxx;
-@property (nonatomic, strong)   XGlobalFlags                      * _Nonnull globalFlags;
-@property (nonatomic, copy)     XAddress                            _Nonnull from;
-@property (nonatomic, strong)   NSArray<XTranctionToAccountData*> * _Nonnull to;
-@property (nonatomic, copy)     XBigInt                           * _Nullable fee;
-@property (nonatomic, strong)   XTransactionDesc                  * _Nonnull desc;
-@property (nonatomic, assign)   int64_t                           frozenHeight;
+@property (nonatomic, strong)   XGlobalFlags *                      _Nonnull  globalFlags;
+@property (nonatomic, copy)     XAddress                            _Nullable from;
+@property (nonatomic, strong)   NSArray<XTranctionToAccountData*> * _Nullable to;
+@property (nonatomic, copy)     XBigInt *                           _Nullable fee;
+@property (nonatomic, strong)   XTransactionDesc *                  _Nullable desc;
+@property (nonatomic, assign)   NSUInteger                                    frozenHeight;
 
 @end

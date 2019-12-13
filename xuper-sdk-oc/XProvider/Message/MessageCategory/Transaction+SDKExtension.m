@@ -11,6 +11,7 @@
 #import "NSString+xCodeable.h"
 #import "NSData+xCodeable.h"
 #import "NSMutableData+xCodeable.h"
+#import "XCryptoFactory.h"
 
 #ifndef OmitemptySetObject
 #define OmitemptySetObject(dict, lenxep, key, value) if ( value && (lenxep) ) { dict[key] = value; }
@@ -58,9 +59,9 @@
     /// ["fwmZVPU22gdbgJDdEjh5u6gKF5CohtNbG"]
     /// false
     /// false
-    //    var buf bytes.Buffer
+    /// var buf bytes.Buffer
     NSMutableString *buf = [[NSMutableString alloc] init];
-        
+
     /// 1.txInputsArray
     for ( TxInput *txInput in self.txInputsArray ) {
         
@@ -99,8 +100,7 @@
     if ( self.desc && self.desc.length > 0 ) {
         [buf appendFormat:@"\"%@\"\n", self.desc.xBase64String];
     } else {
-//        transfer from console
-        [buf appendFormat:@"\"%@\"\n", @"transfer from console".xBase64String];
+        [buf appendFormat:@"\"%@\"\n", XSDKDefaultDescString.xBase64String];
     }
 
     /// 4.nonce
@@ -161,7 +161,7 @@
         
     /// 11.authRequireArray, 类型为NSArray<NSString*>所以直接使用NSJSONSerialization
     if ( self.authRequireArray && self.authRequireArray.count > 0 ) {
-        NSData *authRequireArrayData = [NSJSONSerialization dataWithJSONObject:self.authRequireArray options:0 error:&err];
+        NSData *authRequireArrayData = [NSJSONSerialization dataWithJSONObject:self.authRequireArray options:NSJSONWritingSortedKeys error:&err];
         [buf appendString:[[NSString alloc] initWithData:authRequireArrayData encoding:NSUTF8StringEncoding]];
         [buf appendString:@"\n"];
     } else {
@@ -219,11 +219,13 @@
 
     /// 15.autogen
     [buf appendFormat:@"%@\n", self.autogen ? @"true" : @"false"];
-        
-    return [buf dataUsingEncoding:NSUTF8StringEncoding];
+
+    /// 由于NSMutableArray 在序列化成json的时候，对象中String出现的"/"会被写上转译字符 “\ /” 但是golang中无法正确的识别这个转译字符，需要手动删除
+    return [[buf stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 /// 手动转换TxOutput数组到json格式
+/// !!!严格来说 这也需要手动排序组装json，但是顺序正好和定义的一致，所以使用了NSJSONSerialization
 - (NSString *)jsonEncoderTxOutputsArray: (NSArray<TxOutput*>*)arr error:(NSError **)error{
     
     if ( !arr || arr.count <= 0) {
@@ -251,8 +253,7 @@
         return nil;
     }
     
-    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jsonArrayObject options:0 error:error];
-    
+    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jsonArrayObject options:NSJSONWritingSortedKeys error:error];
     if (*error) {
         return nil;
     }
@@ -260,41 +261,113 @@
     return [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
 }
 
+/// 1. 结构体的字段顺序按照protobuf翻译成go结构体的字段顺序排列
+/// 2. 字段的默认值不会出现在json中，如int的0，字符串的“”, 数组的[]
+/// 3. go中的nil翻译为json中的null
+/// 4. map按照key的字母序排列
+/// 5. protobuf里面的bytes即go中的[]byte按照base64编码
+/// 6. 枚举类型最后是一个数字，不能按照字符串来表示
+/// by 超哥
 - (NSString *)jsonEncoderContractRequestsArray: (NSArray<InvokeRequest*> *)arr error:(NSError **)error {
     
     if ( !arr || arr.count <= 0) {
         return nil;
     }
-    
-    NSMutableArray<NSDictionary*> *jsonArrayObject = [[NSMutableArray alloc] init];
-    
-    for ( InvokeRequest *invoke in arr ) {
-        
-        NSMutableDictionary *invokeJsonObject = [NSMutableDictionary dictionary];
-        
-        OmitemptySetObject(invokeJsonObject, invoke.moduleName.length > 0, @"module_name", invoke.moduleName);
-        OmitemptySetObject(invokeJsonObject, invoke.contractName.length > 0, @"contract_name", invoke.contractName);
-        OmitemptySetObject(invokeJsonObject, true, @"args", invoke.args);
-        OmitemptySetObject(invokeJsonObject, invoke.amount.length > 0, @"amount", invoke.amount);
 
-        NSMutableArray *resourceLimitsArray = [[NSMutableArray alloc] init];
-        for ( ResourceLimit *limit in invoke.resourceLimitsArray ) {
-            [resourceLimitsArray addObject:@{
-                @"type": @(limit.type),
-                @"limit": @(limit.limit)
-            }];
-        }
-        OmitemptySetObject(invokeJsonObject, resourceLimitsArray.count > 0, @"resource_limits", resourceLimitsArray);
-        
-    }
-    
-    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jsonArrayObject options:0 error:error];
-    
-    if (*error) {
+    if ( arr.count <= 0 ) {
         return nil;
     }
     
-    return [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
+    NSMutableString *jsonBuffer = [[NSMutableString alloc] init];
+    [jsonBuffer appendString:@"["];
+    
+    for ( InvokeRequest *invoke in arr ) {
+        
+        NSMutableString *invokeJsonBuff = [[NSMutableString alloc] init];
+        [invokeJsonBuff appendString:@"{"];
+        
+        /// ModuleName
+        if ( invoke.moduleName && invoke.moduleName.length > 0) {
+            [invokeJsonBuff appendFormat:@"\"module_name\":\"%@\",", invoke.moduleName];
+        }
+        
+        /// ContractName
+        if ( invoke.contractName && invoke.contractName.length > 0) {
+            [invokeJsonBuff appendFormat:@"\"contract_name\":\"%@\",", invoke.contractName];
+        }
+        
+        /// MethodName
+        if ( invoke.methodName && invoke.methodName.length > 0) {
+            [invokeJsonBuff appendFormat:@"\"method_name\":\"%@\",", invoke.methodName];
+        }
+        
+        /// args，KEY -> Base64String
+        NSMutableDictionary *base64ValueArgs = [[NSMutableDictionary alloc] init];
+        for ( NSString * key in invoke.args ) {
+            base64ValueArgs[key] = invoke.args[key].xBase64String;
+        }
+        if (base64ValueArgs.count > 0) {
+            
+            NSData *base64ValueArgsData = [NSJSONSerialization dataWithJSONObject:base64ValueArgs options:NSJSONWritingSortedKeys error:error];
+            if (*error) {
+                return nil;
+            }
+            
+            [invokeJsonBuff appendFormat:@"\"args\":%@,", [[NSString alloc] initWithData:base64ValueArgsData encoding:0]];
+        }
+       
+        /// ResourceLimit
+        NSMutableArray *resourceLimitsArray = [[NSMutableArray alloc] init];
+        for ( ResourceLimit *limit in invoke.resourceLimitsArray ) {
+            
+            switch (limit.type) {
+                case 0:
+                    if ( limit.limit > 0 ) {
+                        [resourceLimitsArray addObject:@{
+                            @"limit": @(limit.limit)
+                        }];
+                    } else {
+                        [resourceLimitsArray addObject:@{}];
+                    }
+                    break;
+                    
+                default:
+                    
+                    if ( limit.limit > 0 ) {
+                        [resourceLimitsArray addObject:@{
+                            @"type": @(limit.type),
+                            @"limit": @(limit.limit)
+                        }];
+                    } else {
+                        [resourceLimitsArray addObject:@{
+                            @"type": @(limit.type),
+                        }];
+                    }
+            }
+        }
+        if ( resourceLimitsArray.count > 0 ) {
+            NSData *resourceLimitsArrayData = [NSJSONSerialization dataWithJSONObject:resourceLimitsArray options:0 error:error];
+            if (*error) {
+                return nil;
+            }
+            
+            [invokeJsonBuff appendFormat:@"\"resource_limits\":%@,", [[NSString alloc] initWithData:resourceLimitsArrayData encoding:NSUTF8StringEncoding]];
+        }
+        
+        /// Amount
+        if ( invoke.amount && invoke.amount.length > 0) {
+            [invokeJsonBuff appendFormat:@"\"amount\":\"%@\",", invoke.amount];
+        }
+        
+        /// 最后一个逗号替换为 }
+        [invokeJsonBuff replaceCharactersInRange:NSMakeRange(invokeJsonBuff.length - 1, 1) withString:@"}"];
+        
+        [jsonBuffer appendString:invokeJsonBuff];
+    }
+
+    [jsonBuffer appendString:@"]"];
+    
+    return jsonBuffer;
 }
 
 - (NSString *)jsonEncoderSignatureArray: (NSArray<SignatureInfo*> *)arr error:(NSError **)error {
@@ -312,20 +385,16 @@
         [jsonArrayObject addObject:invokeJsonObject];
     }
     
-    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jsonArrayObject options:0 error:error];
-    
+    NSData *jdata = [NSJSONSerialization dataWithJSONObject:jsonArrayObject options:NSJSONWritingSortedKeys error:error];
     if (*error) {
         return nil;
     }
     
-    /// 由于NSMutableArray 在序列化成json的时候，对象中String出现的"/"会被写上转译字符 “\ /” 但是golang中无法正确的识别这个转译字符，需要手动删除
-    NSString *beforRemoveSlash = [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
-    
-    return [beforRemoveSlash stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    return [[NSString alloc] initWithData:jdata encoding:NSUTF8StringEncoding];
 }
 
 #pragma mark -- SignHash
-- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error {
+- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable)error {
     
     return [cryptoClient signRawMessage:self.txMakeDigestHash
                                 keypair:ks
@@ -333,7 +402,7 @@
     
 }
 
-- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error {
+- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable)error {
     
     XSignature sig = [self txProcessSignWithClient:cryptoClient keypair:ks error:error];
     if ( *error ) {
@@ -347,4 +416,71 @@
     
     return signInfo;
 }
+
+/// 1.initor的数量应该等于initorsigns的数量
+/// 2.authrequire的数量应该等于authrequiresigns的数量
+- (BOOL) verifyWithCryptoType:(XCryptoTypeStringKey _Nullable)cryptoType error:(NSError * _Nonnull * _Nullable)error {
+    
+    /// 最后可以发送的交易一定具备txid
+    if ( self.txid.length <= 0 ) {
+        if (error) *error = [NSError errorWithDomain:@"invaild txid" code:-1 userInfo:nil];
+        return false;
+    }
+    
+    id<XCryptoClientProtocol> cryptoClient;
+    
+    if (cryptoType) {
+        cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:cryptoType];
+    } else {
+        cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:XCryptoTypeStringKeyDefault];
+    }
+    
+    NSData *txDigestHash = self.txMakeTransactionID;
+    
+    if ( self.initiatorSignsArray_Count <= 0 ) {
+        return false;
+    }
+    
+    if ( self.authRequireArray_Count != self.authRequireSignsArray_Count) {
+        return false;
+    }
+    
+    /// 验证 initor签名
+    id<XCryptoPubKeyProtocol> pp = [cryptoClient getPublicKeyFromJSON:self.initiatorSignsArray.firstObject.publicKey error:error];
+    if ( *error ) {
+        return false;
+    }
+    
+    if ( ![cryptoClient verifyWithPublicKey:pp signature:self.initiatorSignsArray.firstObject.sign rawMessage:txDigestHash error:error] ) {
+        return false;
+    }
+    if ( *error ) {
+        return false;
+    }
+    
+    /// 验证authRequire签名
+    for ( SignatureInfo *sig in self.authRequireSignsArray ) {
+        
+        id<XCryptoPubKeyProtocol> authpp = [cryptoClient getPublicKeyFromJSON:sig.publicKey error:error];
+        if (*error) {
+            return false;
+        }
+        
+        if ( ![cryptoClient verifyWithPublicKey:authpp signature:sig.sign rawMessage:txDigestHash error:error] ) {
+            return false;
+        }
+        if ( *error ) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+- (void) payloadTxSigns:(SignatureInfo * _Nonnull)initorSigs authRequireSigns:(NSArray<SignatureInfo*> *_Nonnull)authRequiresSigns {
+    [self.initiatorSignsArray addObject:initorSigs];
+    [self.authRequireSignsArray addObjectsFromArray:authRequiresSigns];
+    self.txid = self.txMakeTransactionID;
+}
+
 @end
