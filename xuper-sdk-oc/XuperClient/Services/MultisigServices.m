@@ -100,13 +100,13 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
                         handle:(XServicesResponseHandle _Nonnull)handle {
     
     /// 验证签名
-    NSError *error;
-    if ( ![signedTx verifyWithCryptoType:cryptoType error:&error] ) {
-        handle(false, error);
+    NSError *verifyError;
+    if ( ![signedTx verifyWithCryptoType:cryptoType error:&verifyError] ) {
+        handle(false, verifyError);
         return;
     }
-    if ( error ) {
-        handle(false, error);
+    if ( verifyError ) {
+        handle(false, verifyError);
         return ;
     }
     

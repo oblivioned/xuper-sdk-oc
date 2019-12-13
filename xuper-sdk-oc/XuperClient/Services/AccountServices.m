@@ -149,6 +149,10 @@ if ( (rsp).header.error != XChainErrorEnum_Success ) {\
         xacc = [NSString stringWithFormat:@"XC%@@%@", randomedAddress, self.blockChainName];
     }
     
+    if ( error ) {
+        return handle(nil, nil, error);
+    }
+    
     if ( [opt.desc isKindOfClass:[XTransactionDescInvoke class]] ) {
         
         [self preExecInvokesWithInitor:address invokes:@[((XTransactionDescInvoke*)opt.desc).invokeRequest] authrequires:opt.desc.authRequires handle:^(InvokeResponse * _Nullable response, NSError * _Nullable error) {

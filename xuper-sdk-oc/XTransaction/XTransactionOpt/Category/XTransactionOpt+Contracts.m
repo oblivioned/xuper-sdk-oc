@@ -12,7 +12,7 @@
 
 + (instancetype _Nonnull) optWasmInvokeWithAddress:(NSString * _Nonnull)accountOrAddress
                                        authRequire:(NSArray<NSString*> * _Nullable)listOfAddressOrAccountOrNil
-                                      ContractName:(NSString * _Nonnull)contractName
+                                      contractName:(NSString * _Nonnull)contractName
                                         methodName:(NSString * _Nonnull)methodName
                                               args:(NSDictionary<NSString*, id> * _Nullable)args
                                       forzenHeight:(int64_t)forzenHeight {

@@ -72,7 +72,7 @@
  * @result
  * 签名串
  */
-- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error;
+- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable)error;
 
 /*!
  * 使用对应的密钥对，对交易签名，并且返回SignatureInfo对象，该对象可以用于下文调用其他
@@ -89,7 +89,7 @@
  * @result
  * 包含X，Y，Sign三个对象，其中X,Y是公钥参数，Sign为签名的实际结果
  */
-- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error;
+- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable )error;
 
 /*!
  * 检测签名是否正确，或者说用来检测交易是否具备发送条件，一般来说如果返回true，则说明这个交易可以接入Tx_Status中直接进行grpc调用postTx。

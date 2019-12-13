@@ -16,13 +16,15 @@ typedef NS_ENUM(NSUInteger, XTransactionPMRule) {
 
 typedef NSMutableDictionary<XAddress, NSNumber*> XTransactionAKSWeight;
 
+
 @interface XTransactionPM : NSObject
+
 @property (nonatomic, assign) XTransactionPMRule rule;
 @property (nonatomic, assign) float acceptValue;
 @end
 
-@interface XTransactionACL : NSObject <XTransactionJsonEncodeable>
 
+@interface XTransactionACL : NSObject <XTransactionJsonEncodeable>
 @property (nonatomic, strong) XTransactionPM * _Nonnull pm;
 @property (nonatomic, strong) XTransactionAKSWeight * _Nonnull aksWeight;
 

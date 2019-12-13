@@ -1,12 +1,1 @@
-1.注意处理error:nil 问题
-
-2：既然定义了define形式的错误检测，为何下文继续使用了单一判断，如果可以，最好统一
-https://github.com/oblivioned/xuper-sdk-oc/blob/a808ab2c83035d5d393a5c1763134a725476fdc0/xuper-sdk-oc/XuperClient/Services/MultisigServices.m#L13
-
-3.XTransactionDesc 和 XTransactionOpt 的设计上是否太类似或者混淆？
-
-XTransactionDesc： 应该完全对应 ./xchain-cli ***** --desc 部分的内容，其中authRequire的疑问，是否每一个交易都需要authRequre？或者说每一个Desc一定存在authRequire？
-https://github.com/oblivioned/xuper-sdk-oc/blob/a808ab2c83035d5d393a5c1763134a725476fdc0/xuper-sdk-oc/XTransaction/XTransactionDesc/XTransactionDesc.h#L15
-
-
 

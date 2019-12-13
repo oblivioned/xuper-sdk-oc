@@ -85,7 +85,6 @@
     printf("Address:%s\n", self.account.address.UTF8String);
     printf("Private:%s\n", self.account.jsonPrivateKey.UTF8String);
     printf("Publick:%s\n", self.account.jsonPublicKey.UTF8String);
-    
 }
 
 /// 测试生成的address 和 xuper的是否一致

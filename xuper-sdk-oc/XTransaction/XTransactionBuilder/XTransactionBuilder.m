@@ -233,26 +233,12 @@
     return ;
 }
 
-/// 填充Transaction对象中缺失的签名， 签名会填充在传入的Transaction对象中，若出现异常，tx对象不会发生改变
-/// \param tx 需要填充签名的交易
-/// \param initorKeypair 事务发起人的密钥对
-/// \param authRequireKeypairs 所需要的authRequire(ACL)的密钥对
-/// \param error 错误捕获
+
 + (BOOL) payloadSignTransaction:(Transaction * _Nonnull)tx
                      cryptoType:(XCryptoTypeStringKey _Nonnull)cryptoType
                   initorKeypair:(id<XCryptoKeypairProtocol> _Nonnull)initorKeypair
             authRequireKeypairs:(NSArray<id<XCryptoKeypairProtocol>> *_Nonnull)authRequireKeypairs
-                          error:(NSError * _Nullable * _Nonnull)error {
-    
-    if ( tx.initiatorSignsArray_Count != 0 ) {
-        if (*error) *error = [NSError errorWithDomain:@"initiatorSigns is already exist." code:-1 userInfo:nil];
-        return false;
-    }
-    
-    if ( tx.authRequireSignsArray_Count != 0 ) {
-        if (*error) *error = [NSError errorWithDomain:@"authRequireSigns is already exist." code:-1 userInfo:nil];
-        return false;
-    }
+                          error:(NSError * _Nonnull * _Nullable)error {
     
     @try {
         
@@ -262,10 +248,7 @@
         if ( initorKeypair ) {
             
             SignatureInfo *initorSig = [tx txProcessSignInfoWithClient:cryptoClient keypair:initorKeypair error:error];
-            if (*error) {
-                @throw [NSException exceptionWithName:(*error).domain reason:(*error).description userInfo:nil];
-            }
-            
+            if (*error) @throw [NSException exceptionWithName:(*error).domain reason:(*error).description userInfo:nil];
             [tx.initiatorSignsArray addObject:initorSig];
         }
         
@@ -275,10 +258,7 @@
             for ( id<XCryptoKeypairProtocol> aclKeypari in authRequireKeypairs ) {
             
                 SignatureInfo *aclSign = [tx txProcessSignInfoWithClient:cryptoClient keypair:aclKeypari error:error];
-                if (*error) {
-                    @throw [NSException exceptionWithName:(*error).domain reason:(*error).description userInfo:nil];
-                }
-            
+                if (*error) @throw [NSException exceptionWithName:(*error).domain reason:(*error).description userInfo:nil];
                 [tx.authRequireSignsArray addObject:aclSign];
             }
         }

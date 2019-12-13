@@ -394,7 +394,7 @@
 }
 
 #pragma mark -- SignHash
-- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error {
+- (XSignature _Nullable) txProcessSignWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable)error {
     
     return [cryptoClient signRawMessage:self.txMakeDigestHash
                                 keypair:ks
@@ -402,7 +402,7 @@
     
 }
 
-- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nullable * _Nonnull)error {
+- (SignatureInfo * _Nullable) txProcessSignInfoWithClient:(id<XCryptoClientProtocol> _Nonnull)cryptoClient keypair:(id<XCryptoKeypairProtocol> _Nonnull)ks error:(NSError * _Nonnull * _Nullable)error {
     
     XSignature sig = [self txProcessSignWithClient:cryptoClient keypair:ks error:error];
     if ( *error ) {
