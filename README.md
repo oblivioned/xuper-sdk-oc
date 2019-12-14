@@ -26,8 +26,13 @@ Macos 10.9 +
 &emsp;&emsp;
 &emsp;&emsp;
 ### 暂不支持的功能
-关于提名候选人，选举候选人，投票等暂未做具体的支撑，如果有需求，可以先使用XTransactionDescInvoke+XTransactionBuilder+GRPC直接实现，
+* 关于提名候选人，选举候选人，投票等暂未做具体的支撑，如果有需求，可以先使用XTransactionDescInvoke+XTransactionBuilder+GRPC直接实现，
 我会尽快增加增加对应的功能。
+* 暂不支持创建助记词密钥对,[源码位置](https://github.com/oblivioned/xuper-sdk-oc/tree/master/xuper-sdk-oc/XCrypto/ECDSA)。
+* 暂不支持对密钥对使用秘密加密生成文件，[源码位置](https://github.com/oblivioned/xuper-sdk-oc/tree/master/xuper-sdk-oc/XCrypto/ECDSA)。
+
+如果您有好的实现，欢迎提交PullRequest。
+
 
 &emsp;&emsp;
 &emsp;&emsp;
@@ -42,15 +47,21 @@ pod install --verbose
 ```
 &emsp;&emsp;
 #### 引用头文件
-```objective-c
+```objc
 #import <xuper-sdk-oc/xuper-sdk-oc.h>
+```
+
+或者
+
+```objc
 @import xuper-sdk-oc;
 ```
+
 &emsp;&emsp;
 &emsp;&emsp;
 ### 几个简单的例子
 
-xuper-sdk-oc的设计上对于接口API结构与./xchain-cli 中基本相同,以下是xchain-cli --help的内容，可以作为参考
+xuper-sdk-oc的设计上对于接口API结构与./xchain-cli 中基本相同,以下是xchain-cli --help的内容，可以作为参考。
 
 ```
   account     Operate an account or address: balance|new|newkeys|split.
@@ -130,7 +141,7 @@ XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:ak.address
                                                     remarks:remarks
                                                 forzenHeight:forzenHeight];
 
-// 2.使用Opt对象、签名使用的密钥对，直接生成一个带签名的交易并且发送,此处需要注意block的嵌套使用.
+// 2.使用Opt对象、签名使用的密钥对，直接生成一个带签名的交易并且发送,此处需要注意block的嵌套
 [XTransactionBuilder trsanctionWithClient:self.clientRef
                                        option:opt
                                ignoreFeeCheck:NO
@@ -149,7 +160,7 @@ XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:ak.address
         tx_status.tx = tx;
         tx_status.txid = tx.txid;
 
-        [client postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
+        [client.rpcClient postTxWithRequest:tx_status handler:^(CommonReply * _Nullable response, NSError * _Nullable error) {
             ....
         }];
 
@@ -194,6 +205,20 @@ XuperClient *client = [XuperClient newClientWithHost:@"127.0.0.1:37101" blockCha
 // 获取rpcclient
 client.rpcClient ........
 ```
+
+&emsp;&emsp;
+&emsp;&emsp;
+### FAQ
+Q：1.已知合约交互的TXID，如何再次查询合约执行完成， ctx->ok("....")返回的内容？
+
+A：目前根据官方的源码中来看暂时是没有提供对应的方法，虽然可以使用折中的方案在xuper-sdk-oc中实现，但并非官方方案，为了不引起功能上的误解，
+在官方没有决定最终的存储方案前，xuper-sdk-oc也不支持根据TXID再次获取合约的执行结果。若官方确认了方案，会第一时间增加。
+
+&emsp;&emsp;
+
+Q：2.下载工程后单元测试为什么没能通过？
+
+A：请修改测试使用的配置，替换为自己的节点，测试使用的密钥，TXID等。后在尝试运行。[源码位置](https://github.com/oblivioned/xuper-sdk-oc/blob/master/xuper-sdk-ocTests/TestCommon/TestCommon.m)
 
 &emsp;&emsp;
 &emsp;&emsp;
