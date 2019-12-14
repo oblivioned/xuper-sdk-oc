@@ -2,24 +2,35 @@
 # 为了质量保证，请暂时勿使用在自己的产品中
 
 目前为先行测试版本[v0.0.1](https://github.com/oblivioned/xuper-sdk-oc/tree/v0.0.1)
-
 本次预先发布主要是为了验证pod的集成过程，后续会编写一个demo.
 
-
-## License
+&emsp;&emsp;
+&emsp;&emsp;
+### License
 
 [Apache License, Version 2.0](https://github.com/oblivioned/xuper-sdk-oc/blob/master/LICENSE).
 
+&emsp;&emsp;
+&emsp;&emsp;
 ### 支持的平台
-
 iOS 8.0 +
 
 Macos 10.9 +
 
+&emsp;&emsp;
+&emsp;&emsp;
 ### 支持[xuperchain](https://github.com/xuperchain/xuperunion)版本
 
 [xuperunion 3.4](https://github.com/xuperchain/xuperunion/tree/v3.4)
 
+&emsp;&emsp;
+&emsp;&emsp;
+### 暂不支持的功能
+关于提名候选人，选举候选人，投票等暂未做具体的支撑，如果有需求，可以先使用XTransactionDescInvoke+XTransactionBuilder+GRPC直接实现，
+我会尽快增加增加对应的功能。
+
+&emsp;&emsp;
+&emsp;&emsp;
 ### 如何使用
 
 #### 使用pod集成
@@ -29,13 +40,14 @@ pod 'xuper-sdk-oc', '~> 0.0.1'
 # 推荐增加verbose参数，因为sdk中依赖的几个仓库体积比较大，如果看不到过程，可能会感觉"假死"
 pod install --verbose
 ```
-
+&emsp;&emsp;
 #### 引用头文件
 ```objective-c
 #import <xuper-sdk-oc/xuper-sdk-oc.h>
 @import xuper-sdk-oc;
 ```
-
+&emsp;&emsp;
+&emsp;&emsp;
 ### 几个简单的例子
 
 xuper-sdk-oc的设计上对于接口API结构与./xchain-cli 中基本相同,以下是xchain-cli --help的内容，可以作为参考
@@ -58,6 +70,7 @@ xuper-sdk-oc的设计上对于接口API结构与./xchain-cli 中基本相同,以
   wasm        Operate a command with wasm, deploy|invoke|query
 ```
 
+&emsp;&emsp;
 #### 1.查询余额
 
 查询余额，因为不需要签名，只需要地址，直接传入地址即可获取。
@@ -74,6 +87,7 @@ XuperClient *client = [XuperClient newClientWithHost:@"127.0.0.1:37101" blockCha
 }];
 ```
 
+&emsp;&emsp;
 #### 2.转账方法一 (与 ./xchain-cli tansfer --to=... --amount=... --fee=... 类似)
 
 直接使用 account.transfer
@@ -106,6 +120,7 @@ XBigInt *amount = [[XBigInt alloc] initWithDecString:@"10"];
 }];
 ```
 
+&emsp;&emsp;
 #### 3.转账方法二，使用TransactionOpt,XTransactionBuilder组装交易，Opt的类型较多可见源码 [XTransaction](https://github.com/oblivioned/xuper-sdk-oc/tree/master/xuper-sdk-oc/XTransaction)的相关实现
 ```objective-c
 // 1.创建转账使用的Opt对象，这里xuper-sdk-oc提供了一个便捷的创建方法
@@ -141,7 +156,7 @@ XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:ak.address
     }];
 ```
 
-
+&emsp;&emsp;
 #### 4.合约调用
 ```
 [clientinvokeWithAddress:YOURADDRESS
@@ -162,10 +177,11 @@ XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:ak.address
 }];
 ```
 
-
+&emsp;&emsp;
 #### 5.[更多例子](https://github.com/oblivioned/xuper-sdk-oc/tree/master/xuper-sdk-ocTests)请见工程中的单元测试.
 
-
+&emsp;&emsp;
+&emsp;&emsp;
 ### 直接使用GRPC
 
 如果您足够了解xuper的各种规则和GRPC的接口，可以直接使用GRPC通讯，xuper-sdk-oc中提供了一个GRPC的接口如下,GRPC的接口与[官方文档](https://xuperchain.readthedocs.io/zh/latest/commands_reference.html)一致
@@ -179,6 +195,8 @@ XuperClient *client = [XuperClient newClientWithHost:@"127.0.0.1:37101" blockCha
 client.rpcClient ........
 ```
 
+&emsp;&emsp;
+&emsp;&emsp;
 ### 写在后面的话
 
 最近工作比较忙，还有很多需要完善的地方，不管是文档，注释还是代码的质量问题，我先上传这个测试版本本意是想在大家的试用
