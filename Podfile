@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+# source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 install! 'cocoapods', :deterministic_uuids => false
 
@@ -15,5 +15,5 @@ target 'xuper-sdk-oc' do
     pod 'xuper-sdk-oc-grpc', :path => "./Podspec"
     pod 'OpenSSL-Universal/Framework', '~> 1.0.2.19'
   end
-  
+
 end
