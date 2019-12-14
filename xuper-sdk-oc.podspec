@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name     = 'xuper-sdk-oc'
-  s.version  = 'v0.0.1'
+  s.version  = '0.0.1'
   s.license  = { :type => 'Apache License Version 2.0', :file => 'LICENSE' }
   s.authors  = { 'oblivioned' => '...' }
   s.homepage = 'https://github.com/oblivioned/xuper-sdk-oc'
-  s.summary = 'xuper'
+  s.summary = 'xuper-sdk-oc for iOS and macOS'
   s.source = { :git => 'https://github.com/oblivioned/xuper-sdk-oc.git', :tag => 'v0.0.1' }
 
   s.ios.deployment_target = '8.0'

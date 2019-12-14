@@ -8,7 +8,7 @@
 
 ## License
 
-xuper-sdk-oc is under the [Apache License, Version 2.0](https://github.com/oblivioned/xuper-sdk-oc/blob/master/LICENSE).
+[Apache License, Version 2.0](https://github.com/oblivioned/xuper-sdk-oc/blob/master/LICENSE).
 
 ### 支持的平台
 
@@ -31,7 +31,7 @@ pod install --verbose
 ```
 
 #### 引用头文件
-```
+```objective-c
 #import <xuper-sdk-oc/xuper-sdk-oc.h>
 @import xuper-sdk-oc;
 ```
@@ -165,6 +165,19 @@ XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:ak.address
 
 #### 5.[更多例子](https://github.com/oblivioned/xuper-sdk-oc/tree/master/xuper-sdk-ocTests)请见工程中的单元测试.
 
+
+### 直接使用GRPC
+
+如果您足够了解xuper的各种规则和GRPC的接口，可以直接使用GRPC通讯，xuper-sdk-oc中提供了一个GRPC的接口如下,GRPC的接口与[官方文档](https://xuperchain.readthedocs.io/zh/latest/commands_reference.html)一致
+
+```objective-c
+// 创建XuperClient
+XuperClient *client = [XuperClient newClientWithHost:@"127.0.0.1:37101" blockChainName:@"xuper"];
+
+
+// 获取rpcclient
+client.rpcClient ........
+```
 
 ### 写在后面的话
 
