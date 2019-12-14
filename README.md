@@ -170,20 +170,20 @@ XTransactionOpt *opt = [XTransactionOpt optTransferWithFrom:ak.address
 &emsp;&emsp;
 #### 4.合约调用
 ```
-[clientinvokeWithAddress:YOURADDRESS
-            authRequires:@[@"AuthRequire1", @"AuthRequire2",...]
-            contractName:@"ERC20"
-              methodName:@"transfer"
-                            args:@{
-                                @"from"    : @"Martin",
-                                @"to"      : @"Bob",
-                                @"token"   : @"10"
-                            }
-             forzenHeight:0
-            initorKeypair:INITOR
-      authRequireKeypairs:@[T.initor]
-                 feeAsker:nil
-                   handle:^(XHexString  _Nullable txhash, NSError * _Nullable error) {
+[client.wasm invokeWithAddress:YOURADDRESS
+                  authRequires:@[@"AuthRequire1", @"AuthRequire2",...]
+                  contractName:@"ERC20"
+                    methodName:@"transfer"
+                          args:@{
+                                  @"from"    : @"Martin",
+                                  @"to"      : @"Bob",
+                                  @"token"   : @"10"
+                                }
+                  forzenHeight:0
+                 initorKeypair:INITOR
+           authRequireKeypairs:@[Authrequire1,Authrequire2,....]
+                      feeAsker:nil
+                        handle:^(XHexString  _Nullable txhash, NSError * _Nullable error) {
                        ....
 }];
 ```
