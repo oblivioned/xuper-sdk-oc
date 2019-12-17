@@ -11,6 +11,7 @@
 
 @interface XBigInt() {
     BIGNUM *_bn;
+    BN_CTX *_ctx;
 }
 
 @end
@@ -19,6 +20,7 @@
 
 - (void) dealloc {
     BN_free(self->_bn);
+    BN_CTX_free(self->_ctx);
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
@@ -35,10 +37,16 @@
     return [[XBigInt alloc] init];
 }
 
++ (instancetype _Nonnull) One {
+    return [[XBigInt alloc] initWithUInt:1];
+}
+
 - (instancetype _Nonnull) init {
+    
     self = [super init];
     
     self->_bn = BN_new();
+    self->_ctx = BN_CTX_new();
     
     return self;
 }
@@ -77,6 +85,17 @@
     self->_bn = BN_new();
     
     NSAssert(BN_dec2bn(&self->_bn, decString.UTF8String), @"invaild XBigInt decstring.");
+    
+    return self;
+}
+
+- (instancetype _Nonnull) initWithData:( NSData * _Nonnull )data {
+    
+    self = [super init];
+    
+    self->_bn = BN_new();
+    
+    BN_bin2bn(data.bytes, data.length, self->_bn);
     
     return self;
 }
@@ -197,6 +216,163 @@
     return [self bigIntBySubBigInt:a];
 }
 
+
+#pragma mark - 除法
+/// int BN_div(BIGNUM *dv, BIGNUM *rem, const BIGNUM *a, const BIGNUM *d, BN_CTX *ctx)
+/// d=a/b,r=a%b
+- (void) divBigInt:(XBigInt * _Nonnull)a {
+    BN_div(self->_bn, nil, self->_bn, a->_bn, self->_ctx);
+}
+
+- (void) divBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self divBigInt:a];
+}
+
+- (void) divBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self divBigInt:a];
+}
+
+- (XBigInt * _Nonnull) divRemBigInt:(XBigInt * _Nonnull)a {
+    
+    XBigInt *rem = XBigInt.Zero;
+    
+    BN_div(self->_bn, rem->_bn, self->_bn, a->_bn, rem->_ctx);
+    
+    return rem;
+}
+
+- (XBigInt * _Nonnull) divRemIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self divRemIntHex:a];
+}
+
+- (XBigInt * _Nonnull) divRemIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self divRemIntHex:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByDivBigInt:(XBigInt * _Nonnull)a {
+    
+    XBigInt *r = XBigInt.Zero;
+    
+    BN_div(r->_bn, nil, self->_bn, a->_bn, r->_ctx);
+    
+    return r;
+}
+
+- (XBigInt * _Nonnull) bigIntByDivBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self bigIntByDivBigInt:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByDivBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self bigIntByDivBigInt:a];
+}
+
+#pragma mark - 乘法
+- (void) mulBigInt:(XBigInt * _Nonnull)a {
+    BN_mul(self->_bn, self->_bn, a->_bn, self->_ctx);
+}
+
+- (void) mulBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self mulBigInt:a];
+}
+
+- (void) mulBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self mulBigInt:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByMulBigInt:(XBigInt * _Nonnull)a {
+    XBigInt *r = XBigInt.Zero;
+    BN_mul(r->_bn, self->_bn, a->_bn, r->_ctx);
+    return r;
+}
+
+- (XBigInt * _Nonnull) bigIntByMulBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self bigIntByMulBigInt:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByMulBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self bigIntByMulBigInt:a];
+}
+
+#pragma mark - 幂
+- (void) powBigInt:(XBigInt * _Nonnull)a {
+    
+    BN_MONT_CTX *mctx = BN_MONT_CTX_new();
+    
+    BN_MONT_CTX_init(mctx);
+    
+    BN_MONT_CTX_set(mctx, self->_bn, self->_ctx);
+    
+    BN_from_montgomery(self->_bn, a->_bn, mctx, self->_ctx);
+    
+    BN_MONT_CTX_free(mctx);
+}
+
+- (void) powBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self powBigInt:a];
+}
+
+- (void) powBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self powBigInt:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByPowBigInt:(XBigInt * _Nonnull)a {
+    
+    XBigInt *r = XBigInt.Zero;
+    
+    BN_MONT_CTX *mctx = BN_MONT_CTX_new();
+    
+    BN_MONT_CTX_init(mctx);
+    
+    BN_MONT_CTX_set(mctx, self->_bn, self->_ctx);
+    
+    BN_from_montgomery(r->_bn, a->_bn, mctx, r->_ctx);
+    
+    BN_MONT_CTX_free(mctx);
+    
+    return r;
+}
+
+- (XBigInt * _Nonnull) bigIntByPowBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self bigIntByPowBigInt:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByPowBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self bigIntByPowBigInt:a];
+}
+
+#pragma mark - 取余
+- (XBigInt * _Nonnull) bigIntByModBigInt:(XBigInt * _Nonnull)a {
+    
+    XBigInt *rem = XBigInt.Zero;
+    
+    BN_div(nil, rem->_bn, self->_bn, a->_bn, rem->_ctx);
+
+    return rem;
+}
+
+- (XBigInt * _Nonnull) bigIntByModBigIntHex:(XHexString _Nonnull)aHex {
+    XBigInt *a = [[XBigInt alloc] initWithHexString:aHex];
+    return [self bigIntByModBigInt:a];
+}
+
+- (XBigInt * _Nonnull) bigIntByModBigIntDec:(NSString * _Nonnull)adec {
+    XBigInt *a = [[XBigInt alloc] initWithDecString:adec];
+    return [self bigIntByModBigInt:a];
+}
 
 #pragma mark - 逻辑判断
 - (bool) greaterThan:(XBigInt * _Nonnull)a {

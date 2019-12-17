@@ -13,6 +13,12 @@
 		18033B0423A24E360031FE41 /* TDPOSServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033B0223A24E360031FE41 /* TDPOSServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18033B0523A24E360031FE41 /* TDPOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0323A24E360031FE41 /* TDPOSServices.m */; };
 		18033B0723A25D360031FE41 /* TDPOSServicesTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033B0623A25D360031FE41 /* TDPOSServicesTester.m */; };
+		18033E3323A7BB500031FE41 /* BIP39.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033E3123A7BB500031FE41 /* BIP39.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18033E3423A7BB500031FE41 /* BIP39.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033E3223A7BB500031FE41 /* BIP39.m */; };
+		18033E3F23A7BB950031FE41 /* bip39_english.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033E3823A7BB940031FE41 /* bip39_english.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18033E4223A7BB950031FE41 /* bip39_chinese_simplified.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033E3B23A7BB950031FE41 /* bip39_chinese_simplified.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18033E4623A927160031FE41 /* XECDSABIP39Account.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033E4423A927160031FE41 /* XECDSABIP39Account.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18033E4723A927160031FE41 /* XECDSABIP39Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033E4523A927160031FE41 /* XECDSABIP39Account.m */; };
 		180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */; };
 		180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B61239B47F900D2CB24 /* XTransactionACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -140,6 +146,12 @@
 		18033B0223A24E360031FE41 /* TDPOSServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPOSServices.h; sourceTree = "<group>"; };
 		18033B0323A24E360031FE41 /* TDPOSServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDPOSServices.m; sourceTree = "<group>"; };
 		18033B0623A25D360031FE41 /* TDPOSServicesTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDPOSServicesTester.m; sourceTree = "<group>"; };
+		18033E3123A7BB500031FE41 /* BIP39.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIP39.h; sourceTree = "<group>"; };
+		18033E3223A7BB500031FE41 /* BIP39.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BIP39.m; sourceTree = "<group>"; };
+		18033E3823A7BB940031FE41 /* bip39_english.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bip39_english.h; sourceTree = "<group>"; };
+		18033E3B23A7BB950031FE41 /* bip39_chinese_simplified.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bip39_chinese_simplified.h; sourceTree = "<group>"; };
+		18033E4423A927160031FE41 /* XECDSABIP39Account.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XECDSABIP39Account.h; sourceTree = "<group>"; };
+		18033E4523A927160031FE41 /* XECDSABIP39Account.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XECDSABIP39Account.m; sourceTree = "<group>"; };
 		180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionDescInvoke.h; sourceTree = "<group>"; };
 		180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionDescInvoke.m; sourceTree = "<group>"; };
 		180C2B61239B47F900D2CB24 /* XTransactionACL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionACL.h; sourceTree = "<group>"; };
@@ -280,6 +292,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18033E3023A7BB420031FE41 /* BIP39 */ = {
+			isa = PBXGroup;
+			children = (
+				18033E3523A7BB800031FE41 /* WordLists */,
+				18033E3123A7BB500031FE41 /* BIP39.h */,
+				18033E3223A7BB500031FE41 /* BIP39.m */,
+			);
+			path = BIP39;
+			sourceTree = "<group>";
+		};
+		18033E3523A7BB800031FE41 /* WordLists */ = {
+			isa = PBXGroup;
+			children = (
+				18033E3B23A7BB950031FE41 /* bip39_chinese_simplified.h */,
+				18033E3823A7BB940031FE41 /* bip39_english.h */,
+			);
+			path = WordLists;
+			sourceTree = "<group>";
+		};
 		1815C70D2397F4AB000ADB6D /* MessageCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +496,7 @@
 		186FC23E2390CE0900DE6E2B /* XCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				18033E3023A7BB420031FE41 /* BIP39 */,
 				186FC2502390D14B00DE6E2B /* ECDSA */,
 				186FC2452390CFBA00DE6E2B /* Protocol */,
 				186FC23F2390CE4500DE6E2B /* XCryptoFactory.h */,
@@ -502,6 +534,8 @@
 				186FC2952394E7EA00DE6E2B /* XECDSAPrivKey.m */,
 				186FC2742392376400DE6E2B /* XECDSAAccount.h */,
 				186FC2752392376400DE6E2B /* XECDSAAccount.m */,
+				18033E4423A927160031FE41 /* XECDSABIP39Account.h */,
+				18033E4523A927160031FE41 /* XECDSABIP39Account.m */,
 				186FC2512390D15E00DE6E2B /* XECDSAClient.h */,
 				186FC2522390D15E00DE6E2B /* XECDSAClient.m */,
 			);
@@ -678,12 +712,16 @@
 				1847245A239FD5F100DB6777 /* TransactionServices.h in Headers */,
 				180C2B6B239B504800D2CB24 /* XTransactionOpt+NewAccount.h in Headers */,
 				18472464239FE92800DB6777 /* WasmServices.h in Headers */,
+				18033E3F23A7BB950031FE41 /* bip39_english.h in Headers */,
+				18033E4223A7BB950031FE41 /* bip39_chinese_simplified.h in Headers */,
 				1847244A239E8CEA00DB6777 /* StatusServices.h in Headers */,
 				18472446239D041B00DB6777 /* XTransactionOpt+Contracts.h in Headers */,
+				18033E3323A7BB500031FE41 /* BIP39.h in Headers */,
 				18472454239E8F8700DB6777 /* TransferServices.h in Headers */,
 				18033AFE23A2100A0031FE41 /* NetURLServices.h in Headers */,
 				180C2B79239CDC3C00D2CB24 /* BlockServices.h in Headers */,
 				1847246C23A0CC8D00DB6777 /* XError.h in Headers */,
+				18033E4623A927160031FE41 /* XECDSABIP39Account.h in Headers */,
 				180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */,
 				18033B0423A24E360031FE41 /* TDPOSServices.h in Headers */,
 				186FC2DD23965DA900DE6E2B /* Xcheck.pbobjc.h in Headers */,
@@ -865,6 +903,7 @@
 				1815C729239A014E000ADB6D /* XTransactionOpt.m in Sources */,
 				1847246D23A0CC8D00DB6777 /* XError.m in Sources */,
 				180C2B7A239CDC3C00D2CB24 /* BlockServices.m in Sources */,
+				18033E3423A7BB500031FE41 /* BIP39.m in Sources */,
 				1815C73C239A09AD000ADB6D /* XGlobalFlags.m in Sources */,
 				18472465239FE92800DB6777 /* WasmServices.m in Sources */,
 				180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */,
@@ -886,6 +925,7 @@
 				180C2B6C239B504800D2CB24 /* XTransactionOpt+NewAccount.m in Sources */,
 				186FC3462397A10900DE6E2B /* XProviderConfigure.m in Sources */,
 				1847244B239E8CEA00DB6777 /* StatusServices.m in Sources */,
+				18033E4723A927160031FE41 /* XECDSABIP39Account.m in Sources */,
 				186FC2542390D15E00DE6E2B /* XECDSAClient.m in Sources */,
 				186FC3322397584600DE6E2B /* Xcheck.pbrpc.m in Sources */,
 				1815C7242399F6D1000ADB6D /* XBigInt.m in Sources */,

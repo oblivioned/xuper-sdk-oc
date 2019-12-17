@@ -10,7 +10,7 @@
 
 #import "XCommon.h"
 #import "XCryptoKeypairProtocol.h"
-
+#import "BIP39.h"
 
 @protocol XCryptoKeyInfo <NSObject>
 
@@ -28,6 +28,15 @@
 - (XJsonString _Nullable) jsonPrivateKey;
 
 - (XJsonString _Nullable) jsonPublicKey;
+
+@end
+
+
+@protocol XBIP39AccountProtocol <XCryptoAccountProtocol>
+
+- (BIP39MnemonicLanguage) language;
+
+- (NSArray<NSString*> * _Nullable) mnemonics;
 
 @end
 

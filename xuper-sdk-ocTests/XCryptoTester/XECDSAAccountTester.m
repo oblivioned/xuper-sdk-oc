@@ -177,4 +177,74 @@
     XCTAssertNil(error);
 }
 
+- (void) test_CreateNewMnemonic {
+
+    NSError *error;
+
+    NSString *pwd = @"xuper-sdk-oc";
+    
+    /// BIP39MnemonicStrength_Easy
+    XECDSABIP39Account *acc_easy = (XECDSABIP39Account*)[self.client createNewAccountWithMnemonicLanguage:BIP39MnemonicLanguage_Default
+                                                                                                 strength:BIP39MnemonicStrength_Easy
+                                                                                                 password:pwd
+                                                                                                    error:&error];
+    
+    XECDSABIP39Account *acc_easy_r = [self.client retrieveAccountByMnemonic:[acc_easy.mnemonics componentsJoinedByString:@" "]
+                                                                   password:pwd
+                                                                   language:BIP39MnemonicLanguage_Default];
+    
+    NSLog(@"BIP39MnemonicStrength_Easy");
+    NSLog(@"Address:%@", acc_easy.address);
+    NSLog(@"Mnemonic:%@", [acc_easy.mnemonics componentsJoinedByString:@" "]);
+    
+    XCTAssertNil(error);
+    XCTAssert( [acc_easy.address isEqualToString:acc_easy_r.address] );
+    
+    
+    /// BIP39MnemonicStrength_Midden
+    XECDSABIP39Account *acc_mid = (XECDSABIP39Account*)[self.client createNewAccountWithMnemonicLanguage:BIP39MnemonicLanguage_Default
+                                                                                                strength:BIP39MnemonicStrength_Midden
+                                                                                                password:pwd
+                                                                                                   error:&error];
+    
+    XECDSABIP39Account *acc_mid_r = [self.client retrieveAccountByMnemonic:[acc_mid.mnemonics componentsJoinedByString:@" "]
+                                                                  password:pwd
+                                                                  language:BIP39MnemonicLanguage_Default];
+    
+    NSLog(@"BIP39MnemonicStrength_Midden");
+    NSLog(@"Address:%@", acc_mid.address);
+    NSLog(@"Mnemonic:%@", [acc_mid.mnemonics componentsJoinedByString:@" "]);
+    
+    XCTAssertNil(error);
+    XCTAssert( [acc_mid.address isEqualToString:acc_mid_r.address] );
+    
+    
+    /// BIP39MnemonicStrength_Hard
+    XECDSABIP39Account *acc_hd = (XECDSABIP39Account*)[self.client createNewAccountWithMnemonicLanguage:BIP39MnemonicLanguage_Default
+                                                                                               strength:BIP39MnemonicStrength_Hard
+                                                                                               password:pwd
+                                                                                                  error:&error];
+    
+    XECDSABIP39Account *acc_hd_r = [self.client retrieveAccountByMnemonic:[acc_hd.mnemonics componentsJoinedByString:@" "]
+                                                                 password:pwd
+                                                                 language:BIP39MnemonicLanguage_Default];
+    
+    NSLog(@"BIP39MnemonicStrength_Hard");
+    NSLog(@"Address:%@", acc_hd.address);
+    NSLog(@"Mnemonic:%@", [acc_hd.mnemonics componentsJoinedByString:@" "]);
+    
+    XCTAssertNil(error);
+    XCTAssert( [acc_hd.address isEqualToString:acc_hd_r.address] );
+}
+
+- (void) test_RetrieveAccountByMnemonic {
+    
+    XECDSAAccount *acc = (XECDSAAccount*)[self.client retrieveAccountByMnemonic:@"暗 杯 找 埋 豆 泊 筒 驾 误 谐 短 造"
+                                                                       password:nil
+                                                                       language:BIP39MnemonicLanguage_Default];
+    
+    XCTAssertNotNil(acc);
+    
+    XCTAssert([acc.address isEqualToString:@"XRPoyVV7c4m3xLRv3MTmeiYGLqw79ir41"]);
+}
 @end

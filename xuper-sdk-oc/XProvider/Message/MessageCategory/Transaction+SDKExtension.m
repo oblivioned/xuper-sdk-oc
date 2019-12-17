@@ -420,52 +420,52 @@
 /// 1.initor的数量应该等于initorsigns的数量
 /// 2.authrequire的数量应该等于authrequiresigns的数量
 - (BOOL) verifyWithCryptoType:(XCryptoTypeStringKey _Nullable)cryptoType error:(NSError * _Nonnull * _Nullable)error {
-    
+
     /// 最后可以发送的交易一定具备txid
     if ( self.txid.length <= 0 ) {
         if (error) *error = [NSError errorWithDomain:@"invaild txid" code:-1 userInfo:nil];
         return false;
     }
-    
+
     id<XCryptoClientProtocol> cryptoClient;
-    
+
     if (cryptoType) {
         cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:cryptoType];
     } else {
         cryptoClient = [XCryptoFactory cryptoClientWithCryptoType:XCryptoTypeStringKeyDefault];
     }
-    
+
     NSData *txDigestHash = self.txMakeTransactionID;
-    
+
     if ( self.initiatorSignsArray_Count <= 0 ) {
         return false;
     }
-    
+
     if ( self.authRequireArray_Count != self.authRequireSignsArray_Count) {
         return false;
     }
-    
+
     /// 验证 initor签名
     id<XCryptoPubKeyProtocol> pp = [cryptoClient getPublicKeyFromJSON:self.initiatorSignsArray.firstObject.publicKey error:error];
     if ( *error ) {
         return false;
     }
-    
+
     if ( ![cryptoClient verifyWithPublicKey:pp signature:self.initiatorSignsArray.firstObject.sign rawMessage:txDigestHash error:error] ) {
         return false;
     }
     if ( *error ) {
         return false;
     }
-    
+
     /// 验证authRequire签名
     for ( SignatureInfo *sig in self.authRequireSignsArray ) {
-        
+
         id<XCryptoPubKeyProtocol> authpp = [cryptoClient getPublicKeyFromJSON:sig.publicKey error:error];
         if (*error) {
             return false;
         }
-        
+
         if ( ![cryptoClient verifyWithPublicKey:authpp signature:sig.sign rawMessage:txDigestHash error:error] ) {
             return false;
         }
@@ -473,7 +473,7 @@
             return false;
         }
     }
-    
+
     return true;
 }
 

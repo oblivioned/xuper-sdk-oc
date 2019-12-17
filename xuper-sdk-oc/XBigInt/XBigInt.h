@@ -18,6 +18,8 @@
 
 + (instancetype _Nonnull) Zero;
 
++ (instancetype _Nonnull) One;
+
 /**
  * 使用十六进制字符串生成XBigInt对象，不区分大小写
  * \param  hexString 0xFF, FF, 0xff, ff ...
@@ -31,6 +33,8 @@
  * \return XBigInt*
 */
 - (instancetype _Nonnull) initWithDecString:( NSString * _Nonnull )decString;
+
+- (instancetype _Nonnull) initWithData:( NSData * _Nonnull )data;
 
 - (instancetype _Nonnull) initWithUInt:(NSUInteger)n;
 
@@ -73,6 +77,42 @@
 - (XBigInt * _Nonnull) bigIntBySubBigInt:(XBigInt * _Nonnull)a;
 - (XBigInt * _Nonnull) bigIntBySubBigIntHex:(XHexString _Nonnull)aHex;
 - (XBigInt * _Nonnull) bigIntBySubBigIntDec:(NSString * _Nonnull)adec;
+
+#pragma mark - 除法
+- (void) divBigInt:(XBigInt * _Nonnull)a;
+- (void) divBigIntHex:(XHexString _Nonnull)aHex;
+- (void) divBigIntDec:(NSString * _Nonnull)adec;
+
+- (XBigInt * _Nonnull) divRemBigInt:(XBigInt * _Nonnull)a;
+- (XBigInt * _Nonnull) divRemIntHex:(XHexString _Nonnull)aHex;
+- (XBigInt * _Nonnull) divRemIntDec:(NSString * _Nonnull)adec;
+
+- (XBigInt * _Nonnull) bigIntByDivBigInt:(XBigInt * _Nonnull)a;
+- (XBigInt * _Nonnull) bigIntByDivBigIntHex:(XHexString _Nonnull)aHex;
+- (XBigInt * _Nonnull) bigIntByDivBigIntDec:(NSString * _Nonnull)adec;
+
+#pragma mark - 乘法
+- (void) mulBigInt:(XBigInt * _Nonnull)a;
+- (void) mulBigIntHex:(XHexString _Nonnull)aHex;
+- (void) mulBigIntDec:(NSString * _Nonnull)adec;
+
+- (XBigInt * _Nonnull) bigIntByMulBigInt:(XBigInt * _Nonnull)a;
+- (XBigInt * _Nonnull) bigIntByMulBigIntHex:(XHexString _Nonnull)aHex;
+- (XBigInt * _Nonnull) bigIntByMulBigIntDec:(NSString * _Nonnull)adec;
+
+#pragma mark POW
+- (void) powBigInt:(XBigInt * _Nonnull)a;
+- (void) powBigIntHex:(XHexString _Nonnull)aHex;
+- (void) powBigIntDec:(NSString * _Nonnull)adec;
+
+- (XBigInt * _Nonnull) bigIntByPowBigInt:(XBigInt * _Nonnull)a;
+- (XBigInt * _Nonnull) bigIntByPowBigIntHex:(XHexString _Nonnull)aHex;
+- (XBigInt * _Nonnull) bigIntByPowBigIntDec:(NSString * _Nonnull)adec;
+
+#pragma mark Mod
+- (XBigInt * _Nonnull) bigIntByModBigInt:(XBigInt * _Nonnull)a;
+- (XBigInt * _Nonnull) bigIntByModBigIntHex:(XHexString _Nonnull)aHex;
+- (XBigInt * _Nonnull) bigIntByModBigIntDec:(NSString * _Nonnull)adec;
 
 #pragma mark - 逻辑判断
 - (bool) greaterThan:(XBigInt * _Nonnull)a;

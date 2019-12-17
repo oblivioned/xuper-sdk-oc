@@ -39,21 +39,46 @@
 
 @implementation XECDSAPrivKey
 
-+ (instancetype _Nullable) fromExportedJsonContent:(NSData* _Nonnull)keydata {
+- (instancetype _Nullable) initWithJsonFormatString:(NSString *)ppjson error:(NSError * _Nonnull * _Nullable)error {
     
-    NSError *err;
-    NSDictionary *r = [NSJSONSerialization JSONObjectWithData:keydata options:0 error:&err];
+    self = [super init];
     
-    if ( err || r == NULL || [r isKindOfClass:[NSDictionary class]]) {
+    NSMutableDictionary *ppdict = [[NSMutableDictionary alloc] init];
+    
+    if ( [ppjson rangeOfString:@"P-256"].location == NSNotFound ) {
         return nil;
     }
     
-    return [XECDSAPrivKey fromExportedDictionary:r];
+    ppdict[@"Curvname"] = @"P-256";
+    
+    NSString *xpattern = @"\\\"[a-zA-Z]\\\"\\:[\\d]*";
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:xpattern options:0 error:nil];
+
+    NSArray *matches = [regex matchesInString:ppjson options:0 range:NSMakeRange(0, ppjson.length)];
+    
+    if (matches.count != 3) {
+        return nil;
+    }
+ 
+    for (NSTextCheckingResult* match in matches) {
+        
+        NSString *rangeString = [ppjson substringWithRange:match.range];
+        
+        NSArray<NSString*> *split = [rangeString componentsSeparatedByString:@":"];
+        
+        if ( [split[0] isEqualToString:@"\"X\""] ) {
+            ppdict[@"X"] = split[1];
+        } else if ( [split[0] isEqualToString:@"\"Y\""] ) {
+            ppdict[@"Y"] = split[1];
+        } else if ( [split[0] isEqualToString:@"\"D\""] ) {
+            ppdict[@"D"] = split[1];
+        }
+    }
+    
+    return [self initWithDictionary:ppdict];
 }
 
-+ (instancetype _Nullable) fromExportedDictionary:(NSDictionary* _Nonnull)keydict {
-    return [[XECDSAPrivKey alloc] initWithDictionary:keydict];
-}
 
 + (instancetype _Nullable) generateKey {
     
@@ -73,6 +98,51 @@
     EC_KEY_free(eckey256);
     
     return pk;
+}
+
++ (instancetype _Nullable) generateKeyBySeed:(NSData * _Nonnull)seed {
+    
+    EC_KEY *eckey256 = EC_KEY_new_by_curve_name( NID_X9_62_prime256v1 );
+    BN_CTX *_ctx = BN_CTX_new();
+    BIGNUM *D = BN_new();
+    EC_POINT *_pubKey = NULL;
+    
+    const EC_GROUP *_group;
+    
+    XECDSAPrivKey *pk = NULL;
+    
+    if ( !eckey256 ) {
+        goto ErrorReturn;
+    }
+    
+    BN_bin2bn(seed.bytes, (int)seed.length, D);
+    if ( !EC_KEY_set_private_key(eckey256, D) ) {
+        goto ErrorReturn;
+    }
+    
+    _group = EC_KEY_get0_group(eckey256);
+    _pubKey = EC_POINT_new(_group);
+    
+    if ( !EC_POINT_mul(_group, _pubKey, D, NULL, NULL, _ctx) ) {
+        goto ErrorReturn;
+    }
+    
+    EC_KEY_set_public_key(eckey256, _pubKey);
+    
+    pk = [[XECDSAPrivKey alloc] initWithECKey:eckey256];
+    
+ErrorReturn:
+    
+    EC_POINT_free(_pubKey);
+    BN_free(D);
+    BN_CTX_free(_ctx);
+    EC_KEY_free(eckey256);
+    
+    return pk;
+}
+
++ (instancetype _Nullable) fromExportedDictionary:(NSDictionary<NSString*, NSString*> * _Nonnull)keydict {
+    return [[XECDSAPrivKey alloc] initWithDictionary:keydict];
 }
 
 - (instancetype _Nullable) initWithDictionary:(NSDictionary<NSString*, NSString*> * _Nonnull)keydict {

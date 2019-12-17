@@ -49,7 +49,7 @@
     [self.transferServices transferWithFrom:self.initorAccount.address
                                          to:@"eqMvtH1MQSejd4nzxDy21W1GW12cocrPF"
                                      amount:one
-                                    remarks:nil
+                                    remarks:@"transaction from xuper-sdk-oc"
                                forzenHeight:0
                               initorKeypair:self.initorAccount
                         authRequireKeypairs:@[self.initorAccount] handle:^(XHexString  _Nullable txhash, NSError * _Nullable error) {

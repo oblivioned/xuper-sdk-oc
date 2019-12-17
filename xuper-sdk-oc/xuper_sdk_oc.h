@@ -38,10 +38,12 @@ FOUNDATION_EXPORT const unsigned char xuper_sdk_ocVersionString[];
 #import <xuper_sdk_oc/XCryptoFactory.h>
 
 /// ECDSA implement
+#import <xuper_sdk_oc/BIP39.h>
 #import <xuper_sdk_oc/XECDSAPubKey.h>
 #import <xuper_sdk_oc/XECDSAPrivKey.h>
 #import <xuper_sdk_oc/XECDSAAccount.h>
 #import <xuper_sdk_oc/XECDSAClient.h>
+#import <xuper_sdk_oc/XECDSABIP39Account.h>
 
 /// Protocbuff message obj
 #import <xuper_sdk_oc/Chainedbft.pbobjc.h>

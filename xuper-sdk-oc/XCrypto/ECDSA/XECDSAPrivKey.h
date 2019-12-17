@@ -15,22 +15,20 @@
 
 @interface XECDSAPrivKey : NSObject <XCryptoPrivKeyProtocol>
 
-/**
- * 从json文件中创建私钥对象
- * \param  keydata  json文件的实际内容
- * \return XECDSAPrivKey* or NULL
-*/
-+ (instancetype _Nullable) fromExportedJsonContent:(NSData* _Nonnull)keydata;
++ (instancetype _Nullable) generateKey;
 
-/**
- * 从json文件中创建私钥对象
- * \param  keydict  由json转换的NSDictionary对象，其中应该包括(Curvname, X, Y, D) 4个字段
- * \return XECDSAPrivKey* or NULL
-*/
-+ (instancetype _Nullable) fromExportedDictionary:(NSDictionary* _Nonnull)keydict;
++ (instancetype _Nullable) generateKeyBySeed:(NSData * _Nonnull)seed;
+
+/*!
+ * 注意一定Value一定要是String，一定要是String，一定要是String
+ * 因为默认在go版本的xuper中，导出的私钥是10进制表示的超大数，而objectiv-c是无法正常识别的，所以一定要手动转换成string
+ */
++ (instancetype _Nullable) fromExportedDictionary:(NSDictionary<NSString*, NSString*> * _Nonnull)keydict;
+
+- (instancetype _Nullable) initWithJsonFormatString:(NSString * _Nonnull)ppjson error:(NSError * _Nonnull * _Nullable)error;
+
+- (instancetype _Nullable) initWithDictionary:(NSDictionary<NSString*, NSString*> * _Nonnull)keydict;
 
 - (id<XCryptoPubKeyProtocol> _Nonnull) publicKey;
-
-+ (instancetype _Nullable) generateKey;
 
 @end
