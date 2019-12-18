@@ -60,6 +60,9 @@
 /// 创建新的账户，并导出相关文件（含助记词）到本地。生成如下几个文件：1.助记词，2.私钥，3.公钥，4.钱包地址
 - (id<XBIP39AccountProtocol> _Nullable) exportNewAccountWithMnemonicToPath:(NSString * _Nonnull)path language:(BIP39MnemonicLanguage)languag strength:(BIP39MnemonicStrength)strength password:(NSString * _Nonnull)password error:(NSError * _Nonnull * _Nullable)error;
 
+/// 根据私钥json恢复密钥
+- (id<XCryptoAccountProtocol> _Nullable) retrieveAccountByPrivateKeyJsongString:(NSString * _Nonnull)pkjson;
+
 /// 从助记词恢复钱包账户
 - (id<XBIP39AccountProtocol> _Nullable) retrieveAccountByMnemonic:(NSString * _Nonnull)mnemonic password:(NSString * _Nullable)password language:(BIP39MnemonicLanguage)language;
 

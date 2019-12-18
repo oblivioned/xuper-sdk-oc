@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
   s.name     = 'xuper-sdk-oc'
-  s.version  = '0.0.1'
+  s.version  = '3.4.0'
   s.license  = { :type => 'Apache License Version 2.0', :file => 'LICENSE' }
   s.authors  = { 'oblivioned' => '...' }
   s.homepage = 'https://github.com/oblivioned/xuper-sdk-oc'
   s.summary = 'xuper-sdk-oc for iOS and macOS'
-  s.source = { :git => 'https://github.com/oblivioned/xuper-sdk-oc.git', :tag => 'v0.0.1' }
+  s.source = { :git => 'https://github.com/oblivioned/xuper-sdk-oc.git', :tag => 'v3.4.0' }
 
   s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.9'
+  s.osx.deployment_target = '10.15'
   # s.tvos.deployment_target = '10.0'
   # s.watchos.deployment_target = '4.0'
 
@@ -25,6 +25,8 @@ Pod::Spec.new do |s|
                     "xuper-sdk-oc/XClient/*.{h,m}",
                     "xuper-sdk-oc/XClient/XClientGRPC/*.{h,m}",
                     "xuper-sdk-oc/XCrypto/*.{h,m}",
+                    "xuper-sdk-oc/XCrypto/BIP39/*.{h,m}",
+                    "xuper-sdk-oc/XCrypto/BIP39/WordLists/*.{h,m}",
                     "xuper-sdk-oc/XCrypto/ECDSA/*.{h,m}",
                     "xuper-sdk-oc/XCrypto/Protocol/*.{h,m}",
                     "xuper-sdk-oc/XCrypto/Protocol/KeyPair/*.{h,m}",
@@ -46,6 +48,8 @@ Pod::Spec.new do |s|
                           "xuper-sdk-oc/XClient/*.h",
                           "xuper-sdk-oc/XClient/XClientGRPC/*.h",
                           "xuper-sdk-oc/XCrypto/*.h",
+                          "xuper-sdk-oc/XCrypto/BIP39/*.h",
+                          "xuper-sdk-oc/XCrypto/BIP39/WordLists/*.h",
                           "xuper-sdk-oc/XCrypto/ECDSA/*.h",
                           "xuper-sdk-oc/XCrypto/Protocol/*.h",
                           "xuper-sdk-oc/XCrypto/Protocol/KeyPair/*.h",

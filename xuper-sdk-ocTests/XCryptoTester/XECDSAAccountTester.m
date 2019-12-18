@@ -247,4 +247,5 @@
     
     XCTAssert([acc.address isEqualToString:@"XRPoyVV7c4m3xLRv3MTmeiYGLqw79ir41"]);
 }
+
 @end

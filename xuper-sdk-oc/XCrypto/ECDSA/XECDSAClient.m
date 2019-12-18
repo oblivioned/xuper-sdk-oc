@@ -379,6 +379,17 @@ ErrorReturn:
     return [XECDSAAccount fromPrivateKey:pk];
 }
 
+- (id<XCryptoAccountProtocol> _Nullable) retrieveAccountByPrivateKeyJsongString:(NSString * _Nonnull)pkjson {
+    
+    NSError *error;
+    XECDSAPrivKey *pk = [[XECDSAPrivKey alloc] initWithJsonFormatString:pkjson error:&error];
+    if (error) {
+        return nil;
+    }
+    
+    return [XECDSAAccount fromPrivateKey:pk];
+}
+
 - (id<XBIP39AccountProtocol> _Nullable) retrieveAccountByMnemonic:(NSString * _Nonnull)mnemonic password:(NSString * _Nullable)password language:(BIP39MnemonicLanguage)language {
     return [XECDSABIP39Account fromMnemonics:mnemonic pwd:password language:language];
 }

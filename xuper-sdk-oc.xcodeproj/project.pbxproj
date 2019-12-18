@@ -19,6 +19,7 @@
 		18033E4223A7BB950031FE41 /* bip39_chinese_simplified.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033E3B23A7BB950031FE41 /* bip39_chinese_simplified.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18033E4623A927160031FE41 /* XECDSABIP39Account.h in Headers */ = {isa = PBXBuildFile; fileRef = 18033E4423A927160031FE41 /* XECDSABIP39Account.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18033E4723A927160031FE41 /* XECDSABIP39Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033E4523A927160031FE41 /* XECDSABIP39Account.m */; };
+		18033E4923AA12A80031FE41 /* Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18033E4823AA12A80031FE41 /* Demo.m */; };
 		180C2B5E239B46FC00D2CB24 /* XTransactionDescInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		180C2B5F239B46FC00D2CB24 /* XTransactionDescInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */; };
 		180C2B63239B47F900D2CB24 /* XTransactionACL.h in Headers */ = {isa = PBXBuildFile; fileRef = 180C2B61239B47F900D2CB24 /* XTransactionACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +153,7 @@
 		18033E3B23A7BB950031FE41 /* bip39_chinese_simplified.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bip39_chinese_simplified.h; sourceTree = "<group>"; };
 		18033E4423A927160031FE41 /* XECDSABIP39Account.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XECDSABIP39Account.h; sourceTree = "<group>"; };
 		18033E4523A927160031FE41 /* XECDSABIP39Account.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XECDSABIP39Account.m; sourceTree = "<group>"; };
+		18033E4823AA12A80031FE41 /* Demo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo.m; sourceTree = "<group>"; };
 		180C2B5C239B46FC00D2CB24 /* XTransactionDescInvoke.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionDescInvoke.h; sourceTree = "<group>"; };
 		180C2B5D239B46FC00D2CB24 /* XTransactionDescInvoke.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTransactionDescInvoke.m; sourceTree = "<group>"; };
 		180C2B61239B47F900D2CB24 /* XTransactionACL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTransactionACL.h; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				1815C750239A48A7000ADB6D /* XuperClientTester */,
 				186FC27C2392598B00DE6E2B /* XCryptoTester */,
 				186FC2342390CDFF00DE6E2B /* Info.plist */,
+				18033E4823AA12A80031FE41 /* Demo.m */,
 			);
 			path = "xuper-sdk-ocTests";
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18033E4923AA12A80031FE41 /* Demo.m in Sources */,
 				18033B0123A212400031FE41 /* NetURLServicesTester.m in Sources */,
 				18033B0723A25D360031FE41 /* TDPOSServicesTester.m in Sources */,
 				1815C752239A48D8000ADB6D /* AccountServicesTester.m in Sources */,
