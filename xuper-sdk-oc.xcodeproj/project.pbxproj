@@ -1110,10 +1110,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/xuper-sdk-oc/XProvider/Protoc",
-					"$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/include",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "xuper-sdk-oc/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1121,7 +1118,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/lib";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.martin.xuper-sdk-oc";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1142,10 +1139,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/xuper-sdk-oc/XProvider/Protoc",
-					"$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/include",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "xuper-sdk-oc/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1153,7 +1147,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/xuper-sdk-oc/libs/openssl/lib";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.martin.xuper-sdk-oc";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
