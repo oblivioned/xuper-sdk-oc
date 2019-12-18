@@ -29,7 +29,7 @@ Macos 10.15 +
 ### 写在前面的话
 &emsp;&emsp;首先按照国际惯例感谢一下xuper官方团队，超哥，小X姐姐和各位群友，在开发sdk的过程中帮我解答问题，其次说回xuper-sdk-oc本身，它一定还有很多不完善的地方，希望在未来的使用中不断的迭代和完善。您可以拿来直接使用，也可以用于学习和交流。如果有bug或者无法支撑您的需求，可以提交[Issues](https://github.com/oblivioned/xuper-sdk-oc/issues)。
 
-&emsp;&emsp;如果对于实现的地方觉得可以改进请疯狂的发起PullRequest，一起完善！
+&emsp;&emsp;如果对于实现的地方觉得可以改进请疯狂的发起PullRequest，一起完善，如果您在使用的过程中，遇到的问题特别着急,请到"百度超级链开源官方交流"2群联系我。
 
 &emsp;&emsp;
 ### 如何使用
