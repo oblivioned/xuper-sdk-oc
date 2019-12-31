@@ -1,1 +1,3 @@
 
+1.XECDSABIP39Account *bip39Ak = (XECDSABIP39Account*)[LMXP_AKManager.defaultManager generateBIP39AKWithPassword:serDataSource[@"password"] error:&error];
+error:nil 会异常！！

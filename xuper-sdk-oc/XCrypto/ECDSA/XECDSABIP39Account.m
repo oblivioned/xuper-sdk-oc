@@ -60,4 +60,8 @@
     return self->m;
 }
 
+- (NSString * _Nullable) mnemonic {
+    return [self->m componentsJoinedByString:@" "];
+}
+
 @end
