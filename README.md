@@ -1,6 +1,10 @@
 # xuper-sdk-oc 3.4.0
 
 &emsp;&emsp;
+### 简述
+&emsp;&emsp;为[xuperchain](https://github.com/xuperchain/xuperunion)提供基于GRPC的节点通讯，并对一些常用功能进行二次封装，让使用SDK的用户，可以脱离GRPC的基本通讯完成操作，减少集成难度，隐藏了一些不需要表层关心的细节。也可以直接使用本SDK提供的GRPC实例，直接进行GRPC通讯。更多功能正在陆续完善中。
+
+&emsp;&emsp;
 ### 支持的平台
 iOS 8.0 +
 
